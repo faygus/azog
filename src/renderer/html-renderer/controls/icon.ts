@@ -10,7 +10,7 @@ export class IconRenderer extends BaseRenderer<IconView> {
 		htmlWrapper.style.flexDirection = 'column';
 		htmlWrapper.style.justifyContent = 'center';
 		htmlWrapper.style.alignItems = 'center';
-		htmlWrapper.style.height = '100%';
+		// htmlWrapper.style.height = '100%';
 		const htmlIcon = document.createElement('i');
 		htmlIcon.style.fontSize = '25px'; // TODO
 		htmlIcon.style.color = '#444'; // TODO

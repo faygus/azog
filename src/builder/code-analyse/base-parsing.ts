@@ -14,6 +14,9 @@ import { LabelWF } from "../entities/controls/wireframe/label";
 import { IconWF } from "../entities/controls/wireframe/icon";
 import { ViewComposition } from "../entities/view-composition";
 import { RouterDirective } from "../entities/directives/router-directive";
+import { Positioner } from "../entities/positioner";
+import { Layers, Layer } from "../entities/layers";
+import { UniColorWF } from "../entities/controls/wireframe/uniColor";
 
 export class BaseParsing {
 	constructor(protected _componentCollection: IComponentCollection) {
@@ -23,7 +26,7 @@ export class BaseParsing {
 	getContainer(container: any): Container {
 		const res = new Container();
 		res.layoutManager.flexDirection = ParsingUtils.getDirection(container.direction); // TODO make value dynamic
-		// TODO main and cross alignment
+		// TODO main and cross alignment ? or let this task to host relative position
 		for (const child of container.children) {
 			if (child.structuralDirective) {
 				const structuralDirective = this.getStructuralDirective(child);
@@ -104,6 +107,9 @@ export class BaseParsing {
 				const container = this.getContainer(componentJSON.value);
 				res.view = container;
 				return res;
+			case 'layers':
+				res.view = this.getLayers(componentJSON.value);
+				return res;
 			case 'label':
 				const labelView = new LabelView();
 				if (componentJSON.value && componentJSON.value.text) {
@@ -141,6 +147,11 @@ export class BaseParsing {
 					iconWFView.style.size = parseValueProvider(componentJSON.value.style.size);
 				}
 				res.view = iconWFView;
+				return res;
+			case 'uniColorWF':
+				const uniColorWFView = new UniColorWF();
+				uniColorWFView.color = parseValueProvider(componentJSON.value.color);
+				res.view = uniColorWFView;
 				return res;
 			default:
 				return res;
@@ -208,6 +219,23 @@ export class BaseParsing {
 		const res = new ViewComposition();
 		res.hostComponent = this.getView(data.hostComponentId);
 		res.content = this.getView(data.content);
+		return res;
+	}
+
+	private getLayers(data: any): Layers {
+		const res = new Layers();
+		let mainLayer: Layer | undefined;
+		for (const child of data.children) {
+			const layer = new Layer();
+			layer.positioner.padding = child.positioner.padding;
+			layer.zIndex = child.zIndex;
+			layer.child = this.getView(child.child);
+			if (child.mainLayer) {
+				mainLayer = layer;
+			}
+			res.children.push(layer);
+		}
+		res.mainLayer = mainLayer;
 		return res;
 	}
 }

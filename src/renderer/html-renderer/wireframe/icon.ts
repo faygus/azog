@@ -14,7 +14,7 @@ export class IconWFRenderer extends BaseRenderer<IconWF> {
 		htmlWrapper.style.flexDirection = 'column';
 		htmlWrapper.style.justifyContent = 'center';
 		htmlWrapper.style.alignItems = 'center';
-		htmlWrapper.style.height = '100%';
+		// htmlWrapper.style.height = '100%';
 		const htmlIcon = document.createElement('i');
 		if (icon.style.size !== undefined) {
 			watchViewProperty(icon.style.size, viewModel, (value) => {

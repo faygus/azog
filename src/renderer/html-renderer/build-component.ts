@@ -25,6 +25,11 @@ import { IHostRenderer } from "./interfaces/host-renderer";
 import { StructuralDirective } from "../../builder/entities/directives/structural-directive";
 import { RouterDirective } from "../../builder/entities/directives/router-directive";
 import { watchViewProperty } from "./binding-resolver";
+import { Layers } from "../../builder/entities/layers";
+import { LayersRenderer } from "./layers";
+import { IParentView } from "./interfaces/parent-view";
+import { UniColorWF } from "../../builder/entities/controls/wireframe/uniColor";
+import { UniColorWFRenderer } from "./wireframe/unicolor";
 
 const componentRenderer: IComponentRenderer = {
 	build: (view: Component, viewModel?: DynamicViewModel) => {
@@ -40,36 +45,52 @@ const hostRenderer: IHostRenderer = {
 
 const rendererProvider = new RendererProvider(componentRenderer, hostRenderer);
 
-export function renderComponent(component: Component, parentHtml: HTMLElement, viewModel?: DynamicViewModel): void;
-export function renderComponent(component: Component, viewInserter: IViewInserter, viewModel?: DynamicViewModel): void;
-export function renderComponent(component: Component, insertion: HTMLElement | IViewInserter, viewModel?: DynamicViewModel): void {
+function renderComponent(component: Component, parentView: IParentView, viewModel?: DynamicViewModel): void {
 	console.log('renderComponent', component);
-	let viewInserter2: IViewInserter;
-	if (insertion instanceof HTMLElement) {
-		viewInserter2 = {
-			add: (element: HTMLElement) => {
-				insertion.appendChild(element);
-			},
-			remove: () => {
-				while (insertion.lastChild) {
-					insertion.lastChild.remove();
-				}
-			}
-		}
-	} else {
-		viewInserter2 = insertion;
-	}
 	if (component.view instanceof StructuralDirective) {
 		let parentViewModel = viewModel;
 		let dynamicViewModel = getViewModel(component, parentViewModel);
 		if (component.view instanceof IfDirective) {
-			handleIfDirective(component.view, viewInserter2, dynamicViewModel);
+			handleIfDirective(component.view, parentView, dynamicViewModel);
 		} else if (component.view instanceof RouterDirective) {
-			handleRouterDirective(component.view, viewInserter2, dynamicViewModel);
+			handleRouterDirective(component.view, parentView, dynamicViewModel);
 		}
 	} else {
-		const div = buildComponent(component, viewModel);
-		viewInserter2.add(div);
+		renderComponentNotDirective(component, parentView, viewModel);
+	}
+}
+
+export function renderComponentInParentHtml(component: Component, parentHtml: HTMLElement, viewModel?: DynamicViewModel): void {
+	let parentView: IParentView = {
+		add: (element: HTMLElement) => {
+			parentHtml.appendChild(element);
+		},
+		remove: () => {
+			while (parentHtml.lastChild) {
+				parentHtml.lastChild.remove();
+			}
+		},
+		setPadding: (value: number) => {
+			parentHtml.style.padding = value + 'px';
+		}
+	}
+	renderComponent(component, parentView, viewModel);
+}
+
+function renderComponentNotDirective(component: Component | undefined, parentView: IParentView,
+	parentViewModel?: DynamicViewModel): void {
+	let rendered = false;
+	if (component) {
+		let dynamicViewModel = getViewModel(component, parentViewModel);
+		rendered = renderView(component.view, parentView, dynamicViewModel);
+	}
+	if (!rendered) {
+		// no component defined, so we show a default label
+		const label = new LabelView();
+		label.text = parseValueProvider('component');
+		const labelRenderer = rendererProvider.getControlRenderer(LabelRenderer);
+		const labelHtml = labelRenderer!.build(label);
+		parentView.add(labelHtml);
 	}
 }
 
@@ -103,6 +124,8 @@ function getViewModel(component: Component, parentViewModel?: DynamicViewModel):
 
 export function buildHost(host: Host, viewModel?: DynamicViewModel): HTMLDivElement {
 	const div = document.createElement('div');
+	div.style.position = 'relative';
+	div.style.boxSizing = 'border-box';
 	const width = host.width;
 	if (width) {
 		if (typeof width === 'object') {
@@ -127,7 +150,7 @@ export function buildHost(host: Host, viewModel?: DynamicViewModel): HTMLDivElem
 	}
 	if (host.child) {
 		if (host.child instanceof Component) {
-			renderComponent(host.child, div, viewModel);
+			renderComponentInParentHtml(host.child, div, viewModel);
 		} else {
 			const directive = host.child;
 			if (directive instanceof IfDirective) {
@@ -183,6 +206,26 @@ function getUnit(unit: Unit): string {
 	return map[unit];
 }
 
+/**
+ * return true if something is rendered
+ */
+function renderView(control: any, parentView: IParentView, viewModel?: DynamicViewModel): boolean {
+	if (control instanceof Layers) {
+		const layersRenderer = new LayersRenderer(componentRenderer);
+		layersRenderer.show(control, parentView, viewModel);
+		return true;
+	} else {
+		const elementHtml = renderControl(control, viewModel);
+		if (elementHtml) {
+			elementHtml.style.width = '100%';
+			elementHtml.style.height = '100%';
+			parentView.add(elementHtml);
+			return true;
+		}
+	}
+	return false;
+}
+
 function renderControl(control: any, viewModel?: DynamicViewModel): HTMLElement | undefined {
 	let renderer: BaseRenderer<any> | undefined;
 	if (control instanceof ViewComposition) {
@@ -197,6 +240,8 @@ function renderControl(control: any, viewModel?: DynamicViewModel): HTMLElement 
 		renderer = rendererProvider.getControlRenderer(IconWFRenderer);
 	} else if (control instanceof LabelWF) {
 		renderer = rendererProvider.getControlRenderer(LabelWFRenderer);
+	} else if (control instanceof UniColorWF) {
+		renderer = new UniColorWFRenderer();
 	}
 	if (renderer) {
 		return renderer.build(control, viewModel);

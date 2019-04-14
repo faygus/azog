@@ -1,6 +1,5 @@
 import { Component } from "../../builder/entities/component";
-import { buildComponent, renderComponent } from "./build-component";
-import { IViewInserter } from "./interfaces/view-inserter";
+import {renderComponentInParentHtml } from "./build-component";
 
 export class HTMLRenderer {
 	static render(component: Component): void {
@@ -9,18 +8,7 @@ export class HTMLRenderer {
 			console.error('no root element in body');
 			return;
 		} else {
-			// const div = buildComponent(component);
-			const viewInserter: IViewInserter = {
-				add: (element: HTMLElement) => {
-					root.appendChild(element);
-				},
-				remove: () => {
-					while (root.lastChild) {
-						root.lastChild.remove();
-					}
-				}
-			}
-			renderComponent(component, viewInserter);
+			renderComponentInParentHtml(component, root);
 		}
 	}
 

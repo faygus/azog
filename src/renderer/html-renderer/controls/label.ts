@@ -10,7 +10,7 @@ export class LabelRenderer extends BaseRenderer<LabelView> {
 		htmlWrapper.style.flexDirection = 'column';
 		htmlWrapper.style.justifyContent = 'center';
 		htmlWrapper.style.alignItems = 'center';
-		htmlWrapper.style.height = '100%';
+		// htmlWrapper.style.height = '100%';
 		const htmlLabel = document.createElement('p');
 		const handler = (value: string) => {
 			htmlLabel.innerText = value;

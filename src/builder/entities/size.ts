@@ -1,3 +1,4 @@
 import { Unit } from "./unit";
 
-export type SIZE = {value: number, unit: Unit} | 'full' | 'auto';
+export type DISTANCE = {value: number, unit: Unit};
+export type SIZE = DISTANCE | 'full' | 'auto';

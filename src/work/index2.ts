@@ -254,9 +254,52 @@ export function run(): void {
 			}
 		},
 		12: {
+			"type": "layout",
+			"value": {
+				"direction": "column",
+				"children": [
+					{
+						"height": "auto",
+						"child": 13
+					}
+				]
+			}
+		},
+		13: {
+			"type": "layers",
+			"value": {
+				"children": [
+					{
+						"zIndex": 0,
+						"child": 14,
+						"positioner": {
+							"padding": 0
+						}
+					},
+					{
+						"zIndex": 1,
+						"child": 15,
+						"positioner": {
+							"padding": 20
+						},
+						"mainLayer": true
+					},
+				]
+			}
+		},
+		14: {
+			"type": "uniColorWF",
+			"value": {
+				"color": 2
+			}
+		},
+		15: {
 			"type": "labelWF",
 			"value": {
-				"text": "navigation"
+				"text": "Messages",
+				"style": {
+					"size": 1
+				}
 			}
 		}
 	};

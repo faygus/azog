@@ -32,7 +32,7 @@ export class ContainerRenderer {
 				let childDiv = this._componentBuilder.build(child, viewModel);
 				const color1 = '#bebebe';
 				const color2 = '#ccc';
-				childDiv.style.backgroundColor = i % 2 === 0 ? color1 : color2;
+				// childDiv.style.backgroundColor = i % 2 === 0 ? color1 : color2;
 				containerContentRendered.add(child, childDiv);
 			} else {
 				if (child instanceof IfDirective) {
