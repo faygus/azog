@@ -1,0 +1,1 @@
+Créer dynamiquement le layout à partir du code source JSON

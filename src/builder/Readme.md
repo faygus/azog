@@ -1,0 +1,1 @@
+Lit du code source sous format JSON et l'interprète. La finalité est de générer du code spécific à une plateforme ou bien de construire dynamiquement la vue.
