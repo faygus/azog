@@ -1,9 +1,11 @@
 import { VIEW_MODELS, VIEW_DATA } from "../../app/components";
 import { IViewModelInterface, Property } from "../entities/data/view-model";
 import { IMockDataSource } from "../entities/data/mock-data-source";
+import { IViewModelInterfaceJSON } from "../interfaces/view-model";
+import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 
 export class ViewModelParsing {
-	static getViewModel(viewModelJSON: any): IViewModelInterface | undefined {
+	static getViewModel(viewModelJSON: IViewModelInterfaceJSON): IViewModelInterface | undefined {
 		if (!viewModelJSON) {
 			return undefined;
 		}
@@ -23,7 +25,7 @@ export class ViewModelParsing {
 		return res;
 	}
 
-	static getMockData(mockJSON: any): IMockDataSource | undefined {
+	static getMockData(mockJSON: IMockViewModelJSON): IMockDataSource | undefined {
 		if (!mockJSON) {
 			return undefined;
 		}
@@ -35,7 +37,7 @@ export class ViewModelParsing {
 			res.properties.push({
 				name: prop,
 				values: data.values,
-				loop: data.loop
+				loop: (data.loop !== undefined) ? data.loop : false
 			});
 		}
 		return res;

@@ -2,9 +2,10 @@ import { FlexDirection } from "../entities/layout";
 import { ParsingException, ParsingErrorType } from "./error";
 import { Unit } from "../entities/unit";
 import { SIZE } from "../entities/size";
+import { ISizeJSON } from "../interfaces/container";
 
 export class ParsingUtils {
-	static getSize(size: any): SIZE {
+	static getSize(size: ISizeJSON): SIZE {
 		if (typeof size === 'string') {
 			if (size === 'full') {
 				return 'full';

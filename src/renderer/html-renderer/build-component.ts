@@ -5,10 +5,7 @@ import { LabelView } from "../../builder/entities/controls/label";
 import { IconView } from "../../builder/entities/controls/icon";
 import { Container } from "../../builder/entities/container";
 import { IfDirective } from "../../builder/entities/directives/if-directive";
-import { Host } from "../../builder/entities/host";
-import { Unit } from "../../builder/entities/unit";
 import { IfDirectiveRenderer } from "./if-directive";
-import { ForDirective } from "../../builder/entities/directives/for-directive";
 import { IViewInserter } from "./interfaces/view-inserter";
 import { BaseRenderer } from "./base-renderer";
 import { LabelRenderer } from "./controls/label";
@@ -18,7 +15,7 @@ import { IconWFRenderer } from "./wireframe/icon";
 import { LabelWFRenderer } from "./wireframe/label";
 import { LabelWF } from "../../builder/entities/controls/wireframe/label";
 import { parseValueProvider } from "../../builder/code-analyse/value-provider";
-import { ViewComposition } from "../../builder/entities/view-composition";
+import { ViewComposition, ViewComposition2 } from "../../builder/entities/view-composition";
 import { RendererProvider } from "./renderer-provider";
 import { IComponentRenderer } from "./interfaces/component-renderer";
 import { IHostRenderer } from "./interfaces/host-renderer";
@@ -30,6 +27,9 @@ import { LayersRenderer } from "./layers";
 import { IParentView } from "./interfaces/parent-view";
 import { UniColorWF } from "../../builder/entities/controls/wireframe/uniColor";
 import { UniColorWFRenderer } from "./wireframe/unicolor";
+import { HostRenderer } from "./host-renderer";
+import { Container2 } from "../../builder/entities/container2";
+import { ViewComposition2Renderer } from "./view-composition2";
 
 const componentRenderer: IComponentRenderer = {
 	build: (view: Component, viewModel?: DynamicViewModel) => {
@@ -37,11 +37,7 @@ const componentRenderer: IComponentRenderer = {
 	}
 }
 
-const hostRenderer: IHostRenderer = {
-	build: (view: Host, viewModel?: DynamicViewModel) => {
-		return buildHost(view, viewModel);
-	}
-}
+const hostRenderer: IHostRenderer = new HostRenderer(componentRenderer, renderComponentInParentHtml);
 
 const rendererProvider = new RendererProvider(componentRenderer, hostRenderer);
 
@@ -122,60 +118,6 @@ function getViewModel(component: Component, parentViewModel?: DynamicViewModel):
 	return dynamicViewModel;
 }
 
-export function buildHost(host: Host, viewModel?: DynamicViewModel): HTMLDivElement {
-	const div = document.createElement('div');
-	div.style.position = 'relative';
-	div.style.boxSizing = 'border-box';
-	const width = host.width;
-	if (width) {
-		if (typeof width === 'object') {
-			const unitStr = getUnit(width.unit);
-			const widthString = width.value + unitStr;
-			div.style.width = widthString;
-		} else {
-			if (width === 'full') {
-				div.style.flex = '1';
-			}
-		}
-	}
-	const height = host.height;
-	if (height) {
-		if (typeof height === 'object') {
-			div.style.height = height.value + getUnit(height.unit);
-		} else {
-			if (height === 'full') {
-				div.style.flex = '1';
-			}
-		}
-	}
-	if (host.child) {
-		if (host.child instanceof Component) {
-			renderComponentInParentHtml(host.child, div, viewModel);
-		} else {
-			const directive = host.child;
-			if (directive instanceof IfDirective) {
-				const viewInserter: IViewInserter = {
-					add: (element: HTMLElement) => {
-						div.appendChild(element);
-					},
-					remove: () => {
-						while (div.lastChild) {
-							div.lastChild.remove();
-						}
-					}
-				};
-				handleIfDirective(directive, viewInserter, viewModel);
-			} else if (directive instanceof ForDirective) {
-				// Est ce que l'on peut vraiment avoir un for dans un host ?
-			}
-		}
-	} else if (host.hostContent) {
-		// TODO
-		console.warn('host content not rendered yet');
-	}
-	return div;
-}
-
 function handleIfDirective(directive: IfDirective, viewInserter: IViewInserter,
 	viewModel?: DynamicViewModel): void {
 	const renderer = new IfDirectiveRenderer(directive, viewInserter,
@@ -196,14 +138,6 @@ function handleRouterDirective(directive: RouterDirective, viewInserter: IViewIn
 		viewInserter.add(htmlElement);
 	};
 	watchViewProperty(directive.activatedRoute, viewModel, handler);
-}
-
-function getUnit(unit: Unit): string {
-	const map = {
-		[Unit.POURCENTAGE]: '%',
-		[Unit.PX]: 'px'
-	};
-	return map[unit];
 }
 
 /**
@@ -242,6 +176,9 @@ function renderControl(control: any, viewModel?: DynamicViewModel): HTMLElement 
 		renderer = rendererProvider.getControlRenderer(LabelWFRenderer);
 	} else if (control instanceof UniColorWF) {
 		renderer = new UniColorWFRenderer();
+	} else if (control instanceof ViewComposition2) {
+		const componentRenderer = rendererProvider.getComponentRenderer();
+		renderer = new ViewComposition2Renderer(componentRenderer);
 	}
 	if (renderer) {
 		return renderer.build(control, viewModel);

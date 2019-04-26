@@ -12,11 +12,21 @@ import { ViewModelParsing } from "./view-model";
 import { parseValueProvider } from "./value-provider";
 import { LabelWF } from "../entities/controls/wireframe/label";
 import { IconWF } from "../entities/controls/wireframe/icon";
-import { ViewComposition } from "../entities/view-composition";
+import { ViewComposition, ViewComposition2 } from "../entities/view-composition";
 import { RouterDirective } from "../entities/directives/router-directive";
 import { Positioner } from "../entities/positioner";
 import { Layers, Layer } from "../entities/layers";
 import { UniColorWF } from "../entities/controls/wireframe/uniColor";
+import { Container2, Direction } from "../entities/container2";
+import { SIZE } from "../entities/size";
+import { IIconWFJSON } from "../interfaces/iconWF";
+import { ILabelWFJSON } from "../interfaces/labelWF";
+import { IContainerJSON } from "../interfaces/container";
+import { labelWFParser } from "./parsers/labelWF";
+import { iconWFParser } from "./parsers/iconWF";
+import { containerParser } from "./parsers/container";
+import { viewCompositionParser } from "./parsers/view-composition";
+import { ControlParser, GetView } from "./parsers/type";
 
 export class BaseParsing {
 	constructor(protected _componentCollection: IComponentCollection) {
@@ -94,7 +104,14 @@ export class BaseParsing {
 		res.viewModelInterface = ViewModelParsing.getViewModel(viewModelJSON);
 		const mockDataJSON = this._componentCollection.viewMockData.get(componentId);
 		res.mockData = ViewModelParsing.getMockData(mockDataJSON);
-		switch (componentJSON.type) {
+		const controlParser = controlParsers[componentJSON.type];
+		if (!controlParser) {
+			throw new Error('can not parse ' + componentJSON.type);
+		}
+		const control = controlParser(componentJSON.value, this.getView.bind(this));
+		res.view = control;
+		return res;
+		/*switch (componentJSON.type) {
 			case 'structuralDirective':
 				const view = this.getStructuralDirective2(componentJSON);
 				res.view = view;
@@ -125,18 +142,6 @@ export class BaseParsing {
 				res.view = iconView;
 				return res;
 			case 'labelWF':
-				const labelWFView = new LabelWF();
-				if (componentJSON.value && componentJSON.value.text) {
-					labelWFView.text = parseValueProvider(componentJSON.value.text);
-					if (componentJSON.value.style) {
-						if (componentJSON.value.style.color) {
-							labelWFView.style.color = parseValueProvider(componentJSON.value.style.color);
-						}
-						if (componentJSON.value.style.size) {
-							labelWFView.style.size = parseValueProvider(componentJSON.value.style.size);
-						}
-					}
-				}
 				res.view = labelWFView;
 				return res;
 			case 'iconWF':
@@ -155,7 +160,7 @@ export class BaseParsing {
 				return res;
 			default:
 				return res;
-		}
+		}*/
 	}
 
 	// TODO update
@@ -174,30 +179,6 @@ export class BaseParsing {
 			const list: ValueProvider<any[]> = parseValueProvider(data.data.list);
 			const res = new ForDirective(list, template);
 			return res;
-		}
-		throw new Error(`structural directive ${data.structuralDirective} not known`);
-	}
-
-	private getStructuralDirective2(data: any): StructuralDirective {
-		const getTemplate = () => {
-			let template = data.value.template;
-			if (template.componentId) {
-				template = this.getView(template.componentId);
-			} else { // template is host
-				template = this.getHost(template);
-			}
-			return template;
-		};
-		switch (data.structuralDirective) {
-			case 'router':
-				return this.getRouterDirective(data.value);
-				break;
-			case 'if':
-				const condition = parseValueProvider<boolean>(data.value.data.condition);
-				return new IfDirective(condition, getTemplate());
-			case 'for':
-				const list: ValueProvider<any[]> = parseValueProvider(data.value.data.list);
-				return new ForDirective(list, getTemplate());
 		}
 		throw new Error(`structural directive ${data.structuralDirective} not known`);
 	}
@@ -224,7 +205,7 @@ export class BaseParsing {
 
 	private getLayers(data: any): Layers {
 		const res = new Layers();
-		let mainLayer: Layer | undefined;
+		let mainLayer: Layer | undefined;
 		for (const child of data.children) {
 			const layer = new Layer();
 			layer.positioner.padding = child.positioner.padding;
@@ -288,4 +269,61 @@ export class ComponentCollectionBuiler implements IComponentCollection {
 			}
 		}
 	}
+}
+
+/*const structuralDirectiveParser: ControlParser = (componentJSON: any, getView: GetView): StructuralDirective => {
+	const getTemplate = () => {
+		let template = componentJSON.value.template;
+		if (template.componentId) {
+			template = getView(template.componentId);
+		} else { // template is host
+			template = this.getHost(template);
+		}
+		return template;
+	};
+	switch (componentJSON.structuralDirective) {
+		case 'router':
+			return this.getRouterDirective(componentJSON.value);
+			break;
+		case 'if':
+			const condition = parseValueProvider<boolean>(componentJSON.value.data.condition);
+			return new IfDirective(condition, getTemplate());
+		case 'for':
+			const list: ValueProvider<any[]> = parseValueProvider(componentJSON.value.data.list);
+			return new ForDirective(list, getTemplate());
+	}
+	throw new Error(`structural directive ${componentJSON.structuralDirective} not known`);
+};*/
+
+const uniColorWFParser: ControlParser = (componentJSON: any): UniColorWF => {
+	const res = new UniColorWF();
+	res.color = parseValueProvider(componentJSON.value.color);
+	return res;
+}
+
+const layersParser: ControlParser = (componentJSON: any, getView: GetView): Layers => {
+	const res = new Layers();
+	let mainLayer: Layer | undefined;
+	for (const child of componentJSON.children) {
+		const layer = new Layer();
+		layer.positioner.padding = child.positioner.padding;
+		layer.zIndex = child.zIndex;
+		layer.child = getView(child.child);
+		if (child.mainLayer) {
+			mainLayer = layer;
+		}
+		res.children.push(layer);
+	}
+	res.mainLayer = mainLayer;
+	return res;
+}
+
+const controlParsers: { [key: string]: ControlParser } = {
+	'labelWF': labelWFParser,
+	'iconWF': iconWFParser,
+	// 'structuralDirective': structuralDirectiveParser,
+	'uniColorWF': uniColorWFParser,
+	'layers': layersParser,
+	'layout2': containerParser,
+	'viewComposition': viewCompositionParser
 }

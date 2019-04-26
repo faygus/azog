@@ -1,5 +1,8 @@
 import { ViewRendered } from "./view-rendered";
-import { Container } from "../../../builder/entities/container";
+
+export interface IParentView {
+	children: any[];
+}
 
 /**
  * insert child views of a container at the right place
@@ -8,8 +11,8 @@ export class ContainerContentRendered {
 	private _views: ViewRendered[] = [];
 	private _containerDiv?: HTMLDivElement;
 
-	constructor(private _container: Container) {
-		for (const child of _container.children) {
+	constructor(container: IParentView) {
+		for (const child of container.children) {
 			this._views.push(new ViewRendered(child));
 		}
 	}
