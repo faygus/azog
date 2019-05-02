@@ -20,7 +20,7 @@ export class ContainerContentRendered {
 	add(anchor: any, element: HTMLElement): void {
 		const viewRendered = this._views.find(v => v.view === anchor);
 		if (!viewRendered) {
-			throw new Error();
+			throw new Error('can not add this element to the container');
 		}
 		let previousElement = viewRendered.getLastElement();
 		if (!previousElement) {

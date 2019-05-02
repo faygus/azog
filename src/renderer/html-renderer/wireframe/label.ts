@@ -1,13 +1,13 @@
-import { IconWF } from "../../../builder/entities/controls/wireframe/icon";
+import { IconWFView } from "../../../parser/entities/controls/wireframe/icon";
 import { DynamicViewModel } from "../../dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
-import { LabelWF } from "../../../builder/entities/controls/wireframe/label";
+import { LabelWFView } from "../../../parser/entities/controls/wireframe/label";
 import { BaseRenderer } from "../base-renderer";
 import { WireframeSizeConverter } from "./converters/size";
 import { WireframeColorConverter } from "./converters/color";
 
-export class LabelWFRenderer extends BaseRenderer<LabelWF> {
-	build(label: LabelWF, viewModel?: DynamicViewModel): HTMLElement {
+export class LabelWFRenderer extends BaseRenderer<LabelWFView> {
+	build(label: LabelWFView, viewModel?: DynamicViewModel): HTMLElement {
 		const htmlWrapper = document.createElement('div');
 		htmlWrapper.style.display = 'flex';
 		htmlWrapper.style.flexDirection = 'column';

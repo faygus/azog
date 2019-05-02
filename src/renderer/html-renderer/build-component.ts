@@ -1,34 +1,34 @@
-import { Component } from "../../builder/entities/component";
+import { Component } from "../../parser/entities/component";
 import { DynamicViewModel } from "../dynamic-view-model";
 import { ViewModelCreator } from "./dynamic-view-model-creator";
-import { LabelView } from "../../builder/entities/controls/label";
-import { IconView } from "../../builder/entities/controls/icon";
-import { Container } from "../../builder/entities/container";
-import { IfDirective } from "../../builder/entities/directives/if-directive";
+import { LabelView } from "../../parser/entities/controls/label";
+import { IconView } from "../../parser/entities/controls/icon";
+import { Container } from "../../parser/entities/container";
+import { IfDirective } from "../../parser/entities/directives/if-directive";
 import { IfDirectiveRenderer } from "./if-directive";
 import { IViewInserter } from "./interfaces/view-inserter";
 import { BaseRenderer } from "./base-renderer";
 import { LabelRenderer } from "./controls/label";
 import { IconRenderer } from "./controls/icon";
-import { IconWF } from "../../builder/entities/controls/wireframe/icon";
+import { IconWFView } from "../../parser/entities/controls/wireframe/icon";
 import { IconWFRenderer } from "./wireframe/icon";
 import { LabelWFRenderer } from "./wireframe/label";
-import { LabelWF } from "../../builder/entities/controls/wireframe/label";
-import { parseValueProvider } from "../../builder/code-analyse/value-provider";
-import { ViewComposition, ViewComposition2 } from "../../builder/entities/view-composition";
+import { LabelWFView } from "../../parser/entities/controls/wireframe/label";
+import { parseValueProvider } from "../../parser/code-analyse/value-provider";
+import { ViewComposition, ViewComposition2 } from "../../parser/entities/view-composition";
 import { RendererProvider } from "./renderer-provider";
 import { IComponentRenderer } from "./interfaces/component-renderer";
 import { IHostRenderer } from "./interfaces/host-renderer";
-import { StructuralDirective } from "../../builder/entities/directives/structural-directive";
-import { RouterDirective } from "../../builder/entities/directives/router-directive";
+import { StructuralDirective } from "../../parser/entities/directives/structural-directive";
+import { RouterDirective } from "../../parser/entities/directives/router-directive";
 import { watchViewProperty } from "./binding-resolver";
-import { Layers } from "../../builder/entities/layers";
+import { Layers } from "../../parser/entities/layers";
 import { LayersRenderer } from "./layers";
 import { IParentView } from "./interfaces/parent-view";
-import { UniColorWF } from "../../builder/entities/controls/wireframe/uniColor";
+import { UniColorWF } from "../../parser/entities/controls/wireframe/uniColor";
 import { UniColorWFRenderer } from "./wireframe/unicolor";
 import { HostRenderer } from "./host-renderer";
-import { Container2 } from "../../builder/entities/container2";
+import { Container2 } from "../../parser/entities/container2";
 import { ViewComposition2Renderer } from "./view-composition2";
 
 const componentRenderer: IComponentRenderer = {
@@ -170,9 +170,9 @@ function renderControl(control: any, viewModel?: DynamicViewModel): HTMLElement 
 		renderer = rendererProvider.getControlRenderer(IconRenderer);
 	} else if (control instanceof Container) {
 		renderer = rendererProvider.getContainerRenderer();
-	} else if (control instanceof IconWF) {
+	} else if (control instanceof IconWFView) {
 		renderer = rendererProvider.getControlRenderer(IconWFRenderer);
-	} else if (control instanceof LabelWF) {
+	} else if (control instanceof LabelWFView) {
 		renderer = rendererProvider.getControlRenderer(LabelWFRenderer);
 	} else if (control instanceof UniColorWF) {
 		renderer = new UniColorWFRenderer();

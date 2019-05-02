@@ -1,14 +1,14 @@
-import { IconWF } from "../../../builder/entities/controls/wireframe/icon";
+import { IconWFView } from "../../../parser/entities/controls/wireframe/icon";
 import { DynamicViewModel } from "../../dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
 import { BaseRenderer } from "../base-renderer";
-import { WireframeSize } from "../../../builder/entities/controls/wireframe/enums/size";
-import { WireframeColor } from "../../../builder/entities/controls/wireframe/enums/color";
+import { WireframeSize } from "../../../parser/entities/controls/wireframe/enums/size";
+import { WireframeColor } from "../../../parser/entities/controls/wireframe/enums/color";
 import { WireframeSizeConverter } from "./converters/size";
 import { WireframeColorConverter } from "./converters/color";
 
-export class IconWFRenderer extends BaseRenderer<IconWF> {
-	build(icon: IconWF, viewModel?: DynamicViewModel): HTMLElement {
+export class IconWFRenderer extends BaseRenderer<IconWFView> {
+	build(icon: IconWFView, viewModel?: DynamicViewModel): HTMLElement {
 		const htmlWrapper = document.createElement('div');
 		htmlWrapper.style.display = 'flex';
 		htmlWrapper.style.flexDirection = 'column';

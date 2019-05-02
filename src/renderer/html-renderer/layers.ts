@@ -1,4 +1,4 @@
-import { Layers } from "../../builder/entities/layers";
+import { Layers } from "../../parser/entities/layers";
 import { IComponentRenderer } from "./interfaces/component-renderer";
 import { DynamicViewModel } from "../dynamic-view-model";
 import { IParentView } from "./interfaces/parent-view";

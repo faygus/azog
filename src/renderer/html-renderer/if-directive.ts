@@ -1,5 +1,5 @@
 import { DynamicViewModel } from "../dynamic-view-model";
-import { IfDirective } from "../../builder/entities/directives/if-directive";
+import { IfDirective } from "../../parser/entities/directives/if-directive";
 import { watchViewProperty } from "./binding-resolver";
 import { IComponentOrHostBuilder } from "./interfaces/component-builder";
 import { IViewInserter } from "./interfaces/view-inserter";
@@ -18,8 +18,6 @@ export class IfDirectiveRenderer {
 	}
 
 	run(): void {
-		const directive = this._directive;
-		const viewModel = this._viewModel;
 		const handler = (value: boolean) => {
 			if (value === this._show) {
 				return;
@@ -31,7 +29,7 @@ export class IfDirectiveRenderer {
 			}
 			this._show = value;
 		}
-		watchViewProperty(directive.input.condition, viewModel, handler);
+		watchViewProperty(this._directive.input.condition, this._viewModel, handler);
 	}
 
 	private insert(): void {

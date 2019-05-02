@@ -1,4 +1,4 @@
-import { IconView } from "../../../builder/entities/controls/icon";
+import { IconView } from "../../../parser/entities/controls/icon";
 import { watchViewProperty } from "../binding-resolver";
 import { DynamicViewModel } from "../../dynamic-view-model";
 import { BaseRenderer } from "../base-renderer";

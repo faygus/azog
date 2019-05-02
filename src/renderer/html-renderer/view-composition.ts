@@ -1,11 +1,11 @@
-import { LabelView } from "../../builder/entities/controls/label";
+import { LabelView } from "../../parser/entities/controls/label";
 import { DynamicViewModel } from "../dynamic-view-model";
 import { watchViewProperty } from "./binding-resolver";
 import { BaseRenderer } from "./base-renderer";
-import { ViewComposition } from "../../builder/entities/view-composition";
+import { ViewComposition } from "../../parser/entities/view-composition";
 import { IComponentRenderer } from "./interfaces/component-renderer";
-import { Host } from "../../builder/entities/host";
-import { Container } from "../../builder/entities/container";
+import { Host } from "../../parser/entities/host";
+import { Container } from "../../parser/entities/container";
 
 export class ViewCompositionRenderer extends BaseRenderer<ViewComposition> {
 

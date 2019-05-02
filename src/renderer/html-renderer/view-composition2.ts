@@ -1,14 +1,14 @@
-import { LabelView } from "../../builder/entities/controls/label";
+import { LabelView } from "../../parser/entities/controls/label";
 import { DynamicViewModel } from "../dynamic-view-model";
 import { watchViewProperty } from "./binding-resolver";
 import { BaseRenderer } from "./base-renderer";
-import { ViewComposition2 } from "../../builder/entities/view-composition";
+import { ViewComposition2 } from "../../parser/entities/view-composition";
 import { IComponentRenderer } from "./interfaces/component-renderer";
-import { Host } from "../../builder/entities/host";
-import { Container } from "../../builder/entities/container";
-import { Container2, Direction, IfDirective, ContainerChild } from "../../builder/entities/container2";
-import { Unit } from "../../builder/entities/unit";
-import { SIZE } from "../../builder/entities/size";
+import { Host } from "../../parser/entities/host";
+import { Container } from "../../parser/entities/container";
+import { Container2, Direction, IfDirective, ContainerChild } from "../../parser/entities/container2";
+import { Unit } from "../../parser/entities/unit";
+import { Size } from "../../parser/entities/size";
 import { ViewModelCreator } from "./dynamic-view-model-creator";
 import { ContainerContentRendered } from "./container/container-content-rendered";
 
@@ -105,7 +105,7 @@ function getUnit(unit: Unit): string {
 	return map[unit];
 }
 
-function applySize(size: SIZE, htmlStyle: any, direction: Direction): void {
+function applySize(size: Size, htmlStyle: any, direction: Direction): void {
 	if (typeof size === 'object') {
 		const unitStr = getUnit(size.unit);
 		const sizeString = size.value + unitStr;
