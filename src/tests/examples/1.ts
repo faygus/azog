@@ -1,7 +1,7 @@
-import { IRouterViewJSON } from "../../parser/interfaces/router";
-import { routerParser } from "../../parser/code-analyse/parsers/router";
+import { IRouterViewJSON } from "../../../lib/src/parser/interfaces/router";
+import { routerParser } from "../../../lib/src/parser/code-analyse/parsers/router";
 import { TestTools } from "../tools/tools";
-import { RouterRenderer } from "../../renderer/router";
+import { RouterRenderer } from "../../../lib/src/renderer/router";
 
 /**
  * Routing with 3 views

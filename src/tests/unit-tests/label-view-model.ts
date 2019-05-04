@@ -1,8 +1,8 @@
-import { labelWFParser } from "../../parser/code-analyse/parsers/label-wf";
-import { ILabelWFViewJSON } from "../../parser/interfaces/label-wf";
-import { IMockViewModelJSON } from "../../parser/interfaces/mock-view-model";
-import { IViewModelInterfaceJSON } from "../../parser/interfaces/view-model";
-import { LabelWFRenderer } from "../../renderer/wireframe/label";
+import { labelWFParser } from "../../../lib/src/parser/code-analyse/parsers/label-wf";
+import { ILabelWFViewJSON } from "../../../lib/src/parser/interfaces/label-wf";
+import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
+import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
+import { LabelWFRenderer } from "../../../lib/src/renderer/wireframe/label";
 import { TestTools } from "../tools/tools";
 
 /**

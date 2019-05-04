@@ -1,7 +1,7 @@
-import { ILayersViewJSON } from "../../parser/interfaces/layers";
-import { layersParser } from "../../parser/code-analyse/parsers/layers";
+import { ILayersViewJSON } from "../../../lib/src/parser/interfaces/layers";
+import { layersParser } from "../../../lib/src/parser/code-analyse/parsers/layers";
 import { TestTools } from "../tools/tools";
-import { LayersRenderer } from "../../renderer/layers";
+import { LayersRenderer } from "../../../lib/src/renderer/layers";
 
 /**
  * Test of Layers

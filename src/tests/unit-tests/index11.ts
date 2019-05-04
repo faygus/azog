@@ -1,15 +1,15 @@
-import { IContainerJSON } from "../../parser/interfaces/container";
-import { IViewCompositionJSON } from "../../parser/interfaces/view-composition";
-import { containerParser } from "../../parser/code-analyse/parsers/container";
-import { GetView } from "../../parser/code-analyse/parsers/type";
-import { viewCompositionParser } from "../../parser/code-analyse/parsers/view-composition";
-import { ViewComposition2Renderer } from "../../renderer/view-composition2";
-import { IComponentRenderer } from "../../renderer/interfaces/component-renderer";
-import { Component } from "../../parser/entities/component";
-import { DynamicViewModel } from "../../renderer/dynamic-view-model";
-import { IViewModelInterfaceJSON } from "../../parser/interfaces/view-model";
-import { IMockViewModelJSON } from "../../parser/interfaces/mock-view-model";
-import { ViewModelParsing } from "../../parser/code-analyse/view-model";
+import { IContainerJSON } from "../../../lib/src/parser/interfaces/container";
+import { IViewCompositionJSON } from "../../../lib/src/parser/interfaces/view-composition";
+import { containerParser } from "../../../lib/src/parser/code-analyse/parsers/container";
+import { GetView } from "../../../lib/src/parser/code-analyse/parsers/type";
+import { viewCompositionParser } from "../../../lib/src/parser/code-analyse/parsers/view-composition";
+import { ViewComposition2Renderer } from "../../../lib/src/renderer/view-composition2";
+import { IComponentRenderer } from "../../../lib/src/renderer/interfaces/component-renderer";
+import { Component } from "../../../lib/src/parser/entities/component";
+import { DynamicViewModel } from "../../../lib/src/renderer/dynamic-view-model";
+import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
+import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
+import { ViewModelParsing } from "../../../lib/src/parser/code-analyse/view-model";
 
 /**
  * Layout with if directive binded

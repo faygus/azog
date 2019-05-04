@@ -1,6 +1,6 @@
-import { routerParser } from "../../parser/code-analyse/parsers/router";
-import { IRouterViewJSON } from "../../parser/interfaces/router";
-import { RouterRenderer } from "../../renderer/router";
+import { routerParser } from "../../../lib/src/parser/code-analyse/parsers/router";
+import { IRouterViewJSON } from "../../../lib/src/parser/interfaces/router";
+import { RouterRenderer } from "../../../lib/src/renderer/router";
 import { TestTools } from "../tools/tools";
 
 /**
