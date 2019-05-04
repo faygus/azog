@@ -5,7 +5,7 @@ import { ValueProvider } from "./controls/binding";
 export class Component {
 	viewModelInterface?: IViewModelInterface;
 	view: any;
-	mockData?: IMockDataSource;
+	mockViewModel?: IMockDataSource;
 	inputs: IValueProviders = {};
 }
 

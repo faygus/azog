@@ -43,7 +43,10 @@ let config = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({ template: './src/index.html' }),
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			favicon: 'assets/icons/logo.ico'
+		}),
 		new MiniCssExtractPlugin()
 	],
 	devServer: {
