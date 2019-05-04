@@ -1,5 +1,5 @@
 {
-  "name": "azog-lib",
+  "name": "azog",
   "version": "1.0.0",
   "description": "Front-end framework for building interactive ui without programming language",
 	"main": "index.js",
