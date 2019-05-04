@@ -1,5 +1,4 @@
 # Qu'est ce qu'azog ?
--
 
 Azog permet de concevoir une application front-end en faisant abstraction du langage de programmation.
 L'attention n'est pas portée sur la logique métier de l'application mais sur la conception de composants unitaires qui vont définir la vue.

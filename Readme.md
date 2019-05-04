@@ -3,3 +3,5 @@ There are several steps :
 - defining components as separate unit view
 - disposing components relative to them using containers
 - defining bindings with view models
+
+See more at https://faygus.github.io/azog/
