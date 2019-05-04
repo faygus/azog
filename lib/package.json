@@ -1,0 +1,12 @@
+{
+  "name": "azog-lib",
+  "version": "1.0.0",
+  "description": "Front-end framework for building interactive ui without programming language",
+	"main": "index.js",
+	"types": "index.d.ts",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

@@ -1,9 +1,9 @@
-import { Parser } from "../../parser/code-analyse/main";
-import { ViewType } from "../../parser/interfaces/types";
-import { IUniColorWFViewJSON } from "../../parser/interfaces/uni-color-wf";
-import { HTMLRenderer } from "../../renderer/main";
+import { Parser } from "../../../lib/src/parser/code-analyse/main";
+import { ViewType } from "../../../lib/src/parser/interfaces/types";
+import { IUniColorWFViewJSON } from "../../../lib/src/parser/interfaces/uni-color-wf";
+import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";
-import { IAppJSON } from "../../parser/interfaces/app";
+import { IAppJSON } from "../../../lib/src/parser/interfaces/app";
 
 export function run(): void {
 	const appJSON: IAppJSON = {

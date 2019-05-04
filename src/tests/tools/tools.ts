@@ -1,13 +1,13 @@
-import { GetView } from "../../parser/code-analyse/parsers/type";
-import { ViewModelParsing } from "../../parser/code-analyse/view-model";
-import { Component } from "../../parser/entities/component";
-import { IMockViewModelJSON } from "../../parser/interfaces/mock-view-model";
-import { IViewModelInterfaceJSON } from "../../parser/interfaces/view-model";
-import { DynamicViewModel } from "../../renderer/dynamic-view-model";
-import { ViewModelCreator } from "../../renderer/dynamic-view-model-creator";
-import { IComponentRenderer } from "../../renderer/interfaces/component-renderer";
-import { IComponentRenderer2 } from "../../renderer/interfaces/component-renderer2";
-import { IParentView } from "../../renderer/interfaces/parent-view";
+import { GetView } from "../../../lib/src/parser/code-analyse/parsers/type";
+import { ViewModelParsing } from "../../../lib/src/parser/code-analyse/view-model";
+import { Component } from "../../../lib/src/parser/entities/component";
+import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
+import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
+import { DynamicViewModel } from "../../../lib/src/renderer/dynamic-view-model";
+import { ViewModelCreator } from "../../../lib/src/renderer/dynamic-view-model-creator";
+import { IComponentRenderer } from "../../../lib/src/renderer/interfaces/component-renderer";
+import { IComponentRenderer2 } from "../../../lib/src/renderer/interfaces/component-renderer2";
+import { IParentView } from "../../../lib/src/renderer/interfaces/parent-view";
 
 export class TestTools {
 	static getRootHtml(): HTMLElement {

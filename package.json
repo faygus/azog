@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+		"build": "webpack",
+		"build::lib": "tsc --project ./lib && cp ./lib/package.json ./dist-lib",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server -d --hot --config webpack.config.js --watch"
+    "start": "webpack-dev-server -d --hot --config webpack.config.js --watch",
+    "demo": "console.log(TODO)"
   },
   "keywords": [],
   "author": "",
@@ -32,9 +34,9 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
-    "url-loader": "^1.1.2",
     "typescript": "^3.3.1",
-    "webpack": "^4.29.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   }

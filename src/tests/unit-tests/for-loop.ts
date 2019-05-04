@@ -1,9 +1,9 @@
-import { forLoopParser } from '../../parser/code-analyse/parsers/for-loop';
-import { LayoutComposition } from '../../parser/entities/layout-composition';
-import { Unit } from '../../parser/entities/unit';
-import { IForLoopJSON } from '../../parser/interfaces/for-loop';
-import { ContentManager, ForLoopRenderer, IContentManagerProvider } from '../../renderer/for-loop';
-import { IViewInserter } from '../../renderer/interfaces/view-inserter';
+import { forLoopParser } from '../../../lib/src/parser/code-analyse/parsers/for-loop';
+import { LayoutComposition } from '../../../lib/src/parser/entities/layout-composition';
+import { Unit } from '../../../lib/src/parser/entities/unit';
+import { IForLoopJSON } from '../../../lib/src/parser/interfaces/for-loop';
+import { ContentManager, ForLoopRenderer, IContentManagerProvider } from '../../../lib/src/renderer/for-loop';
+import { IViewInserter } from '../../../lib/src/renderer/interfaces/view-inserter';
 import { TestTools } from '../tools/tools';
 
 /**

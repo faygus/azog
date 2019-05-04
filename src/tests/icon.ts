@@ -1,6 +1,6 @@
-import { iconWFParser } from "../parser/code-analyse/parsers/icon-wf";
-import { IIconWFViewJSON } from "../parser/interfaces/icon-wf";
-import { IconWFRenderer } from "../renderer/wireframe/icon";
+import { iconWFParser } from "../../lib/src/parser/code-analyse/parsers/icon-wf";
+import { IIconWFViewJSON } from "../../lib/src/parser/interfaces/icon-wf";
+import { IconWFRenderer } from "../../lib/src/renderer/wireframe/icon";
 import { TestTools } from "./tools/tools";
 
 /**
