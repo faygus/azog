@@ -1,15 +1,10 @@
 require("../assets/stylesheets/styles.scss");
 require("../node_modules/font-awesome/css/font-awesome.min.css");
 
-import { ROOT } from "./app/components/views/10";
-import { HTMLRenderer } from "./renderer/html-renderer";
-import { CodeParser } from "./builder/code-analyse";
-import { run } from "./work/index2";
+import { run } from "./tests/global/router";
 
 try {
-	/*const component = CodeParser.parseApp(14, true);
-	HTMLRenderer.render(component);*/
-
+	// HTMLRenderer.render(component);
 	run();
 
 } catch (error) {
