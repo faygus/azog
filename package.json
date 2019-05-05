@@ -8,8 +8,7 @@
 		"build": "webpack",
 		"build::lib": "tsc --project ./lib && cp ./lib/package.json ./dist-lib",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server -d --hot --config webpack.config.js --watch",
-    "demo": "console.log(TODO)"
+    "start": "webpack-dev-server -d --hot --config webpack.config.js --watch"
   },
   "keywords": [],
   "author": "",

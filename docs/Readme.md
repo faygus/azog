@@ -9,13 +9,13 @@ Les vues sont définies de manière à dépendre d'un vue-model dont l'implémen
 
 ## Programmation déclarative
 
-Le code qui s'abstrait de l'usage d'un langage de programmation en particulier est écrit en JSON. Ce format de données est tout à fait arbitraire et pourrait être remplacé par n'importe quel autre syntaxe. L'important est que cette syntaxe est déclarative et donc possède un expressivité limitée comparé à un langage de programmation classique (javascript, c#, java, ...).
+Le code qui s'abstrait de l'usage d'un langage de programmation en particulier est écrit en JSON. Ce format de données est tout à fait arbitraire et pourrait être remplacé par n'importe quelle autre syntaxe. L'important est que cette syntaxe est déclarative et donc possède un expressivité limitée comparé à un langage de programmation classique (javascript, c#, java, ...).
 
 ## Démonstration
 
 ```
-git clone https://github.com/faygus/azog.git
-cd azog
+git clone https://github.com/faygus/azog-demo.git
+cd azog-demo
 npm install
-npm run demo
+npm start
 ```
