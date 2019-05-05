@@ -13,9 +13,5 @@ Le code qui s'abstrait de l'usage d'un langage de programmation en particulier e
 
 ## Démonstration
 
-```
-git clone https://github.com/faygus/azog-demo.git
-cd azog-demo
-npm install
-npm start
-```
+A demo project exists at this url : https://github.com/faygus/azog-demo.git
+See the live demo at https://faygus.github.io/azog-demo/

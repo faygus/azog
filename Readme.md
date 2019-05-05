@@ -4,4 +4,5 @@ There are several steps :
 - disposing components relative to them using containers
 - defining bindings with view models
 
-See more at https://faygus.github.io/azog/
+See more informations at https://faygus.github.io/azog/
+See a demo at https://faygus.github.io/azog-demo/
