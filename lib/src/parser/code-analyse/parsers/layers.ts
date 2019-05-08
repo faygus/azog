@@ -1,6 +1,8 @@
+import { AxisPosition, IRelativeSpace, LayersView, LayerView, PositionInsideHost } from "../../entities/layers";
+import { IDistanceJSON } from "../../interfaces/container";
+import { IAxisPositionJSON, ILayersViewJSON, ILayerViewJSON, IRelativeSpaceJSON } from "../../interfaces/layers";
+import { ParsingUtils } from "../utils";
 import { GetView } from "./type";
-import { LayersView, LayerView } from "../../entities/layers";
-import { ILayersViewJSON, ILayerViewJSON } from "../../interfaces/layers";
 
 export const layersParser = (viewJSON: ILayersViewJSON, getView: GetView): LayersView => {
 	const res = new LayersView();
@@ -14,8 +16,39 @@ export const layersParser = (viewJSON: ILayersViewJSON, getView: GetView): Layer
 }
 
 function processLayer(layerJSON: ILayerViewJSON, getView: GetView): LayerView {
-	const layer = new LayerView(layerJSON.zIndex);
-	layer.positioner.padding = layerJSON.positionInsideHost.padding;
+	const verticalPosition = parseAxisPosition(layerJSON.positionInsideHost.vertical);
+	const horizontalPosition = parseAxisPosition(layerJSON.positionInsideHost.horizontal);
+	const positionner = new PositionInsideHost(verticalPosition, horizontalPosition);
+
+	const layer = new LayerView(layerJSON.zIndex, positionner);
 	layer.child = getView(layerJSON.component.componentId);
 	return layer;
+}
+
+function parseAxisPosition(positionJSON: IAxisPositionJSON): AxisPosition {
+	let res: AxisPosition = <any>{};
+	const pos = <any>positionJSON;
+	if (pos.start !== undefined && pos.end !== undefined) {
+		const startDistance = ParsingUtils.getDistance(pos.start);
+		const endDistance = ParsingUtils.getDistance(pos.end);
+		(<any>res).start = startDistance;
+		(<any>res).end = endDistance;
+	} else {
+		for (const prop in positionJSON) {
+			if (prop === 'center' || prop === 'start' || prop === 'end') {
+				const value: IRelativeSpaceJSON = (<any>positionJSON)[prop];
+				const space = ParsingUtils.getDistance(value.space);
+				const relativeSpace: IRelativeSpace = {
+					relativeTo: value.relativeTo,
+					space
+				};
+				(<any>res)[prop] = relativeSpace;
+			} else if (prop === 'size') {
+				const value: IDistanceJSON = (<any>positionJSON)['size'];
+				const size = ParsingUtils.getDistance(value);
+				(<any>res).size = size;
+			}
+		}
+	}
+	return res;
 }

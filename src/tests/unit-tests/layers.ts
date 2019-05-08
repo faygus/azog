@@ -9,9 +9,16 @@ import { LayersRenderer } from "../../../lib/src/renderer/layers";
 export function run(): void {
 	const viewJSON: ILayersViewJSON = {
 		mainLayer: {
-			zIndex: 1,
+			zIndex: 0,
 			positionInsideHost: {
-				padding: 30
+				vertical: {
+					start: 0,
+					end: 0
+				},
+				horizontal: {
+					start: 0,
+					end: 0
+				}
 			},
 			component: {
 				componentId: 1
@@ -19,9 +26,16 @@ export function run(): void {
 		},
 		subLayers: [
 			{
-				zIndex: 0,
+				zIndex: 1,
 				positionInsideHost: {
-					padding: 10
+					vertical: {
+						start: 100,
+						end: 30
+					},
+					horizontal: {
+						start: 5,
+						end: 200
+					}
 				},
 				component: {
 					componentId: 2

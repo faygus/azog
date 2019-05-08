@@ -12,6 +12,7 @@ import { ViewModelParsing } from "./view-model";
 import { IViewModelInterfaceJSON } from "../interfaces/view-model";
 import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 import { routerParser } from "./parsers/router";
+import { forLoopParser } from "./parsers/for-loop";
 
 export class Parser {
 	private _componentsCollection: ComponentsCollection;
@@ -63,12 +64,13 @@ export class Parser {
 	}
 }
 
-const map: {[key: string]: any} = { // TODO parser type
+const map: { [key: string]: any } = { // TODO parser type
 	[ViewType.LABEL_WF]: labelWFParser,
 	[ViewType.ICON_WF]: iconWFParser,
 	[ViewType.UNI_COLOR_WF]: uniColorWFParser,
 	[ViewType.LAYERS]: layersParser,
-	[ViewType.ROUTER]: routerParser
+	[ViewType.ROUTER]: routerParser,
+	[ViewType.FOR_LOOP]: forLoopParser,
 };
 
 interface IDataSource<T> {

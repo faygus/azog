@@ -3,7 +3,7 @@ import { IViewInserter } from "./interfaces/view-inserter";
 import { DynamicViewModel } from "./dynamic-view-model";
 import { ForLoopView } from "../parser/entities/for-loop";
 import { watchViewProperty } from "./binding-resolver";
-import { LayoutComposition } from "../parser/entities/layout-composition";
+import { ExtensibleContainer } from "../parser/entities/layout-composition";
 import { applySize } from "./utils/apply-size";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { ContainerContentRendered } from "./container/container-content-rendered";
@@ -11,12 +11,11 @@ import { IParentView } from "./interfaces/parent-view";
 
 export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 
-	constructor(private _componentRenderer: IComponentRenderer2,
-		private _contentManagerProvider: IContentManagerProvider) {
+	constructor(private _componentRenderer: IComponentRenderer2) {
 	}
 
 	build(view: ForLoopView, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
-		const contentManager = this._contentManagerProvider.get(view.container, inserter);
+		const contentManager = new ContentManager(view.container, inserter);
 		contentManager.render();
 		watchViewProperty(view.array, viewModel, values => {
 			contentManager.removeAll(); // remove existing children before add new
@@ -28,14 +27,11 @@ export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 						// TODO
 					}
 				}
-				this._componentRenderer.build(view.template.component, parentView);
+				this._componentRenderer.build(view.template.component, parentView); // TODO child viewModel
+				// TODO inject value as input
 			}
 		});
 	}
-}
-
-export interface IContentManagerProvider {
-	get(container: any, inserter: IViewInserter): IContentManager;
 }
 
 /**
@@ -51,7 +47,7 @@ export interface IContentManager {
 export class ContentManager implements IContentManager {
 	private _contentRenderer: ContainerContentRendered;
 
-	constructor(private _layoutHost: LayoutComposition, private _viewInserter: IViewInserter) {
+	constructor(private _layoutHost: ExtensibleContainer, private _viewInserter: IViewInserter) {
 		this._contentRenderer = new ContainerContentRendered();
 	}
 

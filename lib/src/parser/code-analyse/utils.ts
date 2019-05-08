@@ -1,8 +1,8 @@
 import { FlexDirection } from "../entities/old-layout";
 import { ParsingException, ParsingErrorType } from "./error";
 import { Unit } from "../entities/unit";
-import { Size } from "../entities/size";
-import { ISizeJSON } from "../interfaces/container";
+import { Size, Distance } from "../entities/size";
+import { ISizeJSON, IDistanceJSON } from "../interfaces/container";
 
 export class ParsingUtils {
 	static getSize(size: ISizeJSON): Size {
@@ -33,6 +33,24 @@ export class ParsingUtils {
 			}
 		}
 		throw new ParsingException(ParsingErrorType.SIZE, size);
+	}
+
+	static getDistance(distanceJSON: IDistanceJSON): Distance {
+		if (distanceJSON === undefined) {
+			throw new Error('can not parse undefined distance');
+		}
+		if (typeof distanceJSON === 'number') {
+			return {
+				value: distanceJSON,
+				unit: Unit.PX
+			};
+		}
+		const unit = this.getUnit(distanceJSON.unit);
+		const res = {
+			value: distanceJSON.value,
+			unit: unit
+		};
+		return res;
 	}
 
 	static getUnit(unit: string): Unit {

@@ -15,6 +15,8 @@ import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
 import { RouterView } from "../parser/entities/router";
 import { RouterRenderer } from "./router";
+import { ForLoopView } from "../parser/entities/for-loop";
+import { ForLoopRenderer } from "./for-loop";
 
 /**
  * Render a component in the root html element
@@ -58,7 +60,7 @@ export class HTMLRenderer {
 				if (renderer) {
 					renderer.build(component.view, inserter, viewModel);
 				} else {
-					throw new Error('no rendenrer found');
+					throw new Error('no renderer found');
 				}
 			}
 		};
@@ -72,6 +74,7 @@ export class HTMLRenderer {
 			[UniColorWFView, new UniColorWFRenderer()],
 			[LayersView, new LayersRenderer(componentRenderer)],
 			[RouterView, new RouterRenderer(componentRenderer)],
+			[ForLoopView, new ForLoopRenderer(componentRenderer)],
 			// ... TODO
 		]);
 		return map;

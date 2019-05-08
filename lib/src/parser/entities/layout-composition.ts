@@ -3,7 +3,7 @@ import { Size } from "./size";
 /**
  * definition of a layout, not looking at the content
  */
-export class LayoutComposition {
+export class ExtensibleContainer {
 	constructor(
 		public direction: 'row' | 'column',
 		public margin: number,

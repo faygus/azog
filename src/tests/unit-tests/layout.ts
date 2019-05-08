@@ -69,8 +69,7 @@ export function run(): void {
 	}
 	const getView = TestTools.getMockViewProvider();
 	const layout = layoutParser(dataJSON, getView);
-	const rootHtml = TestTools.getRootHtml();
-	const viewInserter = TestTools.getViewInserter(rootHtml);
+	const viewInserter = TestTools.getRootViewInserter();
 	const viewModel = TestTools.getDynamicViewModel(viewModelInterfaceJSON, mockViewModelJSON);
 
 	const mockComponentRenderer = TestTools.getMockComponentRenderer2({

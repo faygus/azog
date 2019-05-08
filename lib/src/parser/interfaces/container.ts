@@ -24,5 +24,5 @@ export interface IIfDirectiveJSON {
 }
 
 type Unit = 'px' | '%';
-export type IDistanceJSON = { value: number, unit: Unit };
-export type ISizeJSON = number | IDistanceJSON | 'full' | 'auto';
+export type IDistanceJSON = { value: number, unit: Unit } | number;
+export type ISizeJSON = IDistanceJSON | 'full' | 'auto';

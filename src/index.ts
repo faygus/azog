@@ -1,7 +1,7 @@
 require("../assets/stylesheets/styles.scss");
 require("../node_modules/font-awesome/css/font-awesome.min.css");
 
-import { run } from "./tests/unit-tests/for-loop-view-model";
+import { run } from "./tests/unit-tests/layers";
 
 try {
 	// HTMLRenderer.render(component);

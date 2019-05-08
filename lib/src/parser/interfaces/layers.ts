@@ -1,3 +1,4 @@
+import { IDistanceJSON } from "./container";
 import { IComponentWithInputsJSON } from "./utils/component-with-inputs";
 
 export interface ILayersViewJSON {
@@ -12,5 +13,25 @@ export interface ILayerViewJSON {
 }
 
 export interface IPositionInsideHostJSON {
-	padding: number; // TODO padding-top, padding-right, padding-bottom, padding-left
+	vertical: IAxisPositionJSON;
+	horizontal: IAxisPositionJSON;
+}
+
+export interface IRelativeSpaceJSON {
+	relativeTo: 'start' | 'end';
+	space: IDistanceJSON;
+}
+
+export type IAxisPositionJSON = {
+	center: IRelativeSpaceJSON,
+	size?: IDistanceJSON;
+} | {
+	start: IRelativeSpaceJSON,
+	size?: IDistanceJSON;
+} | {
+	end: IRelativeSpaceJSON,
+	size?: IDistanceJSON;
+} | {
+	start: IDistanceJSON,
+	end: IDistanceJSON;
 }

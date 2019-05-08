@@ -1,12 +1,19 @@
 import { IValueProviderJSON } from "./value-provider";
+import { ISizeJSON } from "./container";
 
 export interface IForLoopJSON {
 	array: IValueProviderJSON<any[]>;
 	template: IComponentTemplateJSON;
-	containerId: number
+	container: IExtensibleContainerJSON
 }
 
 export interface IComponentTemplateJSON {
 	componentId: number;
 	inputs?: any; // TODO
+}
+
+export interface IExtensibleContainerJSON {
+	direction: 'row' | 'column';
+	margin: number;
+	size: ISizeJSON;
 }

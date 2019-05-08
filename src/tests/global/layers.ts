@@ -16,7 +16,14 @@ export function run(): void {
 					mainLayer: {
 						zIndex: 1,
 						positionInsideHost: {
-							padding: 20
+							vertical: {
+								start: 20,
+								end: 20
+							},
+							horizontal: {
+								start: 20,
+								end: 20
+							}
 						},
 						component: {
 							componentId: 2
@@ -26,7 +33,14 @@ export function run(): void {
 						{
 							zIndex: 0,
 							positionInsideHost: {
-								padding: 0
+								vertical: {
+									start: 0,
+									end: 0
+								},
+								horizontal: {
+									start: 0,
+									end: 0
+								}
 							},
 							component: {
 								componentId: 3

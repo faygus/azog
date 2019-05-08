@@ -1,12 +1,9 @@
 import { forLoopParser } from '../../../lib/src/parser/code-analyse/parsers/for-loop';
-import { LayoutComposition } from '../../../lib/src/parser/entities/layout-composition';
-import { Unit } from '../../../lib/src/parser/entities/unit';
 import { IForLoopJSON } from '../../../lib/src/parser/interfaces/for-loop';
-import { ContentManager, ForLoopRenderer, IContentManagerProvider } from '../../../lib/src/renderer/for-loop';
-import { IViewInserter } from '../../../lib/src/renderer/interfaces/view-inserter';
-import { TestTools } from '../tools/tools';
-import { IViewModelInterfaceJSON } from '../../../lib/src/parser/interfaces/view-model';
 import { IMockViewModelJSON } from '../../../lib/src/parser/interfaces/mock-view-model';
+import { IViewModelInterfaceJSON } from '../../../lib/src/parser/interfaces/view-model';
+import { ForLoopRenderer } from '../../../lib/src/renderer/for-loop';
+import { TestTools } from '../tools/tools';
 
 /**
  * For loop
@@ -22,7 +19,11 @@ export function run(): void {
 		template: {
 			componentId: 1
 		},
-		containerId: 2
+		container: {
+			direction: 'column',
+			margin: 10,
+			size: 110
+		}
 	};
 	const viewModelInterfaceJSON: IViewModelInterfaceJSON = {
 		properties: {
@@ -61,17 +62,6 @@ export function run(): void {
 	const viewModel = TestTools.getDynamicViewModel(viewModelInterfaceJSON, mockViewModelJSON);
 	const viewInserter = TestTools.getRootViewInserter();
 	const mockComponentRenderer = TestTools.getMockComponentRenderer2({ 1: 'yellow' });
-	const contentManagerProvider: IContentManagerProvider = {
-		get: (container: any, inserter: IViewInserter) => {
-			const layoutHost = new LayoutComposition('row', 20, { value: 170, unit: Unit.PX });
-			let res = new ContentManager(layoutHost, inserter);
-			if (container === 2) {
-				const layoutHost = new LayoutComposition('column', 10, { value: 110, unit: Unit.PX });
-				res = new ContentManager(layoutHost, inserter);
-			}
-			return res;
-		}
-	};
-	const renderer = new ForLoopRenderer(mockComponentRenderer, contentManagerProvider);
+	const renderer = new ForLoopRenderer(mockComponentRenderer);
 	renderer.build(data, viewInserter, viewModel);
 }
