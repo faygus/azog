@@ -1,6 +1,6 @@
 {
   "name": "azog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Front-end framework for building interactive ui without programming language",
 	"main": "index.js",
 	"types": "index.d.ts",

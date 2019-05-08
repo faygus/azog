@@ -1,17 +1,19 @@
 import { Parser } from "../../../lib/src/parser/code-analyse/main";
-import { IIconWFViewJSON } from "../../../lib/src/parser/interfaces/icon-wf";
-import { ViewType } from "../../../lib/src/parser/interfaces/types";
+import { IAppJSON } from "../../../lib/src/parser/interfaces/app";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";
-import { IAppJSON } from "../../../lib/src/parser/interfaces/app";
 
 export function run(): void {
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
-				type: ViewType.ROUTER,
+				type: 'router',
 				value: {
-					activeRoute: 'route3',
+					activeRoute: {
+						value: {
+							propertyName: 'activatedRoute'
+						}
+					},
 					routes: {
 						'route1': {
 							componentId: 2,
@@ -26,23 +28,51 @@ export function run(): void {
 				}
 			},
 			2: {
-				type: ViewType.UNI_COLOR_WF,
+				type: 'uniColorWF',
 				value: {
 					color: 1
 				}
 			},
 			3: {
-				type: ViewType.UNI_COLOR_WF,
+				type: 'uniColorWF',
 				value: {
 					color: 2
 				}
 			},
 			4: {
-				type: ViewType.UNI_COLOR_WF,
+				type: 'uniColorWF',
 				value: {
 					color: 0
 				}
 			},
+		},
+		viewModelInterfaces: {
+			1: {
+				properties: {
+					activatedRoute: 'string'
+				}
+			}
+		},
+		mockViewModels: {
+			1: {
+				activatedRoute: {
+					loop: true,
+					values: [
+						{
+							timeout: 0,
+							value: 'route1'
+						},
+						{
+							timeout: 1000,
+							value: 'route2'
+						},
+						{
+							timeout: 2000,
+							value: 'route3'
+						},
+					]
+				}
+			}
 		}
 	};
 
