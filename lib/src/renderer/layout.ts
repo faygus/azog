@@ -22,7 +22,7 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 		divHtml.style.display = 'flex';
 		divHtml.style.flexDirection = data.direction === 'row' ? 'row' : 'column';
 		const contentManager = new ContainerContentRendered(data);
-		contentManager.div = divHtml;
+		contentManager.containerDiv = divHtml;
 		// children
 		for (const child of data.children) {
 			if (child instanceof LayoutChild) {

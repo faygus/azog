@@ -5,25 +5,31 @@ import { ForLoopView } from "../parser/entities/for-loop";
 import { watchViewProperty } from "./binding-resolver";
 import { LayoutComposition } from "../parser/entities/layout-composition";
 import { applySize } from "./utils/apply-size";
-import { IComponentRenderer } from "./interfaces/component-renderer";
+import { IComponentRenderer2 } from "./interfaces/component-renderer2";
+import { ContainerContentRendered } from "./container/container-content-rendered";
+import { IParentView } from "./interfaces/parent-view";
 
 export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 
-	constructor(private _componentRenderer: IComponentRenderer,
+	constructor(private _componentRenderer: IComponentRenderer2,
 		private _contentManagerProvider: IContentManagerProvider) {
 	}
 
 	build(view: ForLoopView, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
-		// TODO deal with viewModel
 		const contentManager = this._contentManagerProvider.get(view.container, inserter);
-		watchViewProperty(view.array, undefined, values => {
+		contentManager.render();
+		watchViewProperty(view.array, viewModel, values => {
 			contentManager.removeAll(); // remove existing children before add new
-			const children: HTMLElement[] = []; // TODO use viewInserter instead
 			for (const value of values) {
-				const childHtml = this._componentRenderer.build(view.template.component);
-				children.push(childHtml);
+				const childInserter = contentManager.getNewChildInserter(value);
+				const parentView: IParentView = {
+					...childInserter,
+					setPadding: (value) => {
+						// TODO
+					}
+				}
+				this._componentRenderer.build(view.template.component, parentView);
 			}
-			contentManager.updateChildren(children);
 		});
 	}
 }
@@ -36,44 +42,57 @@ export interface IContentManagerProvider {
  * can dynamically change the content of a container
  */
 export interface IContentManager {
+	render(): void;
 	removeAll(): void;
-	updateChildren(children: any[]): void;
-	getHostElement(): HTMLElement | undefined;
+	getNewChildInserter(data: any): IViewInserter;
+	hostElement: HTMLElement | undefined;
 }
 
 export class ContentManager implements IContentManager {
-	private _elementHtml?: HTMLElement;
-	private _children: any[] = [];
+	private _contentRenderer: ContainerContentRendered;
 
 	constructor(private _layoutHost: LayoutComposition, private _viewInserter: IViewInserter) {
+		this._contentRenderer = new ContainerContentRendered();
+	}
+
+	render(): void {
+		const divHtml = this.createAncestorElementHtml();
+		this._contentRenderer.containerDiv = divHtml;
+		this._viewInserter.add(divHtml);
 	}
 
 	removeAll(): void {
-		if (!this._elementHtml) {
-			return;
-		}
-		while (this._elementHtml.lastChild) {
-			this._elementHtml.lastChild.remove();
-		}
-		this._children = [];
+		this._contentRenderer.clear();
 	}
 
-	updateChildren(children: any[]): void {
-		let firstUpdate = false;
-		if (!this._elementHtml) {
-			this._elementHtml = this.createAncestorElementHtml();
-			firstUpdate = true;
+	getNewChildInserter(data: any): IViewInserter {
+		if (!this.hostElement) {
+			throw new Error('the container must be rendered first');
 		}
-		for (const child of children) {
-			this.addChild(child);
-		}
-		if (firstUpdate) {
-			this._viewInserter.add(this._elementHtml);
-		}
+		const isFirstChild = this._contentRenderer.isEmpty;
+		this._contentRenderer.setChild(data);
+		const res: IViewInserter = {
+			add: (elementHtml: HTMLElement) => {
+				applySize(this._layoutHost.size, elementHtml.style, this._layoutHost.direction);
+				if (!isFirstChild) { // apply margin
+					const margin = this._layoutHost.margin + 'px';
+					if (this._layoutHost.direction === 'row') {
+						elementHtml.style.marginLeft = margin;
+					} else {
+						elementHtml.style.marginTop = margin;
+					}
+				}
+				this._contentRenderer.add(data, elementHtml);
+			},
+			clear: () => {
+				this._contentRenderer.remove(data);
+			}
+		};
+		return res;
 	}
 
-	getHostElement(): HTMLElement | undefined {
-		return this._elementHtml;
+	get hostElement(): HTMLElement | undefined {
+		return this._contentRenderer.containerDiv;
 	}
 
 	private createAncestorElementHtml(): HTMLElement {
@@ -83,24 +102,5 @@ export class ContentManager implements IContentManager {
 		divHtml.style.display = 'flex';
 		divHtml.style.flexDirection = this._layoutHost.direction === 'row' ? 'row' : 'column';
 		return divHtml;
-	}
-
-	private addChild(child: any): void {
-		if (!this._elementHtml) {
-			return;
-		}
-		const childHostHtml = document.createElement('div');
-		applySize(this._layoutHost.size, childHostHtml.style, this._layoutHost.direction);
-		if (this._children.length > 0) { // apply margin
-			const margin = this._layoutHost.margin + 'px';
-			if (this._layoutHost.direction === 'row') {
-				childHostHtml.style.marginLeft = margin;
-			} else {
-				childHostHtml.style.marginTop = margin;
-			}
-		}
-		// TODO add child inside the host (can be a router, ...)
-		this._elementHtml.appendChild(childHostHtml);
-		this._children.push(child);
 	}
 }

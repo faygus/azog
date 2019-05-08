@@ -22,7 +22,7 @@ export class ContainerRenderer {
 		containerDiv.style.width = '100%';
 		containerDiv.style.display = 'flex';
 		containerDiv.style.flexDirection = this.convertFlexDirectionForHtml(container.layoutManager.flexDirection);
-		containerContentRendered.div = containerDiv;
+		containerContentRendered.containerDiv = containerDiv;
 		// children
 		for (const child of container.children) {
 			if (child instanceof Host) {

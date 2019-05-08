@@ -47,7 +47,7 @@ function renderContainer(container: Container2, children: HTMLElement[], viewMod
 
 	let i = 0;
 	const contentRendered = new ContainerContentRendered(container);
-	contentRendered.div = containerDiv;
+	contentRendered.containerDiv = containerDiv;
 	for (const child of container.children) {
 		const contentHtml = children[i];
 		const space = child.spaceWithPrevious;

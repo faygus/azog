@@ -19,10 +19,10 @@ export class TestTools {
 	}
 
 	static getDynamicViewModel(
-		routerViewModelInterfaceJSON: IViewModelInterfaceJSON,
-		routerMockViewModelJSON: IMockViewModelJSON) {
-		const viewModelInterface = ViewModelParsing.getViewModel(routerViewModelInterfaceJSON);
-		const mockViewModel = ViewModelParsing.getMockData(routerMockViewModelJSON);
+		viewModelInterfaceJSON: IViewModelInterfaceJSON,
+		mockViewModelJSON: IMockViewModelJSON) {
+		const viewModelInterface = ViewModelParsing.getViewModel(viewModelInterfaceJSON);
+		const mockViewModel = ViewModelParsing.getMockData(mockViewModelJSON);
 		return ViewModelCreator.createViewModel(viewModelInterface, mockViewModel);
 	}
 

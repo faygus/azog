@@ -8,13 +8,34 @@ export interface IParentView {
  * insert child views of a container at the right place
  */
 export class ContainerContentRendered {
+	containerDiv?: HTMLElement;
 	private _views: ViewRendered[] = [];
-	private _containerDiv?: HTMLDivElement;
 
-	constructor(container: IParentView) {
-		for (const child of container.children) {
-			this._views.push(new ViewRendered(child));
+	constructor(container?: IParentView) {
+		if (container) {
+			this.setChildren(container.children);
 		}
+	}
+
+	clear(): void {
+		for (const view of this._views) {
+			view.clear();
+		}
+		this._views = [];
+	}
+
+	get isEmpty(): boolean {
+		return this._views.length === 0;
+	}
+
+	setChildren(children: any[]): void {
+		for (const child of children) {
+			this.setChild(child);
+		}
+	}
+
+	setChild(child: any): void {
+		this._views.push(new ViewRendered(child));
 	}
 
 	add(anchor: any, element: HTMLElement): void {
@@ -29,7 +50,7 @@ export class ContainerContentRendered {
 		if (previousElement) {
 			previousElement.after(element);
 		} else {
-			this._containerDiv!.insertBefore(element, this._containerDiv!.firstChild);
+			this.containerDiv!.insertBefore(element, this.containerDiv!.firstChild);
 		}
 		viewRendered.add(element);
 	}
@@ -52,9 +73,5 @@ export class ContainerContentRendered {
 			}
 		}
 		return undefined;
-	}
-
-	set div(value: HTMLDivElement) {
-		this._containerDiv = value;
 	}
 }
