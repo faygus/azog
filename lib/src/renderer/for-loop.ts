@@ -25,6 +25,9 @@ export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 					...childInserter,
 					setPadding: (value) => {
 						// TODO
+					},
+					centerContent: () => {
+						// TODO
 					}
 				}
 				this._componentRenderer.build(view.template.component, parentView); // TODO child viewModel

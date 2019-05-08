@@ -26,7 +26,7 @@ export class HTMLRenderer {
 	static render(component: Component, rootHtml: HTMLElement): void {
 		const inserter: IParentView = {
 			add: (htmlElement: HTMLElement) => {
-				htmlElement.style.height = '100%';
+				// htmlElement.style.height = '100%';
 				rootHtml.appendChild(htmlElement);
 			},
 			clear: () => {
@@ -36,6 +36,15 @@ export class HTMLRenderer {
 			},
 			setPadding: (value: number) => {
 				rootHtml.style.padding = value + 'px';
+			},
+			centerContent: (horizontaly: boolean, verticaly: boolean) => {
+				rootHtml.style.display = 'flex';
+				if (horizontaly) {
+					rootHtml.style.justifyContent = 'center';
+				}
+				if (verticaly) {
+					rootHtml.style.alignItems = 'center';
+				}
 			}
 		};
 		const componentRenderer = HTMLRenderer.getComponentRenderer();

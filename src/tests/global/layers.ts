@@ -17,12 +17,22 @@ export function run(): void {
 						zIndex: 1,
 						positionInsideHost: {
 							vertical: {
-								start: 20,
-								end: 20
+								center: {
+									relativeTo: 'start',
+									space: {
+										value: 50,
+										unit: '%'
+									}
+								}
 							},
 							horizontal: {
-								start: 20,
-								end: 20
+								center: {
+									relativeTo: 'start',
+									space: {
+										value: 50,
+										unit: '%'
+									}
+								}
 							}
 						},
 						component: {
@@ -34,12 +44,12 @@ export function run(): void {
 							zIndex: 0,
 							positionInsideHost: {
 								vertical: {
-									start: 0,
-									end: 0
+									start: 20,
+									end: 20
 								},
 								horizontal: {
-									start: 0,
-									end: 0
+									start: 20,
+									end: 20
 								}
 							},
 							component: {

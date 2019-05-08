@@ -9,15 +9,27 @@ import { LayersRenderer } from "../../../lib/src/renderer/layers";
 export function run(): void {
 	const viewJSON: ILayersViewJSON = {
 		mainLayer: {
-			zIndex: 0,
+			zIndex: 1,
 			positionInsideHost: {
 				vertical: {
-					start: 0,
-					end: 0
+					center: {
+						relativeTo: 'start',
+						space: {
+							value: 50,
+							unit: '%'
+						}
+					},
+					size: 100
 				},
 				horizontal: {
-					start: 0,
-					end: 0
+					center: {
+						relativeTo: 'start',
+						space: {
+							value: 50,
+							unit: '%'
+						}
+					},
+					size: 100
 				}
 			},
 			component: {
@@ -26,7 +38,7 @@ export function run(): void {
 		},
 		subLayers: [
 			{
-				zIndex: 1,
+				zIndex: 0,
 				positionInsideHost: {
 					vertical: {
 						start: 100,
@@ -51,6 +63,6 @@ export function run(): void {
 		2: 'green'
 	});
 	const renderer = new LayersRenderer(componentRenderer);
-	const parentView = TestTools.getRootViewParent();
+	const parentView = TestTools.getRootViewInserter();
 	renderer.build(view, parentView);
 }

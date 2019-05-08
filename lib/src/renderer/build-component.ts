@@ -28,6 +28,7 @@ import { IconWFRenderer } from "./wireframe/icon";
 import { LabelWFRenderer } from "./wireframe/label";
 import { UniColorWFRenderer } from "./wireframe/unicolor";
 
+// Deprecated
 const componentRenderer: IComponentRenderer = {
 	build: (view: Component, viewModel?: DynamicViewModel) => {
 		return buildComponent(view, viewModel);
@@ -65,6 +66,9 @@ export function renderComponentInParentHtml(component: Component, parentHtml: HT
 		},
 		setPadding: (value: number) => {
 			parentHtml.style.padding = value + 'px';
+		},
+		centerContent: () => {
+			// TODO
 		}
 	}
 	renderComponent(component, parentView, viewModel);

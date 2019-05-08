@@ -5,6 +5,7 @@ import { IViewInserter } from "./interfaces/view-inserter";
 import { watchViewProperty } from "./binding-resolver";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
+import { getDefaultParentView } from "./utils/get-default-parent-view";
 
 export class RouterRenderer implements IBaseRenderer2<RouterView> {
 
@@ -16,18 +17,14 @@ export class RouterRenderer implements IBaseRenderer2<RouterView> {
 			const componentToDisplayedInfo = view.routes[value];
 			const component = componentToDisplayedInfo.component;
 			const inputs = componentToDisplayedInfo.inputs; // TODO use these inputs
-			const contentInserter: IParentView = {
-				add: (element: HTMLElement) => {
-					inserter.clear();
-					inserter.add(element);
-				},
-				clear: () => {
-					inserter.clear();
-				},
-				setPadding: (value: number) => {
-					inserter.setPadding(value);
-				}
-			}
+			const contentInserter: IParentView = getDefaultParentView();
+			contentInserter.add = (element: HTMLElement) => {
+				inserter.clear();
+				inserter.add(element);
+			};
+			contentInserter.clear = () => {
+				inserter.clear();
+			};
 			this._componentRenderer.build(component, contentInserter);
 		});
 	}

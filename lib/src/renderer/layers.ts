@@ -1,9 +1,13 @@
-import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, LayersView, PositionInsideHost } from "../parser/entities/layers";
+import {
+	AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd,
+	AxisPositionFromStart, AxisPositionFromStartAndEnd, LayersView,
+	PositionInsideHost
+} from "../parser/entities/layers";
 import { convertDistanceForHtml } from "./converters/unit";
 import { DynamicViewModel } from "./dynamic-view-model";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
-import { IParentView } from "./interfaces/parent-view";
+import { IParentView, Padding } from "./interfaces/parent-view";
 
 export class LayersRenderer implements IBaseRenderer2<LayersView> {
 	constructor(private _componentBuilder: IComponentRenderer2) { }
@@ -12,17 +16,27 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 		// mainLayer
 		const mainLayer = view.mainLayer!;
 		const referenceZIndex = mainLayer.zIndex;
-		// parentView.setPadding(mainLayer.positioner.padding); // TODO
+		this.setMainLayerPosition(mainLayer.positioner, parentView); // TODO
 		const inserter: IParentView = {
 			add: (childHtml: HTMLElement) => {
 				childHtml.style.zIndex = '0';
-				childHtml.style.height = '100%';
+				if ((<any>mainLayer.positioner.vertical).size) {
+					childHtml.style.height = convertDistanceForHtml((<any>mainLayer.positioner.vertical).size);
+				} else {
+					childHtml.style.height = '100%';
+				}
+				if ((<any>mainLayer.positioner.horizontal).size) {
+					childHtml.style.width = convertDistanceForHtml((<any>mainLayer.positioner.horizontal).size);
+				}
 				parentView.add(childHtml);
 			},
 			clear: () => {
 				parentView.clear();
 			},
 			setPadding: (value: number) => {
+
+			},
+			centerContent: (horizontaly: boolean, verticaly: boolean) => {
 
 			}
 		};
@@ -42,6 +56,9 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 					parentView.clear();
 				},
 				setPadding: (value: number) => {
+
+				},
+				centerContent: (horizontaly: boolean, verticaly: boolean) => {
 
 				}
 			};
@@ -115,5 +132,37 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 			}
 		}
 		return res;
+	}
+
+	private setMainLayerPosition(position: PositionInsideHost, parentView: IParentView): void {
+		let centerHorizontaly = false;
+		let centerVerticaly = false;
+		// horizontal
+		let padding: Padding = {
+			top: '0px',
+			right: '0px',
+			bottom: '0px',
+			left: '0px',
+		};
+		let pos = <any>(position.horizontal);
+		if (pos.start !== undefined && pos.end !== undefined) {
+			padding.left = convertDistanceForHtml(pos.start);
+			padding.right = convertDistanceForHtml(pos.end);
+		} else if (pos.center) {
+			// by default center horizontally in the parent
+			centerHorizontaly = true;
+		}
+		// TODO handle the other cases
+		// vertical
+		pos = <any>(position.vertical);
+		if (pos.start !== undefined && pos.end !== undefined) {
+			padding.top = convertDistanceForHtml(pos.start);
+			padding.bottom = convertDistanceForHtml(pos.end);
+		} else if (pos.center) {
+			centerVerticaly = true;
+		}
+		// TODO handle the other cases
+		parentView.centerContent(centerHorizontaly, centerVerticaly);
+		parentView.setPadding(padding);
 	}
 }

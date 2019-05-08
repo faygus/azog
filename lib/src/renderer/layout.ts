@@ -7,6 +7,7 @@ import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IViewInserter } from "./interfaces/view-inserter";
 import { applySize } from "./utils/apply-size";
 import { IParentView } from "./interfaces/parent-view";
+import { getDefaultParentView } from "./utils/get-default-parent-view";
 
 /**
  * layout with static content
@@ -52,18 +53,16 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 		contentManager: ContainerContentRendered,
 		direction: 'row' | 'column'): void {
 		if (child.component) {
-			const childInserter: IParentView = {
+			const childInserter: IParentView = getDefaultParentView();
+			Object.assign(childInserter, {
 				add: (element: HTMLElement) => {
 					applySize(child.size, element.style, direction);
 					contentManager.add(reference, element);
 				},
 				clear: () => {
 					contentManager.remove(child);
-				},
-				setPadding: (value: number) => {
-	
 				}
-			};
+			});
 			this._componentRenderer.build(child.component, childInserter);
 		} else {
 			const childHtml = document.createElement('div');

@@ -7,7 +7,7 @@ import { DynamicViewModel } from "../../../lib/src/renderer/dynamic-view-model";
 import { ViewModelCreator } from "../../../lib/src/renderer/dynamic-view-model-creator";
 import { IComponentRenderer } from "../../../lib/src/renderer/interfaces/component-renderer";
 import { IComponentRenderer2 } from "../../../lib/src/renderer/interfaces/component-renderer2";
-import { IParentView } from "../../../lib/src/renderer/interfaces/parent-view";
+import { IParentView, Padding } from "../../../lib/src/renderer/interfaces/parent-view";
 
 export class TestTools {
 	static getRootHtml(): HTMLElement {
@@ -45,8 +45,24 @@ export class TestTools {
 					htmlElement.lastChild.remove();
 				}
 			},
-			setPadding: (value: number) => {
-				htmlElement.style.padding = value + 'px';
+			setPadding: (value: number | Padding) => {
+				if (typeof value === 'number') {
+					htmlElement.style.padding = value + 'px';
+				} else {
+					htmlElement.style.paddingTop = value.top;
+					htmlElement.style.paddingRight = value.right;
+					htmlElement.style.paddingBottom = value.bottom;
+					htmlElement.style.paddingLeft = value.left;
+				}
+			},
+			centerContent: (horizontaly: boolean, verticaly: boolean) => {
+				htmlElement.style.display = 'flex';
+				if (horizontaly) {
+					htmlElement.style.justifyContent = 'center';
+				}
+				if (verticaly) {
+					htmlElement.style.alignItems = 'center';
+				}
 			}
 		};
 		return inserter;
@@ -55,16 +71,6 @@ export class TestTools {
 	static getRootViewInserter(): IParentView {
 		const root = TestTools.getRootHtml();
 		return TestTools.getViewInserter(root);
-	}
-
-	static getRootViewParent(): IParentView {
-		const rootHtml = TestTools.getRootHtml();
-		const inserter = TestTools.getViewInserter(rootHtml);
-		return {
-			...inserter, setPadding: (value) => {
-				rootHtml.style.padding = value + 'px';
-			}
-		};
 	}
 
 	static getMockComponentRenderer(colorsMap: MockComponentColorsMap): IComponentRenderer {
