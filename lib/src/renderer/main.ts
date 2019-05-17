@@ -1,22 +1,21 @@
 import { Component } from "../parser/entities/component";
+import { IconWFView } from "../parser/entities/controls/wireframe/icon";
 import { LabelWFView } from "../parser/entities/controls/wireframe/label";
+import { UniColorWFView } from "../parser/entities/controls/wireframe/uniColor";
+import { ForLoopView } from "../parser/entities/for-loop";
+import { LayersView } from "../parser/entities/layers";
+import { RouterView } from "../parser/entities/router";
 import { DynamicViewModel } from "./dynamic-view-model";
 import { ViewModelCreator } from "./dynamic-view-model-creator";
+import { ForLoopRenderer } from "./for-loop";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
-import { IViewInserter } from "./interfaces/view-inserter";
-import { LabelWFRenderer } from "./wireframe/label";
-import { IconWFView } from "../parser/entities/controls/wireframe/icon";
-import { IconWFRenderer } from "./wireframe/icon";
-import { UniColorWFRenderer } from "./wireframe/unicolor";
-import { UniColorWFView } from "../parser/entities/controls/wireframe/uniColor";
-import { LayersView } from "../parser/entities/layers";
-import { LayersRenderer } from "./layers";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
-import { RouterView } from "../parser/entities/router";
+import { LayersRenderer } from "./layers";
 import { RouterRenderer } from "./router";
-import { ForLoopView } from "../parser/entities/for-loop";
-import { ForLoopRenderer } from "./for-loop";
+import { IconWFRenderer } from "./wireframe/icon";
+import { LabelWFRenderer } from "./wireframe/label";
+import { UniColorWFRenderer } from "./wireframe/unicolor";
 
 /**
  * Render a component in the root html element

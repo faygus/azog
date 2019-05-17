@@ -9,7 +9,7 @@ import { IViewInserter } from "../interfaces/view-inserter";
 export class UniColorWFRenderer implements IBaseRenderer2<UniColorWFView> {
 	build(view: UniColorWFView, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
 		const res = document.createElement('div');
-		res.style.height = '100%';
+		// res.style.height = '100%';
 		if (view.color) {
 			watchViewProperty(view.color, viewModel, (value) => {
 				res.style.background = new WireframeColorConverter().convert(value);

@@ -1,7 +1,7 @@
 import { Distance } from "./size";
 
 export class LayersView {
-	mainLayer?: LayerView;
+	mainLayer?: MainLayerView;
 	children: LayerView[] = [];
 }
 
@@ -12,10 +12,25 @@ export class LayerView {
 	}
 }
 
+export class MainLayerView {
+	child: any;
+
+	constructor(public zIndex: number, public positioner: MainLayerPositionInsideHost) {
+	}
+}
+
 export class PositionInsideHost {
 	constructor(
 		public vertical: AxisPosition,
 		public horizontal: AxisPosition
+	) {
+	}
+}
+
+export class MainLayerPositionInsideHost {
+	constructor(
+		public vertical: MainLayerAxisPosition,
+		public horizontal: MainLayerAxisPosition
 	) {
 	}
 }
@@ -47,3 +62,6 @@ export type AxisPositionFromStartAndEnd = {
 	start: Distance,
 	end: Distance
 }
+
+export type MainLayerAxisPosition = AxisPositionFromStart | AxisPositionFromEnd |
+	AxisPositionFromStartAndEnd | { size?: Distance };

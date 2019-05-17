@@ -13,7 +13,7 @@ export class LabelWFRenderer implements IBaseRenderer2<LabelWFView> {
 		htmlWrapper.style.flexDirection = 'column';
 		htmlWrapper.style.justifyContent = 'center';
 		htmlWrapper.style.alignItems = 'center';
-		htmlWrapper.style.height = '100%';
+		// htmlWrapper.style.height = '100%';
 		const htmlLabel = document.createElement('p');
 		if (label.style.size !== undefined) {
 			watchViewProperty(label.style.size, viewModel, (value) => {

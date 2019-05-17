@@ -17,22 +17,8 @@ export function run(): void {
 						zIndex: 1,
 						positionInsideHost: {
 							vertical: {
-								center: {
-									relativeTo: 'start',
-									space: {
-										value: 50,
-										unit: '%'
-									}
-								}
 							},
 							horizontal: {
-								center: {
-									relativeTo: 'start',
-									space: {
-										value: 50,
-										unit: '%'
-									}
-								}
 							}
 						},
 						component: {
@@ -64,7 +50,7 @@ export function run(): void {
 				value: {
 					text: 'hello world',
 					style: {
-						color: 2,
+						color: 1,
 						size: 2
 					}
 				}
@@ -72,7 +58,7 @@ export function run(): void {
 			3: {
 				type: ViewType.UNI_COLOR_WF,
 				value: {
-					color: 1
+					color: 2
 				}
 			}
 		}

@@ -12,23 +12,9 @@ export function run(): void {
 			zIndex: 1,
 			positionInsideHost: {
 				vertical: {
-					center: {
-						relativeTo: 'start',
-						space: {
-							value: 50,
-							unit: '%'
-						}
-					},
 					size: 100
 				},
 				horizontal: {
-					center: {
-						relativeTo: 'start',
-						space: {
-							value: 50,
-							unit: '%'
-						}
-					},
 					size: 100
 				}
 			},

@@ -1,7 +1,8 @@
 import {
 	AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd,
 	AxisPositionFromStart, AxisPositionFromStartAndEnd, LayersView,
-	PositionInsideHost
+	PositionInsideHost,
+	MainLayerPositionInsideHost
 } from "../parser/entities/layers";
 import { convertDistanceForHtml } from "./converters/unit";
 import { DynamicViewModel } from "./dynamic-view-model";
@@ -22,8 +23,6 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 				childHtml.style.zIndex = '0';
 				if ((<any>mainLayer.positioner.vertical).size) {
 					childHtml.style.height = convertDistanceForHtml((<any>mainLayer.positioner.vertical).size);
-				} else {
-					childHtml.style.height = '100%';
 				}
 				if ((<any>mainLayer.positioner.horizontal).size) {
 					childHtml.style.width = convertDistanceForHtml((<any>mainLayer.positioner.horizontal).size);
@@ -37,7 +36,8 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 
 			},
 			centerContent: (horizontaly: boolean, verticaly: boolean) => {
-
+				// TODO
+				console.warn('centerContent not implemented');
 			}
 		};
 		this._componentBuilder.build(mainLayer.child, inserter, viewModel);
@@ -134,34 +134,39 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 		return res;
 	}
 
-	private setMainLayerPosition(position: PositionInsideHost, parentView: IParentView): void {
+	private setMainLayerPosition(position: MainLayerPositionInsideHost, parentView: IParentView): void {
 		let centerHorizontaly = false;
 		let centerVerticaly = false;
-		// horizontal
 		let padding: Padding = {
 			top: '0px',
 			right: '0px',
 			bottom: '0px',
 			left: '0px',
 		};
-		let pos = <any>(position.horizontal);
-		if (pos.start !== undefined && pos.end !== undefined) {
-			padding.left = convertDistanceForHtml(pos.start);
-			padding.right = convertDistanceForHtml(pos.end);
-		} else if (pos.center) {
-			// by default center horizontally in the parent
+		// horizontal
+		let pos = <any>position.horizontal;
+		if (pos.start === undefined && pos.end === undefined) {
 			centerHorizontaly = true;
+		} else {
+			if (pos.start !== undefined) {
+				padding.left = convertDistanceForHtml(pos.start);
+			}
+			if (pos.end !== undefined) {
+				padding.right = convertDistanceForHtml(pos.end);
+			}
 		}
-		// TODO handle the other cases
 		// vertical
-		pos = <any>(position.vertical);
-		if (pos.start !== undefined && pos.end !== undefined) {
-			padding.top = convertDistanceForHtml(pos.start);
-			padding.bottom = convertDistanceForHtml(pos.end);
-		} else if (pos.center) {
+		pos = position.vertical;
+		if (pos.start === undefined && pos.end === undefined) {
 			centerVerticaly = true;
+		} else {
+			if (pos.start !== undefined) {
+				padding.top = convertDistanceForHtml(pos.start);
+			}
+			if (pos.end !== undefined) {
+				padding.bottom = convertDistanceForHtml(pos.end);
+			}
 		}
-		// TODO handle the other cases
 		parentView.centerContent(centerHorizontaly, centerVerticaly);
 		parentView.setPadding(padding);
 	}
