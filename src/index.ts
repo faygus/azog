@@ -1,10 +1,9 @@
 require("../assets/stylesheets/styles.scss");
 require("../node_modules/font-awesome/css/font-awesome.min.css");
 
-import { run } from "./tests/global/layers";
+import { run } from "./manual-tests/global/label-wf";
 
 try {
-	// HTMLRenderer.render(component);
 	run();
 
 } catch (error) {
