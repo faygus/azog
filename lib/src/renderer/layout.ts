@@ -18,8 +18,6 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 
 	build(data: LayoutView, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
 		const divHtml = document.createElement('div');
-		divHtml.style.height = '100%';
-		divHtml.style.backgroundColor = 'orange';
 		divHtml.style.display = 'flex';
 		divHtml.style.flexDirection = data.direction === 'row' ? 'row' : 'column';
 		const contentManager = new ContainerContentRendered(data);
@@ -32,7 +30,9 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 				this.handleIf(child, contentManager, data.direction, viewModel);
 			}
 		}
-		inserter.add(divHtml);
+		inserter.add(divHtml, {
+			height: '100%'
+		});
 	}
 
 	private handleIf(data: IfLayoutChild,

@@ -1,4 +1,4 @@
-import { ViewTypeMap } from "./types";
+import { ViewTypeMap } from "../view-types";
 import { IViewModelInterfaceJSON } from "./view-model";
 import { IMockViewModelJSON } from "./mock-view-model";
 

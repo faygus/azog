@@ -1,5 +1,5 @@
 import { HTMLRenderer, IAppJSON, Parser } from '../../../lib/src';
-import { ViewType } from '../../../lib/src/parser/interfaces/types';
+import { ViewType } from '../../../lib/src/parser/view-types';
 import { TestTools } from '../tools/tools';
 
 /**

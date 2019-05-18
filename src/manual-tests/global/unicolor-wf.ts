@@ -1,5 +1,5 @@
 import { Parser } from "../../../lib/src/parser/code-analyse/main";
-import { ViewType } from "../../../lib/src/parser/interfaces/types";
+import { ViewType } from "../../../lib/src/parser/view-types";
 import { IUniColorWFViewJSON } from "../../../lib/src/parser/interfaces/uni-color-wf";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";

@@ -1,5 +1,5 @@
 export interface IViewInserter {
-	add(element: HTMLElement): void;
+	add(element: HTMLElement, style?: { [key: string]: string }): void;
 	clear(): void;
 	// TODO remove specific HTMLElement
 }

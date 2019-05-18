@@ -1,7 +1,7 @@
 require("../assets/stylesheets/styles.scss");
 require("../node_modules/font-awesome/css/font-awesome.min.css");
 
-import { run } from "./manual-tests/global/label-wf";
+import { run } from "./manual-tests/global/image";
 
 try {
 	run();

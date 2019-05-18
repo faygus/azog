@@ -1,21 +1,10 @@
 import { Component } from "../parser/entities/component";
-import { IconWFView } from "../parser/entities/controls/wireframe/icon";
-import { LabelWFView } from "../parser/entities/controls/wireframe/label";
-import { UniColorWFView } from "../parser/entities/controls/wireframe/uniColor";
-import { ForLoopView } from "../parser/entities/for-loop";
-import { LayersView } from "../parser/entities/layers";
-import { RouterView } from "../parser/entities/router";
 import { DynamicViewModel } from "./dynamic-view-model";
 import { ViewModelCreator } from "./dynamic-view-model-creator";
-import { ForLoopRenderer } from "./for-loop";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
-import { LayersRenderer } from "./layers";
-import { RouterRenderer } from "./router";
-import { IconWFRenderer } from "./wireframe/icon";
-import { LabelWFRenderer } from "./wireframe/label";
-import { UniColorWFRenderer } from "./wireframe/unicolor";
+import { getRenderersMap } from "./renderers-map";
 
 /**
  * Render a component in the root html element
@@ -24,8 +13,11 @@ export class HTMLRenderer {
 
 	static render(component: Component, rootHtml: HTMLElement): void {
 		const inserter: IParentView = {
-			add: (htmlElement: HTMLElement) => {
-				// htmlElement.style.height = '100%';
+			add: (htmlElement: HTMLElement, style?: {[key: string]: string}) => {
+				if (style !== undefined) {
+					console.log('apply style', style);
+					Object.assign(htmlElement.style, style);
+				}
 				rootHtml.appendChild(htmlElement);
 			},
 			clear: () => {
@@ -57,7 +49,7 @@ export class HTMLRenderer {
 				if (component.viewModelInterface) {
 					viewModel = ViewModelCreator.createViewModel(component.viewModelInterface, component.mockViewModel);
 				}
-				const map = HTMLRenderer.getMap(componentRenderer);
+				const map = getRenderersMap(componentRenderer);
 				let renderer: IBaseRenderer2<any> | undefined;
 				for (const key of map.keys()) {
 					if (component.view instanceof key) {
@@ -73,18 +65,5 @@ export class HTMLRenderer {
 			}
 		};
 		return componentRenderer;
-	}
-
-	private static getMap(componentRenderer: IComponentRenderer2): Map<any, IBaseRenderer2<any>> {
-		const map = new Map<any, IBaseRenderer2<any>>([
-			[LabelWFView, new LabelWFRenderer()],
-			[IconWFView, new IconWFRenderer()],
-			[UniColorWFView, new UniColorWFRenderer()],
-			[LayersView, new LayersRenderer(componentRenderer)],
-			[RouterView, new RouterRenderer(componentRenderer)],
-			[ForLoopView, new ForLoopRenderer(componentRenderer)],
-			// ... TODO
-		]);
-		return map;
 	}
 }
