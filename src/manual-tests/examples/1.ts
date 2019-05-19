@@ -7,7 +7,6 @@ import { RouterRenderer } from "../../../lib/src/renderer/router";
  * Routing with 3 views
  */
 export function run(): void {
-	console.log('run example 1');
 	const routerViewJSON: IRouterViewJSON = {
 		routes: {
 			'route1': {

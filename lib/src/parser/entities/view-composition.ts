@@ -1,15 +1,10 @@
 import { Component } from "./component";
 
-export class ViewComposition {
-	hostComponent?: Component;
-	content?: Component;
-}
+export class ViewComposition<T> {
+	host: Component<T>;
+	refs: { [ref: string]: Component<any> } = {};
 
-export class ViewComposition2 {
-	parentView: Component;
-	children: Component[] = [];
-
-	constructor(parentView: Component) {
-		this.parentView = parentView;
+	constructor(host: Component<T>) {
+		this.host = host;
 	}
 }

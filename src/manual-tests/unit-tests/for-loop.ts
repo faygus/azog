@@ -7,7 +7,6 @@ import { TestTools } from '../tools/tools';
  * For loop
  */
 export function run(): void {
-	console.log('show forLoopView');
 	const dataJSON: IForLoopJSON = {
 		array: ['foo', 'foo', 'foo', 'foo'],
 		template: {

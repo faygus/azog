@@ -3,8 +3,8 @@ import { ViewModelParsing } from "../../../lib/src/parser/code-analyse/view-mode
 import { Component } from "../../../lib/src/parser/entities/component";
 import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
 import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
-import { DynamicViewModel } from "../../../lib/src/renderer/dynamic-view-model";
-import { ViewModelCreator } from "../../../lib/src/renderer/dynamic-view-model-creator";
+import { DynamicViewModel } from "../../../lib/src/renderer/view-model/dynamic-view-model";
+import { ViewModelCreator } from "../../../lib/src/renderer/view-model/dynamic-view-model-creator";
 import { IComponentRenderer } from "../../../lib/src/renderer/interfaces/component-renderer";
 import { IComponentRenderer2 } from "../../../lib/src/renderer/interfaces/component-renderer2";
 import { IParentView, Padding } from "../../../lib/src/renderer/interfaces/parent-view";
@@ -28,8 +28,7 @@ export class TestTools {
 
 	static getMockViewProvider(): GetView {
 		const res: GetView = (id: number) => {
-			const res = new Component();
-			res.view = id;
+			const res = new Component(id);
 			return res;
 		}
 		return res;
@@ -37,7 +36,10 @@ export class TestTools {
 
 	static getViewInserter(htmlElement: HTMLElement): IParentView {
 		const inserter: IParentView = {
-			add: (element: HTMLElement) => {
+			add: (element: HTMLElement, fullHeight = true) => {
+				if (fullHeight) {
+					element.style.height = '100%';
+				}
 				htmlElement.appendChild(element);
 			},
 			clear: () => {
@@ -75,7 +77,7 @@ export class TestTools {
 
 	static getMockComponentRenderer(colorsMap: MockComponentColorsMap): IComponentRenderer {
 		return {
-			build: (view: Component, parentViewModel?: DynamicViewModel): HTMLElement => {
+			build: (view: Component<any>, parentViewModel?: DynamicViewModel): HTMLElement => {
 				const res = document.createElement('div');
 				const index: number = view.view;
 				res.style.backgroundColor = colorsMap[index];
@@ -86,7 +88,7 @@ export class TestTools {
 
 	static getMockComponentRenderer2(colorsMap: MockComponentColorsMap): IComponentRenderer2 {
 		return {
-			build: (view: Component, inserter: IParentView) => {
+			build: (view: Component<any>, inserter: IParentView) => {
 				const res = document.createElement('div');
 				const index: number = view.view;
 				res.style.backgroundColor = colorsMap[index];

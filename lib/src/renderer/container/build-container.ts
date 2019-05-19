@@ -1,5 +1,5 @@
 import { Container } from "../../parser/entities/container";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { FlexDirection } from "../../parser/entities/old-layout";
 import { Host } from "../../parser/entities/host";
 import { IfDirective } from "../../parser/entities/directives/if-directive";

@@ -15,14 +15,7 @@ export class Parser {
 		this._componentsCollection = new ComponentsCollection(appJSON);
 	}
 
-	parse(componentId: number): Component {
-		const res = new Component();
-		const viewModelInterface = this.parseViewModelInterface(componentId);
-		if (viewModelInterface) {
-			const mockViewModel = this.parseMockViewModel(componentId);
-			res.viewModelInterface = viewModelInterface;
-			res.mockViewModel = mockViewModel;
-		}
+	parse(componentId: number): Component<any> {
 		const viewDeclarationJSON = this._componentsCollection.views.get(componentId);
 		if (!viewDeclarationJSON) {
 			throw new Error(`component ${componentId} does not exist`);
@@ -35,7 +28,13 @@ export class Parser {
 			return this.parse(id);
 		};
 		const view = parser(viewDeclarationJSON.value, getView); // TODO handle optionnal parameters
-		res.view = view;
+		const res = new Component(view);
+		const viewModelInterface = this.parseViewModelInterface(componentId);
+		if (viewModelInterface) {
+			const mockViewModel = this.parseMockViewModel(componentId);
+			res.viewModelInterface = viewModelInterface;
+			res.mockViewModel = mockViewModel;
+		}
 		return res;
 	}
 

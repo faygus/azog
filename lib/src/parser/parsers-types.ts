@@ -7,6 +7,7 @@ import { layoutParser } from "./code-analyse/parsers/layout";
 import { routerParser } from "./code-analyse/parsers/router";
 import { uniColorWFParser } from "./code-analyse/parsers/uni-color-wf";
 import { ViewType } from "./view-types";
+import { conditionalViewParser } from "./code-analyse/parsers/if";
 
 export const parsersMap: { [key: string]: any } = { // TODO parser type
 	[ViewType.LABEL_WF]: labelWFParser,
@@ -17,5 +18,6 @@ export const parsersMap: { [key: string]: any } = { // TODO parser type
 	[ViewType.FOR_LOOP]: forLoopParser,
 	[ViewType.LAYOUT]: layoutParser,
 	[ViewType.IMAGE]: imageParser,
+	[ViewType.IF]: conditionalViewParser,
 	// ... TODO
 };

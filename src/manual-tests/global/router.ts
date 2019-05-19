@@ -10,9 +10,7 @@ export function run(): void {
 				type: 'router',
 				value: {
 					activeRoute: {
-						value: {
-							propertyName: 'activatedRoute'
-						}
+						value: 'route1'
 					},
 					routes: {
 						'route1': {
@@ -28,9 +26,9 @@ export function run(): void {
 				}
 			},
 			2: {
-				type: 'uniColorWF',
+				type: 'labelWF',
 				value: {
-					color: 1
+					text: 'Hey world'
 				}
 			},
 			3: {

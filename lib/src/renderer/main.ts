@@ -1,6 +1,6 @@
 import { Component } from "../parser/entities/component";
-import { DynamicViewModel } from "./dynamic-view-model";
-import { ViewModelCreator } from "./dynamic-view-model-creator";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
+import { ViewModelCreator } from "./view-model/dynamic-view-model-creator";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
@@ -11,12 +11,11 @@ import { getRenderersMap } from "./renderers-map";
  */
 export class HTMLRenderer {
 
-	static render(component: Component, rootHtml: HTMLElement): void {
+	static render(component: Component<any>, rootHtml: HTMLElement): void {
 		const inserter: IParentView = {
-			add: (htmlElement: HTMLElement, style?: {[key: string]: string}) => {
-				if (style !== undefined) {
-					console.log('apply style', style);
-					Object.assign(htmlElement.style, style);
+			add: (htmlElement: HTMLElement, fullHeight = true) => {
+				if (fullHeight) {
+					htmlElement.style.height = '100%';
 				}
 				rootHtml.appendChild(htmlElement);
 			},
@@ -44,10 +43,11 @@ export class HTMLRenderer {
 
 	private static getComponentRenderer(): IComponentRenderer2 {
 		const componentRenderer: IComponentRenderer2 = {
-			build: (component: Component, inserter: IParentView): void => {
-				let viewModel: DynamicViewModel | undefined;
-				if (component.viewModelInterface) {
-					viewModel = ViewModelCreator.createViewModel(component.viewModelInterface, component.mockViewModel);
+			build: (component: Component<any>, inserter: IParentView, viewModel?: DynamicViewModel): void => {
+				if (!viewModel) {
+					if (component.viewModelInterface) {
+						viewModel = ViewModelCreator.createViewModel(component.viewModelInterface, component.mockViewModel);
+					}
 				}
 				const map = getRenderersMap(componentRenderer);
 				let renderer: IBaseRenderer2<any> | undefined;

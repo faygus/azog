@@ -1,10 +1,10 @@
 
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { ForDirective } from "../parser/entities/directives/for-directive";
 import { watchViewProperty } from "./binding-resolver";
-import { CustomDynamicViewModel } from "./dynamic-view-model-creator";
 import { IComponentOrHostBuilder } from "./interfaces/component-builder";
 import { IViewInserter } from "./interfaces/view-inserter";
+import { CustomDynamicViewModel } from "./view-model/custom-dynamic-view-model";
 
 /**
  * responsible of insert/remove the component when needed
@@ -41,8 +41,8 @@ export class ForDirectiveRenderer {
 
 	private extendViewModel(data: any): CustomDynamicViewModel {
 		const res = new CustomDynamicViewModel();
-		res.inputs = [...this._viewModel!.inputs];
-		res.properties = [...this._viewModel!.properties];
+		/*res._inputs = [...this._viewModel!.getInputs()];
+		res._properties = [...this._viewModel!.getProperties()];*/
 		res.addProperty({
 			name: 'item',
 			type: 'any'

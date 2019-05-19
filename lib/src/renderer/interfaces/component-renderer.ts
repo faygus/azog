@@ -1,8 +1,8 @@
 import { Component } from "../../parser/entities/component";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 
 export interface IComponentRenderer {
-	build(view: Component, parentViewModel?: DynamicViewModel): HTMLElement;
+	build(view: Component<any>, parentViewModel?: DynamicViewModel): HTMLElement;
 }
 
-export type RenderComponentInParentHtml = (component: Component, parentHtml: HTMLElement, viewModel?: DynamicViewModel) => void;
+export type RenderComponentInParentHtml = (component: Component<any>, parentHtml: HTMLElement, viewModel?: DynamicViewModel) => void;

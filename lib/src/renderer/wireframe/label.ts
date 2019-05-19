@@ -1,4 +1,4 @@
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
 import { LabelWFView } from "../../parser/entities/controls/wireframe/label";
 import { WireframeSizeConverter } from "./converters/size";
@@ -34,6 +34,6 @@ export class LabelWFRenderer implements IBaseRenderer2<LabelWFView> {
 		htmlLabel.style.margin = '0px';
 		// htmlWrapper.appendChild(htmlLabel);
 		inserter.centerContent(true, true);
-		inserter.add(htmlLabel);
+		inserter.add(htmlLabel, false);
 	}
 }

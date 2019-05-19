@@ -1,0 +1,43 @@
+import { LayoutComposition, LayoutCompositionChild, LayoutCompositionStaticChild, IfLayoutCompositionChild } from "../../../entities/composition/layout";
+import { IfLayoutCompositionChildJSON, ILayoutCompositionStaticChildJSON, ILayoutCompositionJSON, LayoutCompositionChildJSON } from "../../../interfaces/layout/layout-composition";
+import { ParsingUtils } from "../../utils";
+import { GetView } from "../type";
+import { parseValueProvider } from "../../value-provider";
+
+export const layoutCompositionParser = (viewJSON: ILayoutCompositionJSON, getView: GetView): LayoutComposition => {
+	const res = new LayoutComposition(viewJSON.direction);
+	for (const childJSON of viewJSON.children) {
+		let child: LayoutCompositionChild | undefined = undefined;
+		if (isILayoutCompositionStaticChildJSON(childJSON)) {
+			child = parseStaticChild(childJSON, getView);
+		} else if (isIfLayoutCompositionChildJSON(childJSON)) {
+			const staticChild = parseStaticChild(childJSON.host, getView);
+			const condition = parseValueProvider(childJSON.if);
+			child = new IfLayoutCompositionChild(condition, staticChild);
+		}
+		if (child) {
+			res.children.push(child);
+		}
+	}
+	return res;
+};
+
+function isILayoutCompositionStaticChildJSON(data: LayoutCompositionChildJSON): data is ILayoutCompositionStaticChildJSON {
+	return (<ILayoutCompositionStaticChildJSON>data).componentInfos !== undefined;
+}
+
+function isIfLayoutCompositionChildJSON(data: LayoutCompositionChildJSON): data is IfLayoutCompositionChildJSON {
+	return (<IfLayoutCompositionChildJSON>data).if !== undefined;
+}
+
+function parseStaticChild(childJSON: ILayoutCompositionStaticChildJSON, getView: GetView): LayoutCompositionStaticChild {
+	const size = ParsingUtils.getSize(childJSON.size);
+	let componentInfos;
+	if ((<any>childJSON.componentInfos).ref !== undefined) {
+		componentInfos = (<any>childJSON.componentInfos).ref;
+	} else {
+		const id = (<any>childJSON.componentInfos).id;
+		componentInfos = getView(id);
+	}
+	return new LayoutCompositionStaticChild(size, componentInfos);
+}

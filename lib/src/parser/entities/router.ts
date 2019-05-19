@@ -11,6 +11,6 @@ export class RouterView {
 export type IRoutesParam = { [routeName: string]: IComponentWithInputs };
 
 interface IComponentWithInputs {
-	component: Component;
+	component: Component<any>;
 	inputs?: any; // TODO
 }

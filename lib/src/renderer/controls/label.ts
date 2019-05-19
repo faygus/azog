@@ -1,5 +1,5 @@
 import { LabelView } from "../../parser/entities/controls/label";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
 import { BaseRenderer } from "../base-renderer";
 

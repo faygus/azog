@@ -1,6 +1,6 @@
 import { IconWFView } from "../../parser/entities/controls/wireframe/icon";
 import { watchViewProperty } from "../binding-resolver";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IViewInserter } from "../interfaces/view-inserter";
 import { WireframeColorConverter } from "./converters/color";

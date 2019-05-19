@@ -1,11 +1,12 @@
-import { ILabelWFViewJSON } from "./interfaces/label-wf";
-import { IIconWFViewJSON } from "./interfaces/icon-wf";
-import { IUniColorWFViewJSON } from "./interfaces/uni-color-wf";
-import { ILayersViewJSON } from "./interfaces/layers";
-import { IRouterViewJSON } from "./interfaces/router";
 import { IForLoopJSON } from "./interfaces/for-loop";
-import { ILayoutJSON } from "./interfaces/layout";
+import { IIconWFViewJSON } from "./interfaces/icon-wf";
+import { IConditionalViewJSON } from "./interfaces/if";
 import { IImageViewJSON } from "./interfaces/image";
+import { ILabelWFViewJSON } from "./interfaces/label-wf";
+import { ILayersViewJSON } from "./interfaces/layers";
+import { ILayoutJSON } from "./interfaces/layout/layout";
+import { IRouterViewJSON } from "./interfaces/router";
+import { IUniColorWFViewJSON } from "./interfaces/uni-color-wf";
 
 export enum ViewType {
 	LABEL_WF = 'labelWF',
@@ -15,7 +16,8 @@ export enum ViewType {
 	ROUTER = 'router',
 	FOR_LOOP = 'forLoop',
 	LAYOUT = 'layout',
-	IMAGE = 'image'
+	IMAGE = 'image',
+	IF = 'if'
 	// ... TODO
 }
 
@@ -28,5 +30,6 @@ export interface ViewTypeMap {
 	'forLoop': IForLoopJSON,
 	'layout': ILayoutJSON,
 	'image': IImageViewJSON,
+	'if': IConditionalViewJSON
 	// ... TODO
 }

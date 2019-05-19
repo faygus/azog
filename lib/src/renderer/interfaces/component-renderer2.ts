@@ -1,7 +1,7 @@
 import { Component } from "../../parser/entities/component";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { IParentView } from "./parent-view";
 
 export interface IComponentRenderer2 {
-	build(view: Component, inserter: IParentView, viewModel?: DynamicViewModel): void;
+	build(view: Component<any>, inserter: IParentView, viewModel?: DynamicViewModel): void;
 }

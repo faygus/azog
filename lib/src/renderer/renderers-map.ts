@@ -16,6 +16,8 @@ import { ForLoopRenderer } from "./for-loop";
 import { LayoutRenderer } from "./layout";
 import { ImageView } from "../parser/entities/controls/image";
 import { ImageRenderer } from "./controls/image";
+import { ConditionalView } from "../parser/entities/if";
+import { ConditionalViewRenderer } from "./if";
 
 export function getRenderersMap(componentRenderer: IComponentRenderer2): Map<any, IBaseRenderer2<any>> {
 	const map = new Map<any, IBaseRenderer2<any>>([
@@ -27,6 +29,7 @@ export function getRenderersMap(componentRenderer: IComponentRenderer2): Map<any
 		[ForLoopView, new ForLoopRenderer(componentRenderer)],
 		[LayoutView, new LayoutRenderer(componentRenderer)],
 		[ImageView, new ImageRenderer()],
+		[ConditionalView, new ConditionalViewRenderer(componentRenderer)],
 		// ... TODO
 	]);
 	return map;

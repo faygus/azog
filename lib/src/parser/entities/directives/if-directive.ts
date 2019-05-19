@@ -8,9 +8,9 @@ export class IfDirective extends StructuralDirective {
 	input: {
 		condition: ValueProvider<boolean>
 	};
-	public template: Component | Host;
+	public template: Component<any> | Host;
 
-	constructor(condition: ValueProvider<boolean>, template: Component) {
+	constructor(condition: ValueProvider<boolean>, template: Component<any>) {
 		super(DirectiveType.IF);
 		this.template = template;
 		this.input = {

@@ -9,7 +9,7 @@ export interface IForLoopJSON {
 
 export interface IComponentTemplateJSON {
 	componentId: number;
-	inputs?: any; // TODO
+	inputs?: { [key: string]: IValueProviderJSON<any> };
 }
 
 export interface IExtensibleContainerJSON {

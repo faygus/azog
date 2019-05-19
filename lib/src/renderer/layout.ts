@@ -1,5 +1,5 @@
 import { IfLayoutChild, LayoutChild, LayoutView } from "../parser/entities/layout";
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { watchViewProperty } from "./binding-resolver";
 import { ContainerContentRendered } from "./container/container-content-rendered";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
@@ -30,9 +30,7 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 				this.handleIf(child, contentManager, data.direction, viewModel);
 			}
 		}
-		inserter.add(divHtml, {
-			height: '100%'
-		});
+		inserter.add(divHtml);
 	}
 
 	private handleIf(data: IfLayoutChild,

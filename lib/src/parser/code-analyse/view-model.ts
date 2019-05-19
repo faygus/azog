@@ -1,4 +1,3 @@
-import { VIEW_MODELS, VIEW_DATA } from "../../json/components";
 import { IViewModelInterface, Property } from "../entities/data/view-model";
 import { IMockDataSource } from "../entities/data/mock-data-source";
 import { IViewModelInterfaceJSON } from "../interfaces/view-model";

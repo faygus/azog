@@ -1,5 +1,5 @@
 import { ValueProvider, Pipe } from "../parser/entities/controls/binding";
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 
 export function watchViewProperty<T>(data: ValueProvider<T>, viewModel: DynamicViewModel | undefined, handler: (value: T) => void) {
 	const processValue = (value: T) => {

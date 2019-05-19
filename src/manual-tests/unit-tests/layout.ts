@@ -1,5 +1,5 @@
 import { layoutParser } from "../../../lib/src/parser/code-analyse/parsers/layout";
-import { ILayoutJSON } from "../../../lib/src/parser/interfaces/layout";
+import { ILayoutJSON } from "../../../lib/src/parser/interfaces/layout/layout";
 import { LayoutRenderer } from "../../../lib/src/renderer/layout";
 import { TestTools } from "../tools/tools";
 import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";

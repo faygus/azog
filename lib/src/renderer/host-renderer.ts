@@ -1,5 +1,5 @@
 import { Host } from "../parser/entities/host";
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { Unit } from "../parser/entities/unit";
 import { Component } from "../parser/entities/component";
 import { IfDirective } from "../parser/entities/directives/if-directive";
@@ -73,7 +73,7 @@ export class HostRenderer implements IHostRenderer {
 	private handleIfDirective(directive: IfDirective, viewInserter: IViewInserter,
 		viewModel?: DynamicViewModel): void {
 		const componentOrHostRenderer: IComponentOrHostBuilder = {
-			build: (component: Component | Host, viewModel?: DynamicViewModel) => {
+			build: (component: Component<any> | Host, viewModel?: DynamicViewModel) => {
 				if (component instanceof Component) {
 					return this._componentRenderer.build(component);
 				}

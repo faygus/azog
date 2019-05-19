@@ -1,9 +1,7 @@
 import { LayoutView, LayoutChild, IfLayoutChild } from "../../entities/layout";
-import { ILayoutJSON } from "../../interfaces/layout";
+import { ILayoutJSON, IfLayoutChildJSON, ILayoutChildJSON } from "../../interfaces/layout/layout";
 import { ParsingUtils } from "../utils";
 import { ControlParser, GetView } from "./type";
-import { IfLayoutChildJSON } from "../../interfaces/layout-child/if-host";
-import { ILayoutChildJSON } from "../../interfaces/layout-child/layout-child";
 import { parseValueProvider } from "../value-provider";
 
 export const layoutParser: ControlParser = (componentJSON: ILayoutJSON, getView: GetView): LayoutView => {

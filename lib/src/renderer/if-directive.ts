@@ -1,4 +1,4 @@
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { IfDirective } from "../parser/entities/directives/if-directive";
 import { watchViewProperty } from "./binding-resolver";
 import { IComponentOrHostBuilder } from "./interfaces/component-builder";

@@ -6,15 +6,21 @@ import { TestTools } from '../tools/tools';
  * For loop
  */
 export function run(): void {
-	console.log('show forLoopView');
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
 				type: ViewType.FOR_LOOP,
 				value: {
-					array: ['foo', 'foo', 'foo', 'foo'],
+					array: [0,1,2,1],
 					template: {
-						componentId: 2
+						componentId: 2,
+						inputs: {
+							color: {
+								value: {
+									propertyName: 'elementInArray'
+								}
+							}
+						}
 					},
 					container: {
 						direction: 'column',
@@ -24,10 +30,22 @@ export function run(): void {
 				}
 			},
 			2: {
-				type: ViewType.LABEL_WF,
+				type: ViewType.UNI_COLOR_WF,
 				value: {
-					text: 'hey world'
+					color: {
+						value: {
+							propertyName: 'color'
+						}
+					}
 				}
+			}
+		},
+		viewModelInterfaces: {
+			2: {
+				properties: {},
+				inputs: {
+					color: 'number'
+				},
 			}
 		}
 	};

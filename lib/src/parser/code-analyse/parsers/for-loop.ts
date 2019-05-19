@@ -8,6 +8,10 @@ import { ParsingUtils } from "../utils";
 export const forLoopParser: ControlParser = (viewJSON: IForLoopJSON, getView: GetView): ForLoopView => {
 	const valueProvider = parseValueProvider(viewJSON.array);
 	const component = getView(viewJSON.template.componentId);
+	for (const inputName in viewJSON.template.inputs) {
+		const valueProviderJSON = viewJSON.template.inputs[inputName];
+		component.inputs[inputName] = parseValueProvider(valueProviderJSON);
+	}
 	const template = new ComponentTemplate(component);
 	const size = ParsingUtils.getSize(viewJSON.container.size);
 	const container = new ExtensibleContainer(viewJSON.container.direction, viewJSON.container.margin, size);

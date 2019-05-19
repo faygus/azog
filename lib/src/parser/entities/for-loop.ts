@@ -12,5 +12,5 @@ export class ForLoopView {
 }
 
 export class ComponentTemplate {
-	constructor(public component: Component) { }
+	constructor(public component: Component<any>) { }
 }

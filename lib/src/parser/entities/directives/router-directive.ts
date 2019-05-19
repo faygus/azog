@@ -4,10 +4,10 @@ import { Component } from "../component";
 
 // deprecated
 export class RouterDirective extends StructuralDirective {
-	routes: {[key: string]: Component};
+	routes: {[key: string]: Component<any>};
 	activatedRoute: ValueProvider<string>;
 
-	constructor(routes: {[key: string]: Component}, activatedRoute: ValueProvider<string>) {
+	constructor(routes: {[key: string]: Component<any>}, activatedRoute: ValueProvider<string>) {
 		super(DirectiveType.ROUTER);
 		this.routes = routes;
 		this.activatedRoute = activatedRoute;

@@ -10,7 +10,7 @@ export class LayoutView {
 }
 
 export class LayoutChild {
-	component?: Component;
+	component?: Component<any>;
 
 	constructor(public size: Size) { }
 }

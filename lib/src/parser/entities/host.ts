@@ -5,7 +5,7 @@ import { StructuralDirective } from "./directives/structural-directive";
 export class Host {
 	width?: Size;
 	height?: Size;
-	child?: Component | StructuralDirective; // TODO
+	child?: Component<any> | StructuralDirective; // TODO
 	hostContent?: string; // if the host can host evrything, the string value is the name of the zone
 
 	constructor(width?: Size, height?: Size) {

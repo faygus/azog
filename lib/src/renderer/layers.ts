@@ -5,7 +5,7 @@ import {
 	MainLayerPositionInsideHost
 } from "../parser/entities/layers";
 import { convertDistanceForHtml } from "./converters/unit";
-import { DynamicViewModel } from "./dynamic-view-model";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView, Padding } from "./interfaces/parent-view";
@@ -27,7 +27,7 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 				if ((<any>mainLayer.positioner.horizontal).size) {
 					childHtml.style.width = convertDistanceForHtml((<any>mainLayer.positioner.horizontal).size);
 				}
-				parentView.add(childHtml);
+				parentView.add(childHtml, false);
 			},
 			clear: () => {
 				parentView.clear();
@@ -50,7 +50,7 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 					childHtml.style.position = 'absolute';
 					const positionStyle = this.setPosition(layer.positioner);
 					Object.assign(childHtml.style, positionStyle);
-					parentView.add(childHtml);
+					parentView.add(childHtml, false);
 				},
 				clear: () => {
 					parentView.clear();

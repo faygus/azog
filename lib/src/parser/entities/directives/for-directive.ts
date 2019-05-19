@@ -8,9 +8,9 @@ export class ForDirective extends StructuralDirective {
 	input: {
 		list: ValueProvider<any[]>
 	};
-	public template: Component | Host;
+	public template: Component<any> | Host;
 
-	constructor(list: ValueProvider<any[]>, template: Component | Host) {
+	constructor(list: ValueProvider<any[]>, template: Component<any> | Host) {
 		super(DirectiveType.FOR);
 		this.template = template;
 		this.input = {

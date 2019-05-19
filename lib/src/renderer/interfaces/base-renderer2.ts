@@ -1,4 +1,4 @@
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { IViewInserter } from "./view-inserter";
 
 export interface IBaseRenderer2<T> {

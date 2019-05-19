@@ -1,6 +1,6 @@
 import { ImageView } from "../../parser/entities/controls/image";
 import { watchViewProperty } from "../binding-resolver";
-import { DynamicViewModel } from "../dynamic-view-model";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IParentView } from "../interfaces/parent-view";
 import { ImagesResources } from "../images-loader";

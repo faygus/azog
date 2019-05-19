@@ -6,7 +6,6 @@ import { TestTools } from '../tools/tools';
  * For loop
  */
 export function run(): void {
-	console.log('show forLoopView');
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
