@@ -4,7 +4,7 @@ import { ViewComposition } from "../../parser/entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
 import { IParentView } from "../interfaces/parent-view";
-import { LayersRenderer } from "../layers";
+import { LayersRenderer } from "../layers/layers";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { resolveComponent } from "./component-resolver";
 
@@ -17,6 +17,7 @@ export class LayersParentRenderer implements IBaseRenderer2<ViewComposition<Laye
 	}
 
 	build(view: ViewComposition<LayersParentView>, parentView: IParentView, viewModel?: DynamicViewModel): void {
+		console.log('LayersParentRenderer.build', view);
 		const layers = resolveComposition(view);
 		this._renderer.build(layers, parentView, viewModel);
 	}

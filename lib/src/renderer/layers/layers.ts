@@ -1,51 +1,30 @@
-import { convertDistanceForHtml } from "./converters/unit";
-import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { IBaseRenderer2 } from "./interfaces/base-renderer2";
-import { IComponentRenderer2 } from "./interfaces/component-renderer2";
-import { IParentView, Padding } from "./interfaces/parent-view";
-import { LayersView } from "../parser/entities/layers/layers";
-import { PositionInsideHost, AxisPosition, AxisPositionFromCenter, AxisPositionFromStartAndEnd, AxisPositionFromStart, AxisPositionFromEnd, MainLayerPositionInsideHost } from "../parser/entities/layers/position";
+import { LayersParentView } from "../../parser/entities/layers/layers-parent";
+import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, MainLayerPositionInsideHost, PositionInsideHost } from "../../parser/entities/layers/position";
+import { convertDistanceForHtml } from "../converters/unit";
+import { IBaseRenderer2 } from "../interfaces/base-renderer2";
+import { IComponentRenderer2 } from "../interfaces/component-renderer2";
+import { IParentView, Padding } from "../interfaces/parent-view";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
+import { isRefComponent } from "../utils/component-infos-cast";
 
-export class LayersRenderer implements IBaseRenderer2<LayersView> {
+export class LayersRenderer implements IBaseRenderer2<LayersParentView> {
 	constructor(private _componentBuilder: IComponentRenderer2) { }
 
-	build(view: LayersView, parentView: IParentView, viewModel?: DynamicViewModel): void {
+	build(view: LayersParentView, parentView: IParentView, viewModel?: DynamicViewModel): void {
 		// mainLayer
-		const mainLayer = view.mainLayer!;
-		const referenceZIndex = mainLayer.zIndex;
-		this.setMainLayerPosition(mainLayer.positioner, parentView); // TODO
-		const inserter: IParentView = {
-			add: (childHtml: HTMLElement) => {
-				childHtml.style.zIndex = '0';
-				if ((<any>mainLayer.positioner.vertical).size) {
-					childHtml.style.height = convertDistanceForHtml((<any>mainLayer.positioner.vertical).size);
-				}
-				if ((<any>mainLayer.positioner.horizontal).size) {
-					childHtml.style.width = convertDistanceForHtml((<any>mainLayer.positioner.horizontal).size);
-				}
-				parentView.add(childHtml, false);
-			},
-			clear: () => {
-				parentView.clear();
-			},
-			setPadding: (value: number) => {
-
-			},
-			centerContent: (horizontaly: boolean, verticaly: boolean) => {
-				// TODO
-				console.warn('centerContent not implemented');
-			}
-		};
-		this._componentBuilder.build(mainLayer.child, inserter, viewModel);
-
-		// SubLayers
-		for (const layer of view.children) {
+		const mainLayer = view.mainLayer;
+		const referenceZIndex = mainLayer ? mainLayer.zIndex : 0;
+		if (mainLayer && !isRefComponent(mainLayer.child)) {
+			this.setMainLayerPosition(mainLayer.positioner, parentView); // TODO
 			const inserter: IParentView = {
 				add: (childHtml: HTMLElement) => {
-					childHtml.style.zIndex = layer.zIndex - referenceZIndex + '';
-					childHtml.style.position = 'absolute';
-					const positionStyle = this.setPosition(layer.positioner);
-					Object.assign(childHtml.style, positionStyle);
+					childHtml.style.zIndex = '0';
+					if ((<any>mainLayer.positioner.vertical).size) {
+						childHtml.style.height = convertDistanceForHtml((<any>mainLayer.positioner.vertical).size);
+					}
+					if ((<any>mainLayer.positioner.horizontal).size) {
+						childHtml.style.width = convertDistanceForHtml((<any>mainLayer.positioner.horizontal).size);
+					}
 					parentView.add(childHtml, false);
 				},
 				clear: () => {
@@ -55,10 +34,36 @@ export class LayersRenderer implements IBaseRenderer2<LayersView> {
 
 				},
 				centerContent: (horizontaly: boolean, verticaly: boolean) => {
-
+					// TODO
+					console.warn('centerContent not implemented');
 				}
 			};
-			this._componentBuilder.build(layer.child, inserter, viewModel);
+			this._componentBuilder.build(mainLayer.child, inserter, viewModel);
+		}
+
+		// SubLayers
+		for (const layer of view.children) {
+			if (!isRefComponent(layer.child)) {
+				const inserter: IParentView = {
+					add: (childHtml: HTMLElement) => {
+						childHtml.style.zIndex = layer.zIndex - referenceZIndex + '';
+						childHtml.style.position = 'absolute';
+						const positionStyle = this.setPosition(layer.positioner);
+						Object.assign(childHtml.style, positionStyle);
+						parentView.add(childHtml, false);
+					},
+					clear: () => {
+						parentView.clear();
+					},
+					setPadding: (value: number) => {
+
+					},
+					centerContent: (horizontaly: boolean, verticaly: boolean) => {
+
+					}
+				};
+				this._componentBuilder.build(layer.child, inserter, viewModel);
+			}
 		}
 	}
 

@@ -29,12 +29,12 @@ export function run(): void {
 							zIndex: 0,
 							positionInsideHost: {
 								vertical: {
-									start: 20,
-									end: 20
+									start: 0,
+									end: 0
 								},
 								horizontal: {
-									start: 20,
-									end: 20
+									start: 0,
+									end: 0
 								}
 							},
 							component: {
@@ -47,9 +47,9 @@ export function run(): void {
 			2: {
 				type: 'labelWF',
 				value: {
-					text: 'hello world',
+					text: 'Hey man :)',
 					style: {
-						color: 1,
+						color: 3,
 						size: 2
 					}
 				}
@@ -57,7 +57,7 @@ export function run(): void {
 			3: {
 				type: 'uniColorWF',
 				value: {
-					color: 2
+					color: 0
 				}
 			}
 		}
