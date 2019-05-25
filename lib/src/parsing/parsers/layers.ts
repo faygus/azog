@@ -9,8 +9,10 @@ import { GetView } from "./type";
 
 export const layersParser = (viewJSON: ILayersViewJSON, getView: GetView): LayersView => {
 	const res = new LayersView();
-	const mainLayer = processMainLayer(viewJSON.mainLayer, getView);
-	res.mainLayer = mainLayer;
+	if (viewJSON.mainLayer) {
+		const mainLayer = processMainLayer(viewJSON.mainLayer, getView);
+		res.mainLayer = mainLayer;
+	}
 	for (const child of viewJSON.subLayers) {
 		const layer = processLayer(child, getView);
 		res.children.push(layer);
@@ -23,7 +25,7 @@ function processLayer(layerJSON: ILayerViewJSON, getView: GetView): LayerView {
 	const horizontalPosition = parseAxisPosition(layerJSON.positionInsideHost.horizontal);
 	const positionner = new PositionInsideHost(verticalPosition, horizontalPosition);
 
-	const child = getChildComponent(layerJSON.component, getView);
+	const child = getChildComponent(layerJSON.componentInfos, getView);
 	const layer = new LayerView(child, layerJSON.zIndex, positionner);
 	return layer;
 }
@@ -60,7 +62,7 @@ function processMainLayer(layerJSON: IMainLayerViewJSON, getView: GetView): Main
 	const verticalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.vertical);
 	const horizontalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.horizontal);
 	const positionner = new MainLayerPositionInsideHost(verticalPosition, horizontalPosition)
-	const child = getChildComponent(layerJSON.component, getView);
+	const child = getChildComponent(layerJSON.componentInfos, getView);
 	const layer = new MainLayerView(child, layerJSON.zIndex, positionner);
 	return layer;
 }

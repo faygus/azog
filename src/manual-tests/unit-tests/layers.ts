@@ -20,7 +20,7 @@ export function run(): void {
 					size: 100
 				}
 			},
-			component: {
+			componentInfos: {
 				id: 1
 			}
 		},
@@ -37,7 +37,7 @@ export function run(): void {
 						end: 10
 					}
 				},
-				component: {
+				componentInfos: {
 					id: 2
 				}
 			}

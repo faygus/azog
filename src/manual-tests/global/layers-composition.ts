@@ -3,61 +3,68 @@ import { IAppJSON } from "../../../lib/src/interfaces/types/app";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";
 
-/**
- * A label above a unicolor background
- */
 export function run(): void {
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
-				type: 'layers',
+				type: 'composition',
 				value: {
-					mainLayer: {
-						zIndex: 1,
-						positionInsideHost: {
-							vertical: {
-							},
-							horizontal: {
-							}
-						},
-						componentInfos: {
-							id: 2
-						}
-					},
-					subLayers: [
-						{
-							zIndex: 0,
-							positionInsideHost: {
-								vertical: {
-									start: 0,
-									end: 0
-								},
-								horizontal: {
-									start: 0,
-									end: 0
-								}
-							},
-							componentInfos: {
-								id: 3
-							}
-						}
-					]
+					hostId: 2,
+					children: {
+						'layer1': 3,
+						'layer2': 4,
+					}
 				}
 			},
 			2: {
-				type: 'labelWF',
+				type: 'layers',
 				value: {
-					text: 'Hey man :)',
-					style: {
-						color: 3,
-						size: 2
-					}
+					subLayers: [
+						{
+							positionInsideHost: {
+								vertical: {
+									start: 20,
+									end: 20
+								},
+								horizontal: {
+									start: 20,
+									end: 20
+								}
+							},
+							componentInfos: {
+								ref: 'layer1'
+							},
+							zIndex: 1
+						},
+						{
+							positionInsideHost: {
+								vertical: {
+									start: 40,
+									end: 40
+								},
+								horizontal: {
+									start: 40,
+									end: 40
+								}
+							},
+							componentInfos: {
+								ref: 'layer2'
+							},
+							zIndex: 2
+						}
+					]
 				}
 			},
 			3: {
 				type: 'uniColorWF',
 				value: {
-					color: 0
+					color: 1
+				}
+			},
+			4: {
+				type: 'labelWF',
+				value: {
+					text: 'i am the content'
 				}
 			}
 		}
