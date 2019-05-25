@@ -1,5 +1,5 @@
-import { IRouterViewJSON } from "../../../lib/src/parser/interfaces/router";
-import { routerParser } from "../../../lib/src/parser/code-analyse/parsers/router";
+import { IRouterViewJSON } from "../../../lib/src/interfaces/router";
+import { routerParser } from "../../../lib/src/parsing/parsers/router";
 import { TestTools } from "../tools/tools";
 import { RouterRenderer } from "../../../lib/src/renderer/router";
 

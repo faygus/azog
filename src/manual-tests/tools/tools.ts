@@ -1,8 +1,8 @@
-import { GetView } from "../../../lib/src/parser/code-analyse/parsers/type";
-import { ViewModelParsing } from "../../../lib/src/parser/code-analyse/view-model";
-import { Component } from "../../../lib/src/parser/entities/component";
-import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
-import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
+import { GetView } from "../../../lib/src/parsing/parsers/type";
+import { ViewModelParsing } from "../../../lib/src/parsing/view-model";
+import { Component } from "../../../lib/src/entities/component";
+import { IMockViewModelJSON } from "../../../lib/src/interfaces/mock-view-model";
+import { IViewModelInterfaceJSON } from "../../../lib/src/interfaces/view-model";
 import { DynamicViewModel } from "../../../lib/src/renderer/view-model/dynamic-view-model";
 import { ViewModelCreator } from "../../../lib/src/renderer/view-model/dynamic-view-model-creator";
 import { IComponentRenderer } from "../../../lib/src/renderer/interfaces/component-renderer";

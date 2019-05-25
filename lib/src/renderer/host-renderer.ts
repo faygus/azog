@@ -1,10 +1,10 @@
-import { Host } from "../parser/entities/host";
+import { Host } from "../entities/host";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { Unit } from "../parser/entities/unit";
-import { Component } from "../parser/entities/component";
-import { IfDirective } from "../parser/entities/directives/if-directive";
+import { Unit } from "../entities/unit";
+import { Component } from "../entities/component";
+import { IfDirective } from "../entities/directives/if-directive";
 import { IViewInserter } from "./interfaces/view-inserter";
-import { ForDirective } from "../parser/entities/directives/for-directive";
+import { ForDirective } from "../entities/directives/for-directive";
 import { IfDirectiveRenderer } from "./if-directive";
 import { RenderComponentInParentHtml, IComponentRenderer } from "./interfaces/component-renderer";
 import { IHostRenderer } from "./interfaces/host-renderer";

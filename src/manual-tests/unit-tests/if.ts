@@ -1,5 +1,5 @@
-import { conditionalViewParser } from '../../../lib/src/parser/code-analyse/parsers/if';
-import { IConditionalViewJSON } from '../../../lib/src/parser/interfaces/if';
+import { conditionalViewParser } from '../../../lib/src/parsing/parsers/if';
+import { IConditionalViewJSON } from '../../../lib/src/interfaces/if';
 import { ConditionalViewRenderer } from '../../../lib/src/renderer/if';
 import { TestTools } from '../tools/tools';
 

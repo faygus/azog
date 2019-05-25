@@ -1,5 +1,5 @@
-import { Component } from "../../parser/entities/component";
-import { IComponentInfos } from "../../parser/entities/composition/i-component-infos";
+import { Component } from "../../entities/component";
+import { IComponentInfos } from "../../entities/composition/i-component-infos";
 
 export function isRefComponent(data: IComponentInfos): data is string {
 	return typeof data === 'string';

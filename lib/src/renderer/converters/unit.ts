@@ -1,5 +1,5 @@
-import { Unit } from "../../parser/entities/unit";
-import { Distance } from "../../parser/entities/size";
+import { Unit } from "../../entities/unit";
+import { Distance } from "../../entities/size";
 
 export function convertUnitForHtml(unit: Unit): string {
 	const map = {

@@ -1,5 +1,5 @@
 import { Converter } from "./base-converter";
-import { WireframeColor } from "../../../parser/entities/controls/wireframe/enums/color";
+import { WireframeColor } from "../../../entities/controls/wireframe/enums/color";
 
 export class WireframeColorConverter extends Converter<WireframeColor> {
 	constructor() {

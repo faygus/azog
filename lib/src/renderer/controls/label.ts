@@ -1,4 +1,4 @@
-import { LabelView } from "../../parser/entities/controls/label";
+import { LabelView } from "../../entities/controls/label";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
 import { BaseRenderer } from "../base-renderer";

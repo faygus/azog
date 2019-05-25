@@ -1,5 +1,5 @@
-import { LayersParentView } from "../../parser/entities/layers/layers-parent";
-import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, MainLayerPositionInsideHost, PositionInsideHost } from "../../parser/entities/layers/position";
+import { LayersParentView } from "../../entities/layers/layers-parent";
+import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, MainLayerPositionInsideHost, PositionInsideHost } from "../../entities/layers/position";
 import { convertDistanceForHtml } from "../converters/unit";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";

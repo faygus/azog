@@ -1,6 +1,6 @@
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { watchViewProperty } from "../binding-resolver";
-import { LabelWFView } from "../../parser/entities/controls/wireframe/label";
+import { LabelWFView } from "../../entities/controls/wireframe/label";
 import { WireframeSizeConverter } from "./converters/size";
 import { WireframeColorConverter } from "./converters/color";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";

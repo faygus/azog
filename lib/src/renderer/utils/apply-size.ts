@@ -1,5 +1,5 @@
 import { convertUnitForHtml } from "../converters/unit";
-import { Size } from "../../parser/entities/size";
+import { Size } from "../../entities/size";
 
 export function applySize(size: Size, htmlStyle: any, direction: 'row' | 'column'): void {
 	if (typeof size === 'object') {

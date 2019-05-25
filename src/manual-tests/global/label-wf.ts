@@ -1,4 +1,4 @@
-import { Parser } from "../../../lib/src/parser/code-analyse/main";
+import { Parser } from "../../../lib/src/parsing/main";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import appJSON from '../../../tests/json/label-wf';
 import { TestTools } from "../tools/tools";

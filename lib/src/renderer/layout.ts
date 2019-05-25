@@ -1,4 +1,4 @@
-import { IfLayoutChild, LayoutChild, LayoutView } from "../parser/entities/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../entities/layout";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { watchViewProperty } from "./binding-resolver";
 import { ContainerContentRendered } from "./container/container-content-rendered";

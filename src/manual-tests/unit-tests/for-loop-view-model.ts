@@ -1,7 +1,7 @@
-import { forLoopParser } from '../../../lib/src/parser/code-analyse/parsers/for-loop';
-import { IForLoopJSON } from '../../../lib/src/parser/interfaces/for-loop';
-import { IMockViewModelJSON } from '../../../lib/src/parser/interfaces/mock-view-model';
-import { IViewModelInterfaceJSON } from '../../../lib/src/parser/interfaces/view-model';
+import { forLoopParser } from '../../../lib/src/parsing/parsers/for-loop';
+import { IForLoopJSON } from '../../../lib/src/interfaces/for-loop';
+import { IMockViewModelJSON } from '../../../lib/src/interfaces/mock-view-model';
+import { IViewModelInterfaceJSON } from '../../../lib/src/interfaces/view-model';
 import { ForLoopRenderer } from '../../../lib/src/renderer/for-loop';
 import { TestTools } from '../tools/tools';
 

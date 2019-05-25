@@ -1,4 +1,4 @@
-import { ISizeJSON } from "../../lib/src/parser/interfaces/container";
+import { ISizeJSON } from "../../lib/src/interfaces/container";
 
 /**
  * Try to represent a layout (horizontal or vertical)

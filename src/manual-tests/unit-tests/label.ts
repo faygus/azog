@@ -1,5 +1,5 @@
-import { labelWFParser } from "../../../lib/src/parser/code-analyse/parsers/label-wf";
-import { ILabelWFViewJSON } from "../../../lib/src/parser/interfaces/label-wf";
+import { labelWFParser } from "../../../lib/src/parsing/parsers/label-wf";
+import { ILabelWFViewJSON } from "../../../lib/src/interfaces/label-wf";
 import { LabelWFRenderer } from "../../../lib/src/renderer/wireframe/label";
 import { TestTools } from "../tools/tools";
 

@@ -1,4 +1,4 @@
-import { Component } from "../../parser/entities/component";
+import { Component } from "../../entities/component";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 
 export interface IComponentRenderer {

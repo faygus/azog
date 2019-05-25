@@ -1,6 +1,6 @@
-import { IfLayoutParentChild, LayoutParent, LayoutParentStaticChild } from "../../parser/entities/composition/layout";
-import { IfLayoutChild, LayoutChild, LayoutView } from "../../parser/entities/layout";
-import { IComponentRefs, ViewComposition } from "../../parser/entities/view-composition";
+import { IfLayoutParentChild, LayoutParent, LayoutParentStaticChild } from "../../entities/composition/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../../entities/layout";
+import { IComponentRefs, ViewComposition } from "../../entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
 import { IViewInserter } from "../interfaces/view-inserter";

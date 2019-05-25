@@ -1,7 +1,7 @@
-import { viewCompositionParser } from "../../../lib/src/parser/code-analyse/parsers/composition/view-composition";
-import { layersParser } from "../../../lib/src/parser/code-analyse/parsers/layers";
-import { ILayersViewJSON } from "../../../lib/src/parser/interfaces/layers/layers";
-import { IViewCompositionJSON } from "../../../lib/src/parser/interfaces/view-composition";
+import { viewCompositionParser } from "../../../lib/src/parsing/parsers/composition/view-composition";
+import { layersParser } from "../../../lib/src/parsing/parsers/layers";
+import { ILayersViewJSON } from "../../../lib/src/interfaces/layers/layers";
+import { IViewCompositionJSON } from "../../../lib/src/interfaces/view-composition";
 import { LayersParentRenderer } from "../../../lib/src/renderer/composition/layers";
 import { TestTools } from "../tools/tools";
 

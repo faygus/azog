@@ -1,6 +1,6 @@
 
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { ForDirective } from "../parser/entities/directives/for-directive";
+import { ForDirective } from "../entities/directives/for-directive";
 import { watchViewProperty } from "./binding-resolver";
 import { IComponentOrHostBuilder } from "./interfaces/component-builder";
 import { IViewInserter } from "./interfaces/view-inserter";

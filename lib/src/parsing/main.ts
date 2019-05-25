@@ -5,7 +5,7 @@ import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 import { IAppJSON } from "../interfaces/types/app";
 import { IViewAnyDeclarationJSON } from "../interfaces/types/view-types";
 import { IViewModelInterfaceJSON } from "../interfaces/view-model";
-import { parsersMap } from "../parsers-types";
+import { parsersMap } from "./parsers-types";
 import { GetView } from "./parsers/type";
 import { ViewModelParsing } from "./view-model";
 

@@ -1,9 +1,9 @@
-import { Container } from "../../parser/entities/container";
+import { Container } from "../../entities/container";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
-import { FlexDirection } from "../../parser/entities/old-layout";
-import { Host } from "../../parser/entities/host";
-import { IfDirective } from "../../parser/entities/directives/if-directive";
-import { ForDirective } from "../../parser/entities/directives/for-directive";
+import { FlexDirection } from "../../entities/old-layout";
+import { Host } from "../../entities/host";
+import { IfDirective } from "../../entities/directives/if-directive";
+import { ForDirective } from "../../entities/directives/for-directive";
 import { IfDirectiveRenderer } from "../if-directive";
 import { IComponentOrHostBuilder } from "../interfaces/component-builder";
 import { ForDirectiveRenderer } from "../for-directive";

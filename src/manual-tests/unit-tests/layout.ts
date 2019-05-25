@@ -1,9 +1,9 @@
-import { layoutParser } from "../../../lib/src/parser/code-analyse/parsers/layout";
-import { ILayoutJSON } from "../../../lib/src/parser/interfaces/layout/layout";
+import { layoutParser } from "../../../lib/src/parsing/parsers/layout";
+import { ILayoutJSON } from "../../../lib/src/interfaces/layout/layout";
 import { LayoutRenderer } from "../../../lib/src/renderer/layout";
 import { TestTools } from "../tools/tools";
-import { IViewModelInterfaceJSON } from "../../../lib/src/parser/interfaces/view-model";
-import { IMockViewModelJSON } from "../../../lib/src/parser/interfaces/mock-view-model";
+import { IViewModelInterfaceJSON } from "../../../lib/src/interfaces/view-model";
+import { IMockViewModelJSON } from "../../../lib/src/interfaces/mock-view-model";
 
 /**
  * Try to represent a layout (horizontal or vertical)

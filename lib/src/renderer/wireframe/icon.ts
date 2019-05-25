@@ -1,4 +1,4 @@
-import { IconWFView } from "../../parser/entities/controls/wireframe/icon";
+import { IconWFView } from "../../entities/controls/wireframe/icon";
 import { watchViewProperty } from "../binding-resolver";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";

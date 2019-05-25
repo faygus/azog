@@ -1,16 +1,16 @@
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IViewInserter } from "./interfaces/view-inserter";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { ForLoopView } from "../parser/entities/for-loop";
+import { ForLoopView } from "../entities/for-loop";
 import { watchViewProperty } from "./binding-resolver";
-import { ExtensibleContainer } from "../parser/entities/layout-composition";
+import { ExtensibleContainer } from "../entities/layout-composition";
 import { applySize } from "./utils/apply-size";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { ContainerContentRendered } from "./container/container-content-rendered";
 import { IParentView } from "./interfaces/parent-view";
 import { CustomDynamicViewModel } from "./view-model/custom-dynamic-view-model";
-import { IValueProviders } from "../parser/entities/component";
-import { Binding } from "../parser/entities/controls/binding";
+import { IValueProviders } from "../entities/component";
+import { Binding } from "../entities/controls/binding";
 
 export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 

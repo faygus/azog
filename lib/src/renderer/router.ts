@@ -1,4 +1,4 @@
-import { RouterView } from "../parser/entities/router";
+import { RouterView } from "../entities/router";
 import { watchViewProperty } from "./binding-resolver";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";

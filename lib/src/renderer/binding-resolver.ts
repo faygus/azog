@@ -1,4 +1,4 @@
-import { ValueProvider, Pipe } from "../parser/entities/controls/binding";
+import { ValueProvider, Pipe } from "../entities/controls/binding";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 
 export function watchViewProperty<T>(data: ValueProvider<T>, viewModel: DynamicViewModel | undefined, handler: (value: T) => void) {

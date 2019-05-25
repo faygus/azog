@@ -1,6 +1,6 @@
-import { LayoutParent } from "../../parser/entities/composition/layout";
-import { LayersParentView } from "../../parser/entities/layers/layers-parent";
-import { ViewComposition } from "../../parser/entities/view-composition";
+import { LayoutParent } from "../../entities/composition/layout";
+import { LayersParentView } from "../../entities/layers/layers-parent";
+import { ViewComposition } from "../../entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
 import { IViewInserter } from "../interfaces/view-inserter";

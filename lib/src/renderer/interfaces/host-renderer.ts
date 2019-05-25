@@ -1,4 +1,4 @@
-import { Host } from "../../parser/entities/host";
+import { Host } from "../../entities/host";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 
 export interface IHostRenderer {

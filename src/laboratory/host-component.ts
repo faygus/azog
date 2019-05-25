@@ -1,9 +1,9 @@
 import { Component } from "../../lib";
-import { layoutCompositionParser } from "../../lib/src/parser/code-analyse/parsers/composition/layout";
-import { viewCompositionParser } from "../../lib/src/parser/code-analyse/parsers/composition/view-composition";
-import { GetView } from "../../lib/src/parser/code-analyse/parsers/type";
-import { ILayoutCompositionJSON } from "../../lib/src/parser/interfaces/layout/layout-composition";
-import { IViewCompositionJSON } from "../../lib/src/parser/interfaces/view-composition";
+import { layoutCompositionParser } from "../../lib/src/parsing/parsers/composition/layout";
+import { viewCompositionParser } from "../../lib/src/parsing/parsers/composition/view-composition";
+import { GetView } from "../../lib/src/parsing/parsers/type";
+import { ILayoutCompositionJSON } from "../../lib/src/interfaces/layout/layout-composition";
+import { IViewCompositionJSON } from "../../lib/src/interfaces/view-composition";
 import { ViewCompositionRenderer } from "../../lib/src/renderer/composition/view-composition";
 import { TestTools } from "../manual-tests/tools/tools";
 
