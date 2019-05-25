@@ -1,16 +1,16 @@
-import { LayersParentView } from "../../entities/layers/layers-parent";
-import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, MainLayerPositionInsideHost, PositionInsideHost } from "../../entities/layers/position";
-import { convertDistanceForHtml } from "../converters/unit";
-import { IBaseRenderer2 } from "../interfaces/base-renderer2";
-import { IComponentRenderer2 } from "../interfaces/component-renderer2";
-import { IParentView, Padding } from "../interfaces/parent-view";
-import { DynamicViewModel } from "../view-model/dynamic-view-model";
-import { isRefComponent } from "../utils/component-infos-cast";
+import { AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd, AxisPositionFromStart, AxisPositionFromStartAndEnd, MainLayerPositionInsideHost, PositionInsideHost } from "../entities/layers/position";
+import { convertDistanceForHtml } from "./converters/unit";
+import { IBaseRenderer2 } from "./interfaces/base-renderer2";
+import { IComponentRenderer2 } from "./interfaces/component-renderer2";
+import { IParentView, Padding } from "./interfaces/parent-view";
+import { DynamicViewModel } from "./view-model/dynamic-view-model";
+import { isRefComponent } from "./utils/component-infos-cast";
+import { LayersView } from "../entities/layers/layers";
 
-export class LayersRenderer implements IBaseRenderer2<LayersParentView> {
+export class LayersRenderer implements IBaseRenderer2<LayersView> {
 	constructor(private _componentBuilder: IComponentRenderer2) { }
 
-	build(view: LayersParentView, parentView: IParentView, viewModel?: DynamicViewModel): void {
+	build(view: LayersView, parentView: IParentView, viewModel?: DynamicViewModel): void {
 		// mainLayer
 		const mainLayer = view.mainLayer;
 		const referenceZIndex = mainLayer ? mainLayer.zIndex : 0;

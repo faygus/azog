@@ -15,7 +15,9 @@ export function run(): void {
 		children: [
 			{
 				size: 100,
-				componentId: 1
+				componentInfos: {
+					id: 1
+				}
 			},
 			{
 				if: {
@@ -35,7 +37,9 @@ export function run(): void {
 				},
 				host: {
 					size: 100,
-					componentId: 2
+					componentInfos: {
+						id: 2
+					}
 				}
 			},
 			{
@@ -43,7 +47,9 @@ export function run(): void {
 			},
 			{
 				size: 100,
-				componentId: 3
+				componentInfos: {
+					id: 3
+				}
 			}
 		]
 	};

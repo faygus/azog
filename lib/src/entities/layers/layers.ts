@@ -1,14 +1,31 @@
-import { Component } from "../component";
-import { BaseLayersView, BaseLayerView, BaseMainLayerView } from "./base-layers";
+import { MainLayerPositionInsideHost, PositionInsideHost } from "./position";
+import { IComponentInfos } from "../composition/i-component-infos";
 
-export class LayersView extends BaseLayersView<Component<any>> {
-	
+export class LayersView {
+	mainLayer?: MainLayerView;
+	children: LayerView[] = [];
 }
 
-export class LayerView extends BaseLayerView<Component<any>> {
+export class LayerView {
+	child: IComponentInfos;
+	zIndex: number;
+	positioner: PositionInsideHost;
 
+	constructor(child: IComponentInfos, zIndex: number, positioner: PositionInsideHost) {
+		this.child = child;
+		this.zIndex = zIndex;
+		this.positioner = positioner;
+	}
 }
 
-export class MainLayerView extends BaseMainLayerView<Component<any>> {
+export class MainLayerView {
+	child: IComponentInfos;
+	zIndex: number;
+	positioner: MainLayerPositionInsideHost;
 
+	constructor(child: IComponentInfos, zIndex: number, positioner: MainLayerPositionInsideHost) {
+		this.child = child;
+		this.zIndex = zIndex;
+		this.positioner = positioner;
+	}
 }

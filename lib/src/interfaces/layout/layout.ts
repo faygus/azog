@@ -1,17 +1,17 @@
 import { ISizeJSON } from "../container";
 import { IValueProviderJSON } from "../value-provider";
+import { IComponentInfosJSON } from "../utils/component-infos";
 
 export interface ILayoutJSON {
 	direction: 'row' | 'column';
 	children: LayoutChildJSON[];
 }
 
-type LayoutChildJSON = ILayoutChildJSON | IfLayoutChildJSON;
+export type LayoutChildJSON = ILayoutChildJSON | IfLayoutChildJSON;
 
 export interface ILayoutChildJSON {
 	size: ISizeJSON;
-	componentId?: number;
-	inputs?: any; // TODO
+	componentInfos?: IComponentInfosJSON;
 }
 
 export interface IfLayoutChildJSON {

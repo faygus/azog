@@ -1,4 +1,4 @@
-import { IfLayoutChild, LayoutChild, LayoutView } from "../entities/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../entities/layouts/layout";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { watchViewProperty } from "./binding-resolver";
 import { ContainerContentRendered } from "./container/container-content-rendered";
@@ -8,6 +8,7 @@ import { IViewInserter } from "./interfaces/view-inserter";
 import { applySize } from "./utils/apply-size";
 import { IParentView } from "./interfaces/parent-view";
 import { getDefaultParentView } from "./utils/get-default-parent-view";
+import { isRefComponent } from "./utils/component-infos-cast";
 
 /**
  * layout with static content
@@ -50,7 +51,7 @@ export class LayoutRenderer implements IBaseRenderer2<LayoutView> {
 		reference: LayoutChild | IfLayoutChild,
 		contentManager: ContainerContentRendered,
 		direction: 'row' | 'column'): void {
-		if (child.component) {
+		if (child.component && !isRefComponent(child.component)) {
 			const childInserter: IParentView = getDefaultParentView();
 			Object.assign(childInserter, {
 				add: (element: HTMLElement) => {

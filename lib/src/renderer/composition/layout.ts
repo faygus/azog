@@ -1,5 +1,4 @@
-import { IfLayoutParentChild, LayoutParent, LayoutParentStaticChild } from "../../entities/composition/layout";
-import { IfLayoutChild, LayoutChild, LayoutView } from "../../entities/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../../entities/layouts/layout";
 import { IComponentRefs, ViewComposition } from "../../entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
@@ -8,7 +7,7 @@ import { LayoutRenderer } from "../layout";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { resolveComponent } from "./component-resolver";
 
-export class LayoutParentRenderer implements IBaseRenderer2<ViewComposition<LayoutParent>> {
+export class LayoutParentRenderer implements IBaseRenderer2<ViewComposition<LayoutView>> {
 
 	private _layoutRenderer: LayoutRenderer;
 
@@ -16,19 +15,19 @@ export class LayoutParentRenderer implements IBaseRenderer2<ViewComposition<Layo
 		this._layoutRenderer = new LayoutRenderer(componentRenderer);
 	}
 
-	build(view: ViewComposition<LayoutParent>, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
+	build(view: ViewComposition<LayoutView>, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
 		const layout = resolveComposition(view);
 		this._layoutRenderer.build(layout, inserter, viewModel);
 	}
 }
 
-function resolveComposition(data: ViewComposition<LayoutParent>): LayoutView {
+function resolveComposition(data: ViewComposition<LayoutView>): LayoutView {
 	const res = new LayoutView(data.host.view.direction);
 	for (const child of data.host.view.children) {
-		if (child instanceof LayoutParentStaticChild) {
+		if (child instanceof LayoutChild && child) {
 			let layoutChild = getStaticChild(child, data.refs);
 			res.children.push(layoutChild);
-		} else if (child instanceof IfLayoutParentChild) {
+		} else if (child instanceof IfLayoutChild) {
 			let layoutChild = getIfChild(child, data.refs);
 			res.children.push(layoutChild);
 		}
@@ -36,14 +35,16 @@ function resolveComposition(data: ViewComposition<LayoutParent>): LayoutView {
 	return res;
 }
 
-function getStaticChild(data: LayoutParentStaticChild, refs: IComponentRefs): LayoutChild {
+function getStaticChild(data: LayoutChild, refs: IComponentRefs): LayoutChild {
 	const res = new LayoutChild(data.size);
-	res.component = resolveComponent(data.component, refs);
+	if (data.component) {
+		res.component = resolveComponent(data.component, refs);
+	}
 	return res;
 }
 
 
-function getIfChild(data: IfLayoutParentChild, refs: IComponentRefs): IfLayoutChild {
+function getIfChild(data: IfLayoutChild, refs: IComponentRefs): IfLayoutChild {
 	const child = getStaticChild(data.child, refs);
 	const condition = data.condition;
 	const res = new IfLayoutChild(condition, child);

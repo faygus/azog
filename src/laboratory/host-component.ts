@@ -1,9 +1,9 @@
 import { Component } from "../../lib";
-import { layoutCompositionParser } from "../../lib/src/parsing/parsers/composition/layout";
-import { viewCompositionParser } from "../../lib/src/parsing/parsers/composition/view-composition";
-import { GetView } from "../../lib/src/parsing/parsers/type";
-import { ILayoutCompositionJSON } from "../../lib/src/interfaces/layout/layout-composition";
+import { ILayoutJSON } from "../../lib/src/interfaces/layout/layout";
 import { IViewCompositionJSON } from "../../lib/src/interfaces/view-composition";
+import { viewCompositionParser } from "../../lib/src/parsing/parsers/composition/view-composition";
+import { layoutParser } from "../../lib/src/parsing/parsers/layout";
+import { GetView } from "../../lib/src/parsing/parsers/type";
 import { ViewCompositionRenderer } from "../../lib/src/renderer/composition/view-composition";
 import { TestTools } from "../manual-tests/tools/tools";
 
@@ -35,7 +35,7 @@ const componentJSON: IViewCompositionJSON = {
 };
 
 function getMockHostComponentProvider(): GetView {
-	const layoutJSON: ILayoutCompositionJSON = {
+	const layoutJSON: ILayoutJSON = {
 		direction: 'column',
 		children: [
 			{
@@ -60,7 +60,7 @@ function getMockHostComponentProvider(): GetView {
 	};
 	const getView = TestTools.getMockViewProvider();
 	return (id: number) => {
-		const view = layoutCompositionParser(layoutJSON, getView);
+		const view = layoutParser(layoutJSON, getView);
 		const res = new Component(view);
 		return res;
 	};
