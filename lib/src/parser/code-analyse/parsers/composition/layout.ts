@@ -1,19 +1,19 @@
-import { LayoutComposition, LayoutCompositionChild, LayoutCompositionStaticChild, IfLayoutCompositionChild } from "../../../entities/composition/layout";
+import { LayoutParent, LayoutParentChild, LayoutParentStaticChild, IfLayoutParentChild } from "../../../entities/composition/layout";
 import { IfLayoutCompositionChildJSON, ILayoutCompositionStaticChildJSON, ILayoutCompositionJSON, LayoutCompositionChildJSON } from "../../../interfaces/layout/layout-composition";
 import { ParsingUtils } from "../../utils";
 import { GetView } from "../type";
 import { parseValueProvider } from "../../value-provider";
 
-export const layoutCompositionParser = (viewJSON: ILayoutCompositionJSON, getView: GetView): LayoutComposition => {
-	const res = new LayoutComposition(viewJSON.direction);
+export const layoutCompositionParser = (viewJSON: ILayoutCompositionJSON, getView: GetView): LayoutParent => {
+	const res = new LayoutParent(viewJSON.direction);
 	for (const childJSON of viewJSON.children) {
-		let child: LayoutCompositionChild | undefined = undefined;
+		let child: LayoutParentChild | undefined = undefined;
 		if (isStaticChildJSON(childJSON)) {
 			child = parseStaticChild(childJSON, getView);
 		} else if (isIfChildJSON(childJSON)) {
 			const staticChild = parseStaticChild(childJSON.host, getView);
 			const condition = parseValueProvider(childJSON.if);
-			child = new IfLayoutCompositionChild(condition, staticChild);
+			child = new IfLayoutParentChild(condition, staticChild);
 		}
 		if (child) {
 			res.children.push(child);
@@ -30,7 +30,7 @@ function isIfChildJSON(data: LayoutCompositionChildJSON): data is IfLayoutCompos
 	return (<IfLayoutCompositionChildJSON>data).if !== undefined;
 }
 
-function parseStaticChild(childJSON: ILayoutCompositionStaticChildJSON, getView: GetView): LayoutCompositionStaticChild {
+function parseStaticChild(childJSON: ILayoutCompositionStaticChildJSON, getView: GetView): LayoutParentStaticChild {
 	const size = ParsingUtils.getSize(childJSON.size);
 	let componentInfos;
 	if ((<any>childJSON.componentInfos).ref !== undefined) {
@@ -39,5 +39,5 @@ function parseStaticChild(childJSON: ILayoutCompositionStaticChildJSON, getView:
 		const id = (<any>childJSON.componentInfos).id;
 		componentInfos = getView(id);
 	}
-	return new LayoutCompositionStaticChild(size, componentInfos);
+	return new LayoutParentStaticChild(size, componentInfos);
 }

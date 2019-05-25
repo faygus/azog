@@ -26,10 +26,15 @@ export class TestTools {
 		return ViewModelCreator.createViewModel(viewModelInterface, mockViewModel);
 	}
 
-	static getMockViewProvider(): GetView {
+	static getMockViewProvider(views?: { [key: number]: any }): GetView {
 		const res: GetView = (id: number) => {
-			const res = new Component(id);
-			return res;
+			if (views) {
+				const data = views[id];
+				if (data) {
+					return new Component(data);
+				}
+			}
+			return new Component(id);
 		}
 		return res;
 	}

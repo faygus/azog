@@ -8,7 +8,7 @@ export const routerParser: ControlParser = (viewJSON: IRouterViewJSON, getView: 
 	for (const routeName in viewJSON.routes) {
 		const componentInfo = viewJSON.routes[routeName];
 		routes[routeName] = {
-			component: getView(componentInfo.componentId),
+			component: getView(componentInfo.id),
 			inputs: undefined // TODO
 		}
 	}

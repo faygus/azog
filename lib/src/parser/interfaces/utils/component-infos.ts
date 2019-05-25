@@ -1,5 +1,10 @@
-export type IComponentInfosJSON = { ref: string } |
-{
-	id: number,
-	inputs?: any
+export type IComponentInfosJSON = IRefComponentJSON | IComponentWithInputsJSON;
+
+export interface IRefComponentJSON {
+	ref: string;
+}
+
+export interface IComponentWithInputsJSON {
+	id: number;
+	inputs?: any;
 }

@@ -3,7 +3,7 @@ import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { LabelWFView } from "../parser/entities/controls/wireframe/label";
 import { IconWFView } from "../parser/entities/controls/wireframe/icon";
 import { UniColorWFView } from "../parser/entities/controls/wireframe/uniColor";
-import { LayersView } from "../parser/entities/layers";
+import { LayersView } from "../parser/entities/layers/layers";
 import { RouterView } from "../parser/entities/router";
 import { ForLoopView } from "../parser/entities/for-loop";
 import { LayoutView } from "../parser/entities/layout";

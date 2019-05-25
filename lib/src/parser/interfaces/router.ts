@@ -1,5 +1,5 @@
 import { IValueProviderJSON } from "./value-provider";
-import { IComponentWithInputsJSON } from "./utils/component-with-inputs";
+import { IComponentWithInputsJSON } from "./utils/component-infos";
 
 /**
  * Component which holds a routing logic
@@ -15,4 +15,4 @@ export interface IRouterJSONDeclaration {
 	value: IRouterViewJSON;
 }
 
-type IRoutesParamJSON = {[routeName: string]: IComponentWithInputsJSON};
+type IRoutesParamJSON = { [routeName: string]: IComponentWithInputsJSON };

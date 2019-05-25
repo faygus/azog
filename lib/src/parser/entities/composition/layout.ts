@@ -2,16 +2,16 @@ import { Component } from "../component";
 import { Size } from "../size";
 import { ValueProvider } from "../controls/binding";
 
-export class LayoutComposition {
-	children: LayoutCompositionChild[] = [];
+export class LayoutParent {
+	children: LayoutParentChild[] = [];
 
 	constructor(public direction: 'row' | 'column') {
 	}
 }
 
-export type LayoutCompositionChild = LayoutCompositionStaticChild | IfLayoutCompositionChild;
+export type LayoutParentChild = LayoutParentStaticChild | IfLayoutParentChild;
 
-export class LayoutCompositionStaticChild {
+export class LayoutParentStaticChild {
 
 	constructor(public size: Size, public component: Component<any> | string) { }
 
@@ -30,7 +30,7 @@ export class LayoutCompositionStaticChild {
 	}
 }
 
-export class IfLayoutCompositionChild {
+export class IfLayoutParentChild {
 	constructor(public condition: ValueProvider<boolean>,
-		public child: LayoutCompositionStaticChild) { }
+		public child: LayoutParentStaticChild) { }
 }

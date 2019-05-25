@@ -1,4 +1,4 @@
-import { IComponentWithInputsJSON } from "../utils/component-with-inputs";
+import { IComponentInfosJSON } from "../utils/component-infos";
 import { IMainLayerPositionInsideHostJSON, IPositionInsideHostJSON } from "./position";
 
 export interface ILayersViewJSON {
@@ -9,11 +9,11 @@ export interface ILayersViewJSON {
 export interface ILayerViewJSON {
 	zIndex: number;
 	positionInsideHost: IPositionInsideHostJSON;
-	component: IComponentWithInputsJSON
+	component: IComponentInfosJSON
 }
 
 export interface IMainLayerViewJSON {
 	zIndex: number;
 	positionInsideHost: IMainLayerPositionInsideHostJSON;
-	component: IComponentWithInputsJSON
+	component: IComponentInfosJSON
 }

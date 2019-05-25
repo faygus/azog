@@ -10,13 +10,13 @@ export function run(): void {
 	const routerViewJSON: IRouterViewJSON = {
 		routes: {
 			'route1': {
-				componentId: 1
+				id: 1
 			},
 			'route2': {
-				componentId: 2
+				id: 2
 			},
 			'route3': {
-				componentId: 3
+				id: 3
 			},
 		},
 		activeRoute: 'route3'

@@ -1,14 +1,10 @@
-import {
-	AxisPosition, AxisPositionFromCenter, AxisPositionFromEnd,
-	AxisPositionFromStart, AxisPositionFromStartAndEnd, LayersView,
-	PositionInsideHost,
-	MainLayerPositionInsideHost
-} from "../parser/entities/layers";
 import { convertDistanceForHtml } from "./converters/unit";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView, Padding } from "./interfaces/parent-view";
+import { LayersView } from "../parser/entities/layers/layers";
+import { PositionInsideHost, AxisPosition, AxisPositionFromCenter, AxisPositionFromStartAndEnd, AxisPositionFromStart, AxisPositionFromEnd, MainLayerPositionInsideHost } from "../parser/entities/layers/position";
 
 export class LayersRenderer implements IBaseRenderer2<LayersView> {
 	constructor(private _componentBuilder: IComponentRenderer2) { }

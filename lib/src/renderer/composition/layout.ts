@@ -1,14 +1,14 @@
-import { LayoutComposition, LayoutCompositionChild, LayoutCompositionStaticChild, IfLayoutCompositionChild } from "../../parser/entities/composition/layout";
-import { DynamicViewModel } from "../view-model/dynamic-view-model";
+import { IfLayoutParentChild, LayoutParent, LayoutParentStaticChild } from "../../parser/entities/composition/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../../parser/entities/layout";
+import { IComponentRefs, ViewComposition } from "../../parser/entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
-import { IViewInserter } from "../interfaces/view-inserter";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
+import { IViewInserter } from "../interfaces/view-inserter";
 import { LayoutRenderer } from "../layout";
-import { LayoutView, LayoutChild, IfLayoutChild } from "../../parser/entities/layout";
-import { ViewComposition } from "../../parser/entities/view-composition";
-import { Component } from "../../parser/entities/component";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
+import { resolveComponent } from "./component-resolver";
 
-export class LayoutCompositionRenderer implements IBaseRenderer2<ViewComposition<LayoutComposition>> {
+export class LayoutParentRenderer implements IBaseRenderer2<ViewComposition<LayoutParent>> {
 
 	private _layoutRenderer: LayoutRenderer;
 
@@ -16,19 +16,19 @@ export class LayoutCompositionRenderer implements IBaseRenderer2<ViewComposition
 		this._layoutRenderer = new LayoutRenderer(componentRenderer);
 	}
 
-	build(view: ViewComposition<LayoutComposition>, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
+	build(view: ViewComposition<LayoutParent>, inserter: IViewInserter, viewModel?: DynamicViewModel): void {
 		const layout = resolveComposition(view);
 		this._layoutRenderer.build(layout, inserter, viewModel);
 	}
 }
 
-function resolveComposition(data: ViewComposition<LayoutComposition>): LayoutView {
+function resolveComposition(data: ViewComposition<LayoutParent>): LayoutView {
 	const res = new LayoutView(data.host.view.direction);
 	for (const child of data.host.view.children) {
-		if (child instanceof LayoutCompositionStaticChild) {
+		if (child instanceof LayoutParentStaticChild) {
 			let layoutChild = getStaticChild(child, data.refs);
 			res.children.push(layoutChild);
-		} else if (child instanceof IfLayoutCompositionChild) {
+		} else if (child instanceof IfLayoutParentChild) {
 			let layoutChild = getIfChild(child, data.refs);
 			res.children.push(layoutChild);
 		}
@@ -36,24 +36,14 @@ function resolveComposition(data: ViewComposition<LayoutComposition>): LayoutVie
 	return res;
 }
 
-function resolveComponent(componentInfos: string | Component<any>, refs: { [ref: string]: Component<any> }): Component<any> {
-	let childComponent: Component<any>;
-	if (typeof componentInfos === 'string') {
-		childComponent = refs[componentInfos];
-	} else {
-		childComponent = componentInfos;
-	}
-	return childComponent;
-}
-
-function getStaticChild(data: LayoutCompositionStaticChild, refs: { [ref: string]: Component<any> }): LayoutChild {
+function getStaticChild(data: LayoutParentStaticChild, refs: IComponentRefs): LayoutChild {
 	const res = new LayoutChild(data.size);
 	res.component = resolveComponent(data.component, refs);
 	return res;
 }
 
 
-function getIfChild(data: IfLayoutCompositionChild, refs: { [ref: string]: Component<any> }): IfLayoutChild {
+function getIfChild(data: IfLayoutParentChild, refs: IComponentRefs): IfLayoutChild {
 	const child = getStaticChild(data.child, refs);
 	const condition = data.condition;
 	const res = new IfLayoutChild(condition, child);

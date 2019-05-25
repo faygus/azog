@@ -1,23 +1,4 @@
-import { Distance } from "./size";
-
-export class LayersView {
-	mainLayer?: MainLayerView;
-	children: LayerView[] = [];
-}
-
-export class LayerView {
-	child: any;
-
-	constructor(public zIndex: number, public positioner: PositionInsideHost) {
-	}
-}
-
-export class MainLayerView {
-	child: any;
-
-	constructor(public zIndex: number, public positioner: MainLayerPositionInsideHost) {
-	}
-}
+import { Distance } from "../size";
 
 export class PositionInsideHost {
 	constructor(

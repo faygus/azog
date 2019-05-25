@@ -14,13 +14,13 @@ export function run(): void {
 					},
 					routes: {
 						'route1': {
-							componentId: 2,
+							id: 2,
 						},
 						'route2': {
-							componentId: 3
+							id: 3
 						},
 						'route3': {
-							componentId: 4
+							id: 4
 						}
 					}
 				}

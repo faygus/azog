@@ -21,7 +21,7 @@ export function run(): void {
 							}
 						},
 						component: {
-							componentId: 2
+							id: 2
 						}
 					},
 					subLayers: [
@@ -38,7 +38,7 @@ export function run(): void {
 								}
 							},
 							component: {
-								componentId: 3
+								id: 3
 							}
 						}
 					]
