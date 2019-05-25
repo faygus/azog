@@ -56,9 +56,9 @@ export function run(): void {
 	});
 	const renderer = new LayersParentRenderer(componentRenderer);
 	const parentView = TestTools.getRootViewInserter();
-	const getHost = TestTools.getMockViewProvider({
+	const getViews = TestTools.getMockViewProvider({
 		32: layersView
 	});
-	const view = viewCompositionParser(compositionJSON, getView, getHost);
+	const view = viewCompositionParser(compositionJSON, getViews);
 	renderer.build(view, parentView);
 }

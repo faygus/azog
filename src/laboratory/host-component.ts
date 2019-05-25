@@ -13,11 +13,9 @@ import { TestTools } from "../manual-tests/tools/tools";
  */
 
 export function run(): void {
-	const getView = TestTools.getMockViewProvider();
-	const getHostComponent = getMockHostComponentProvider();
-	const compositionView = viewCompositionParser(componentJSON, getView, getHostComponent);
+	const getView = getMockComponentProvider();
+	const compositionView = viewCompositionParser(componentJSON, getView);
 	const componentRenderer = TestTools.getMockComponentRenderer2({
-		1: 'red',
 		2: 'green',
 		3: 'blue'
 	});
@@ -34,7 +32,7 @@ const componentJSON: IViewCompositionJSON = {
 	}
 };
 
-function getMockHostComponentProvider(): GetView {
+function getMockComponentProvider(): GetView {
 	const layoutJSON: ILayoutJSON = {
 		direction: 'column',
 		children: [
@@ -60,8 +58,13 @@ function getMockHostComponentProvider(): GetView {
 	};
 	const getView = TestTools.getMockViewProvider();
 	return (id: number) => {
-		const view = layoutParser(layoutJSON, getView);
-		const res = new Component(view);
+		let res: Component<any>;
+		if (id === 1) {
+			const view = layoutParser(layoutJSON, getView);
+			res = new Component(view);
+		} else {
+			res = getView(id);
+		}
 		return res;
 	};
 }

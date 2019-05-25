@@ -8,6 +8,7 @@ import { ILayoutJSON } from "../layout/layout";
 import { IRouterViewJSON } from "../router";
 import { IUniColorWFViewJSON } from "../uni-color-wf";
 import { IViewDeclarationJSON } from "./view-declaration";
+import { IViewCompositionJSON } from "../view-composition";
 
 export enum ViewType {
 	LABEL_WF = 'labelWF',
@@ -18,7 +19,8 @@ export enum ViewType {
 	FOR_LOOP = 'forLoop',
 	LAYOUT = 'layout',
 	IMAGE = 'image',
-	IF = 'if'
+	IF = 'if',
+	COMPOSITION = 'composition'
 	// ... TODO
 }
 
@@ -31,7 +33,8 @@ export interface ViewTypeMap {
 	'forLoop': IForLoopJSON,
 	'layout': ILayoutJSON,
 	'image': IImageViewJSON,
-	'if': IConditionalViewJSON
+	'if': IConditionalViewJSON,
+	'composition': IViewCompositionJSON,
 	// ... TODO
 }
 
@@ -44,5 +47,6 @@ export type IViewAnyDeclarationJSON =
 	IViewDeclarationJSON<'forLoop'> |
 	IViewDeclarationJSON<'layout'> |
 	IViewDeclarationJSON<'image'> |
-	IViewDeclarationJSON<'if'>;
+	IViewDeclarationJSON<'if'> |
+	IViewDeclarationJSON<'composition'>;
 // ... TODO
