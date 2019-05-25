@@ -1,5 +1,4 @@
 import { HTMLRenderer, IAppJSON, Parser } from '../../../lib/src';
-import { ViewType } from '../../../lib/src/parser/view-types';
 import { TestTools } from '../tools/tools';
 
 /**
@@ -9,7 +8,7 @@ export function run(): void {
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
-				type: ViewType.FOR_LOOP,
+				type: 'forLoop',
 				value: {
 					array: [0,1,2,1],
 					template: {
@@ -30,7 +29,7 @@ export function run(): void {
 				}
 			},
 			2: {
-				type: ViewType.UNI_COLOR_WF,
+				type: 'uniColorWF',
 				value: {
 					color: {
 						value: {

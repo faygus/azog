@@ -1,12 +1,13 @@
+import { ISizeJSON } from "../container";
+import { IValueProviderJSON } from "../value-provider";
+import { IComponentInfosJSON } from "../utils/component-infos";
+
 export interface ILayoutCompositionJSON {
 	direction: 'row' | 'column';
 	children: LayoutCompositionChildJSON[];
 }
 
 export type LayoutCompositionChildJSON = ILayoutCompositionStaticChildJSON | IfLayoutCompositionChildJSON;
-
-import { ISizeJSON } from "../container";
-import { IValueProviderJSON } from "../value-provider";
 
 export interface ILayoutCompositionStaticChildJSON {
 	size: ISizeJSON;
@@ -16,10 +17,4 @@ export interface ILayoutCompositionStaticChildJSON {
 export interface IfLayoutCompositionChildJSON {
 	if: IValueProviderJSON<boolean>;
 	host: ILayoutCompositionStaticChildJSON;
-}
-
-export type IComponentInfosJSON = { ref: string } |
-{
-	id: number,
-	inputs?: any
 }

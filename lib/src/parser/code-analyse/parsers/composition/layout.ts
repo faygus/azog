@@ -8,9 +8,9 @@ export const layoutCompositionParser = (viewJSON: ILayoutCompositionJSON, getVie
 	const res = new LayoutComposition(viewJSON.direction);
 	for (const childJSON of viewJSON.children) {
 		let child: LayoutCompositionChild | undefined = undefined;
-		if (isILayoutCompositionStaticChildJSON(childJSON)) {
+		if (isStaticChildJSON(childJSON)) {
 			child = parseStaticChild(childJSON, getView);
-		} else if (isIfLayoutCompositionChildJSON(childJSON)) {
+		} else if (isIfChildJSON(childJSON)) {
 			const staticChild = parseStaticChild(childJSON.host, getView);
 			const condition = parseValueProvider(childJSON.if);
 			child = new IfLayoutCompositionChild(condition, staticChild);
@@ -22,11 +22,11 @@ export const layoutCompositionParser = (viewJSON: ILayoutCompositionJSON, getVie
 	return res;
 };
 
-function isILayoutCompositionStaticChildJSON(data: LayoutCompositionChildJSON): data is ILayoutCompositionStaticChildJSON {
+function isStaticChildJSON(data: LayoutCompositionChildJSON): data is ILayoutCompositionStaticChildJSON {
 	return (<ILayoutCompositionStaticChildJSON>data).componentInfos !== undefined;
 }
 
-function isIfLayoutCompositionChildJSON(data: LayoutCompositionChildJSON): data is IfLayoutCompositionChildJSON {
+function isIfChildJSON(data: LayoutCompositionChildJSON): data is IfLayoutCompositionChildJSON {
 	return (<IfLayoutCompositionChildJSON>data).if !== undefined;
 }
 

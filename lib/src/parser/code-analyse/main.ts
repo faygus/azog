@@ -1,12 +1,13 @@
 import { Component } from "../entities/component";
 import { IMockDataSource } from "../entities/data/mock-data-source";
 import { IViewModelInterface } from "../entities/data/view-model";
-import { IAppJSON, IViewAnyDeclarationJSON } from "../interfaces/app";
+import { IAppJSON } from "../interfaces/types/app";
 import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 import { IViewModelInterfaceJSON } from "../interfaces/view-model";
 import { GetView } from "./parsers/type";
 import { ViewModelParsing } from "./view-model";
 import { parsersMap } from "../parsers-types";
+import { IViewAnyDeclarationJSON } from "../interfaces/types/view-types";
 
 export class Parser {
 	private _componentsCollection: ComponentsCollection;

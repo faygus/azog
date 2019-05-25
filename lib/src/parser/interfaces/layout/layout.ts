@@ -1,12 +1,12 @@
+import { ISizeJSON } from "../container";
+import { IValueProviderJSON } from "../value-provider";
+
 export interface ILayoutJSON {
 	direction: 'row' | 'column';
 	children: LayoutChildJSON[];
 }
 
 type LayoutChildJSON = ILayoutChildJSON | IfLayoutChildJSON;
-
-import { ISizeJSON } from "../container";
-import { IValueProviderJSON } from "../value-provider";
 
 export interface ILayoutChildJSON {
 	size: ISizeJSON;

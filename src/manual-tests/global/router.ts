@@ -1,5 +1,5 @@
 import { Parser } from "../../../lib/src/parser/code-analyse/main";
-import { IAppJSON } from "../../../lib/src/parser/interfaces/app";
+import { IAppJSON } from "../../../lib/src/parser/interfaces/types/app";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";
 

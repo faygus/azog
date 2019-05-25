@@ -1,6 +1,6 @@
 import { AxisPosition, IRelativeSpace, LayersView, LayerView, PositionInsideHost, MainLayerView, MainLayerPositionInsideHost, AxisPositionFromStartAndEnd, MainLayerAxisPosition } from "../../entities/layers";
 import { IDistanceJSON } from "../../interfaces/container";
-import { IAxisPositionJSON, ILayersViewJSON, ILayerViewJSON, IRelativeSpaceJSON, IMainLayerViewJSON, IMainLayerPositionInsideHostJSON, IMainLayerAxisPositionJSON } from "../../interfaces/layers";
+import { IAxisPositionJSON, ILayersViewJSON, ILayerViewJSON, IRelativeSpaceJSON, IMainLayerViewJSON, IMainLayerPositionInsideHostJSON, IMainLayerAxisPositionJSON } from "../../interfaces/layers/layers";
 import { ParsingUtils } from "../utils";
 import { GetView } from "./type";
 

@@ -26,10 +26,10 @@ function resolveComposition(data: ViewComposition<LayoutComposition>): LayoutVie
 	const res = new LayoutView(data.host.view.direction);
 	for (const child of data.host.view.children) {
 		if (child instanceof LayoutCompositionStaticChild) {
-			let layoutChild = getLayoutStaticChild(child, data.refs);
+			let layoutChild = getStaticChild(child, data.refs);
 			res.children.push(layoutChild);
 		} else if (child instanceof IfLayoutCompositionChild) {
-			let layoutChild = getIfLayoutChild(child, data.refs);
+			let layoutChild = getIfChild(child, data.refs);
 			res.children.push(layoutChild);
 		}
 	}
@@ -46,15 +46,15 @@ function resolveComponent(componentInfos: string | Component<any>, refs: { [ref:
 	return childComponent;
 }
 
-function getLayoutStaticChild(data: LayoutCompositionStaticChild, refs: { [ref: string]: Component<any> }): LayoutChild {
+function getStaticChild(data: LayoutCompositionStaticChild, refs: { [ref: string]: Component<any> }): LayoutChild {
 	const res = new LayoutChild(data.size);
 	res.component = resolveComponent(data.component, refs);
 	return res;
 }
 
 
-function getIfLayoutChild(data: IfLayoutCompositionChild, refs: { [ref: string]: Component<any> }): IfLayoutChild {
-	const child = getLayoutStaticChild(data.child, refs);
+function getIfChild(data: IfLayoutCompositionChild, refs: { [ref: string]: Component<any> }): IfLayoutChild {
+	const child = getStaticChild(data.child, refs);
 	const condition = data.condition;
 	const res = new IfLayoutChild(condition, child);
 	return res;

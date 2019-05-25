@@ -1,6 +1,5 @@
 import { Parser } from "../../../lib/src/parser/code-analyse/main";
-import { IAppJSON } from "../../../lib/src/parser/interfaces/app";
-import { ViewType } from "../../../lib/src/parser/view-types";
+import { IAppJSON } from "../../../lib/src/parser/interfaces/types/app";
 import { HTMLRenderer } from "../../../lib/src/renderer/main";
 import { TestTools } from "../tools/tools";
 
@@ -11,7 +10,7 @@ export function run(): void {
 	const appJSON: IAppJSON = {
 		views: {
 			1: {
-				type: ViewType.LAYERS,
+				type: 'layers',
 				value: {
 					mainLayer: {
 						zIndex: 1,
@@ -46,7 +45,7 @@ export function run(): void {
 				}
 			},
 			2: {
-				type: ViewType.LABEL_WF,
+				type: 'labelWF',
 				value: {
 					text: 'hello world',
 					style: {
@@ -56,7 +55,7 @@ export function run(): void {
 				}
 			},
 			3: {
-				type: ViewType.UNI_COLOR_WF,
+				type: 'uniColorWF',
 				value: {
 					color: 2
 				}

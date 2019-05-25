@@ -1,4 +1,4 @@
-import { ILayersViewJSON } from "../../../lib/src/parser/interfaces/layers";
+import { ILayersViewJSON } from "../../../lib/src/parser/interfaces/layers/layers";
 import { layersParser } from "../../../lib/src/parser/code-analyse/parsers/layers";
 import { TestTools } from "../tools/tools";
 import { LayersRenderer } from "../../../lib/src/renderer/layers";

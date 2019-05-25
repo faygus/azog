@@ -6,7 +6,7 @@ import { layersParser } from "./code-analyse/parsers/layers";
 import { layoutParser } from "./code-analyse/parsers/layout";
 import { routerParser } from "./code-analyse/parsers/router";
 import { uniColorWFParser } from "./code-analyse/parsers/uni-color-wf";
-import { ViewType } from "./view-types";
+import { ViewType } from "./interfaces/types/view-types";
 import { conditionalViewParser } from "./code-analyse/parsers/if";
 
 export const parsersMap: { [key: string]: any } = { // TODO parser type
