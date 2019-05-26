@@ -103,7 +103,14 @@ export function run(): void {
 						{
 							zIndex: 2,
 							componentInfos: {
-								id: 8
+								id: 8,
+								inputs: {
+									'score': {
+										value: {
+											propertyName: 'score'
+										}
+									}
+								}
 							}
 						}
 					]
@@ -118,7 +125,11 @@ export function run(): void {
 			8: { // score label
 				type: 'labelWF',
 				value: {
-					text: '2',
+					text: {
+						value: {
+							propertyName: 'score'
+						}
+					},
 					style: {
 						color: 3,
 						size: 1
@@ -133,7 +144,14 @@ export function run(): void {
 						{
 							size: 40,
 							componentInfos: {
-								id: 6
+								id: 6,
+								inputs: {
+									'score': {
+										value: {
+											propertyName: 'score1'
+										}
+									}
+								}
 							}
 						},
 						{
@@ -142,7 +160,14 @@ export function run(): void {
 						{
 							size: 40,
 							componentInfos: {
-								id: 6
+								id: 6,
+								inputs: {
+									'score': {
+										value: {
+											propertyName: 'score2'
+										}
+									}
+								}
 							}
 						}
 					]
@@ -236,7 +261,7 @@ export function run(): void {
 					}
 				}
 			},
-			15: { // flag + player name
+			15: { // player row
 				type: 'layout',
 				value: {
 					direction: 'row',
@@ -269,6 +294,22 @@ export function run(): void {
 									}
 								}
 							}
+						},
+						{
+							size: 20
+						},
+						{
+							size: 'auto',
+							componentInfos: {
+								id: 20,
+								inputs: {
+									'isServing': {
+										value: {
+											propertyName: 'isServing'
+										}
+									}
+								}
+							}
 						}
 					]
 				}
@@ -294,7 +335,12 @@ export function run(): void {
 								id: 15,
 								inputs: {
 									'player': 'Nadal',
-									'country': 'spain'
+									'country': 'spain',
+									'isServing': {
+										value: {
+											propertyName: 'firstPlayerIsServing'
+										}
+									}
 								}
 							}
 						},
@@ -307,44 +353,172 @@ export function run(): void {
 								id: 15,
 								inputs: {
 									'player': 'Federer',
-									'country': 'swiss'
+									'country': 'swiss',
+									'isServing': {
+										value: {
+											propertyName: 'firstPlayerIsServing'
+										},
+										pipe: 4
+									}
 								}
 							}
 						}
 					]
 				}
-			}
-		},
-		viewModelInterfaces: {
-			/*12: { // country flag
-				properties: {},
-				inputs: {
-					'country': 'string'
+			},
+			18: {
+				type: 'uniColorWF',
+				value: {
+					color: 2
 				}
 			},
-			15: {
-				properties: {
-					'country': 'string'
-				}
-			},
-			16: { // country flag
-				properties: {},
-				inputs: {
-					'name': 'string'
-				}
-			}*/
-		},
-		mockViewModels: {
-			/*15: {
-				'country': {
-					values: [
+			19: {
+				type: 'layers',
+				value: {
+					subLayers: [
 						{
-							timeout: 0,
-							value: 'spain'
+							zIndex: 1,
+							positionInsideHost: {
+								vertical: {
+									center: {
+										relativeTo: 'start',
+										space: {
+											value: 50,
+											unit: '%'
+										}
+									},
+									size: 10
+								},
+								horizontal: {
+									center: {
+										relativeTo: 'start',
+										space: {
+											value: 50,
+											unit: '%'
+										}
+									},
+									size: 10
+								}
+							},
+							componentInfos: {
+								id: 18
+							}
 						}
 					]
 				}
-			}*/
+			},
+			20: {
+				type: 'if',
+				value: {
+					condition: {
+						value: {
+							propertyName: 'isServing'
+						}
+					},
+					template: {
+						componentId: 19
+					}
+				}
+			}
+		},
+		viewModelInterfaces: {
+			9: {
+				properties: {
+					'score1': 'string',
+					'score2': 'string',
+				},
+			},
+			17: {
+				properties: {
+					'firstPlayerIsServing': 'boolean'
+				}
+			}
+		},
+		mockViewModels: {
+			9: {
+				'score1': {
+					values: [
+						{
+							timeout: 0,
+							value: 0
+						},
+						{
+							timeout: 1000,
+							value: 1
+						},
+						{
+							timeout: 3000,
+							value: 2
+						},
+						{
+							timeout: 4000,
+							value: 3
+						},
+						{
+							timeout: 5000,
+							value: 4
+						},
+						{
+							timeout: 6000,
+							value: 5
+						},
+						{
+							timeout: 7000,
+							value: 6
+						},
+					]
+				},
+				'score2': {
+					values: [
+						{
+							timeout: 0,
+							value: 0
+						},
+						{
+							timeout: 2000,
+							value: 1
+						},
+					]
+				},
+			},
+			17: {
+				'firstPlayerIsServing': {
+					values: [
+						{
+							timeout: 0,
+							value: true
+						},
+						{
+							timeout: 1000,
+							value: false
+						},
+						{
+							timeout: 2000,
+							value: true
+						},
+						{
+							timeout: 3000,
+							value: false
+						},
+						{
+							timeout: 4000,
+							value: true
+						},
+						{
+							timeout: 5000,
+							value: false
+						},
+						{
+							timeout: 6000,
+							value: true
+						},
+						{
+							timeout: 7000,
+							value: false
+						},
+					]
+				}
+			}
 		}
 	}
 

@@ -3,6 +3,7 @@ import { Binding } from "../../entities/controls/binding";
 import { CustomDynamicViewModel } from "../view-model/custom-dynamic-view-model";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { ViewModelCreator } from "../view-model/dynamic-view-model-creator";
+import { applyPipe } from "./apply-pipe";
 
 export function buildViewModel(component: Component<any>, viewModel?: DynamicViewModel): DynamicViewModel | undefined {
 	let ownViewModel = new DynamicViewModel();
@@ -16,6 +17,12 @@ export function buildViewModel(component: Component<any>, viewModel?: DynamicVie
 			name: inputName,
 			type: 'any' // TODO
 		});
+		const handler = (value: any) => {
+			if (input.pipe) {
+				value = applyPipe(input.pipe, value);
+			}
+			res.changeInput(inputName, value);
+		}
 		if (isBinding(input.target)) {
 			if (!viewModel) {
 				throw new Error(`can not resolve input "${inputName}"`);
@@ -24,14 +31,14 @@ export function buildViewModel(component: Component<any>, viewModel?: DynamicVie
 			if (!prop) {
 				throw new Error(`can not resolve input "${inputName}"`);
 			}
-			if (prop.value.current) {
-				res.changeInput(inputName, prop.value.current);
+			if (prop.value.current !== undefined) {
+				handler(prop.value.current);
 			}
 			prop.value.onChange(value => {
-				res.changeInput(inputName, value);
+				handler(value);
 			});
 		} else {
-			res.changeInput(inputName, input.target);
+			handler(input.target);
 		}
 	}
 	return res;

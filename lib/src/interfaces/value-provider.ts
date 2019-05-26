@@ -8,13 +8,15 @@ export interface IValueProviderWithPipe<T> {
 	pipe?: IPipe; // id of the pipe to apply on the value
 }
 
-type ValueTarget<T> = T | IBinding;
+export type ValueTarget<T> = T | IBinding;
 
 export interface IBinding {
 	propertyName: string;
 }
 
-export interface IPipe {
+export type IPipe = number | IPipeWithArgs;
+
+export interface IPipeWithArgs {
 	id: number;
 	args?: { [key: string]: any };
 }

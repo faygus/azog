@@ -1,3 +1,5 @@
+import { IValueProviderJSON } from "../value-provider";
+
 export type IComponentInfosJSON = IRefComponentJSON | IComponentWithInputsJSON;
 
 export interface IRefComponentJSON {
@@ -6,5 +8,5 @@ export interface IRefComponentJSON {
 
 export interface IComponentWithInputsJSON {
 	id: number;
-	inputs?: any;
+	inputs?: { [key: string]: IValueProviderJSON<any> }
 }

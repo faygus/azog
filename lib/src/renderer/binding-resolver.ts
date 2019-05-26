@@ -1,22 +1,25 @@
-import { ValueProvider, Pipe } from "../entities/controls/binding";
+import { ValueProvider, Binding } from "../entities/controls/binding";
+import { applyPipe } from "./utils/apply-pipe";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
+import { ValueTarget } from "../interfaces/value-provider";
 
 export function watchViewProperty<T>(data: ValueProvider<T>, viewModel: DynamicViewModel | undefined, handler: (value: T) => void) {
 	const processValue = (value: T) => {
 		let v = value;
 		if (data.pipe !== undefined) {
+			console.warn('pipe', data.pipe);
 			v = applyPipe(data.pipe, value);
 		}
 		handler(v);
 	};
-	let value: T | undefined;
-	if (!(typeof data.target === 'object' && (<any>(data.target)).propertyName)) {
-		value = <T>data.target;
+	let value: T | undefined;
+	if (!isBinding(data.target)) {
+		value = data.target;
 	} else {
 		if (!viewModel) {
 			throw new Error('no view model');
 		}
-		const propBindedName = (<any>data.target).propertyName;
+		const propBindedName = data.target.propertyName;
 		const prop = viewModel.getProperty(propBindedName);
 		if (!prop) {
 			throw new Error(`no property ${propBindedName} in view model`);
@@ -36,29 +39,6 @@ export function watchViewProperty<T>(data: ValueProvider<T>, viewModel: DynamicV
 	}
 }
 
-function applyPipe(pipe: Pipe, value: any): any {
-	if (pipe.id === 3) { // equal comparison pipe
-		if (!pipe.args) {
-			throw new Error('no argument for equal comparison pipe');
-		}
-		const valueToCompare = pipe.args['comparedTo']; // TODO value may not be literal value
-		return valueToCompare === value;
-	} else {
-		const p = PIPES[pipe.id];
-		if (!p) {
-			throw new Error('pipe ' + pipe.id + ' not found');
-		}
-		return p[value];
-	}
+function isBinding<T>(data: ValueTarget<T>): data is Binding {
+	return (<Binding>data).propertyName !== undefined;
 }
-
-const PIPES: any = {
-	1: {
-		true: 1,
-		false: 2
-	},
-	2: {
-		true: 0,
-		false: 2
-	},
-};

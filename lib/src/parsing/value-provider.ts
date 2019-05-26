@@ -1,28 +1,27 @@
 import { ValueProvider, Pipe } from "../entities/controls/binding";
-import { IValueProviderJSON, IValueProviderWithPipe } from "../interfaces/value-provider";
+import { IValueProviderJSON, IValueProviderWithPipe, ValueTarget, IBinding } from "../interfaces/value-provider";
 
 export function parseValueProvider<T>(valueProvider: IValueProviderJSON<T>): ValueProvider<T> {
-	let target: any;
+	let target: ValueTarget<T>;
 	let pipe: Pipe | undefined = undefined;
-	if (typeof valueProvider !== 'object') {
-		target = valueProvider;
-	} else if (!(<any>valueProvider).value) {
+	if (!isIValueProviderWithPipe(valueProvider)) {
 		target = valueProvider;
 	} else {
-		const v = <IValueProviderWithPipe<T>>valueProvider;
-		if ((<any>v.value).propertyName) {
+		if (isIBinding(valueProvider.value)) {
 			target = {
-				propertyName: (<any>v.value).propertyName
+				propertyName: valueProvider.value.propertyName
 			};
 		} else {
-			target = v.value;
+			target = valueProvider.value;
 		}
-		if (typeof v.pipe === 'number') {
-			pipe = {
-				id: v.pipe
-			};
-		} else {
-			pipe = v.pipe;
+		if (valueProvider.pipe) {
+			if (typeof valueProvider.pipe === 'number') {
+				pipe = {
+					id: valueProvider.pipe
+				};
+			} else {
+				pipe = valueProvider.pipe;
+			}
 		}
 	}
 	const res: ValueProvider<T> = {
@@ -30,4 +29,12 @@ export function parseValueProvider<T>(valueProvider: IValueProviderJSON<T>): Val
 		pipe: pipe // id of the pipe to apply on the value
 	};
 	return res;
+}
+
+function isIValueProviderWithPipe<T>(data: IValueProviderJSON<T>): data is IValueProviderWithPipe<T> {
+	return (<IValueProviderWithPipe<T>>data).value !== undefined;
+}
+
+function isIBinding<T>(data: ValueTarget<T>): data is IBinding {
+	return (<IBinding>data).propertyName !== undefined;
 }
