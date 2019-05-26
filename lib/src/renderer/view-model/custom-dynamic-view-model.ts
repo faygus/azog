@@ -6,27 +6,19 @@ export class CustomDynamicViewModel extends DynamicViewModel {
 	constructor(parentViewModel?: DynamicViewModel) {
 		super();
 		if (parentViewModel) {
-			this._inputs = [...parentViewModel.getInputs()];
-			this._properties = [...parentViewModel!.getProperties()];
+			this._inputs = parentViewModel.getInputs().map(i => cloneDynamicProperty(i));
+			this._properties = parentViewModel.getProperties().map(p => cloneDynamicProperty(p));
 		}
 	}
 
 	addProperty(property: Property): IDynamicProperty<any> {
-		const p: ICustomDynamicProperty<any> = {
-			name: property.name,
-			type: property.type,
-			value: new ValueChange()
-		};
+		const p = new CustomDynamicProperty(property.name, property.type);
 		this._properties.push(p);
 		return p;
 	}
 
 	addInput(input: Property): IDynamicProperty<any> {
-		const i: ICustomDynamicProperty<any> = {
-			name: input.name,
-			type: input.type,
-			value: new ValueChange()
-		};
+		const i = new CustomDynamicProperty(input.name, input.type);
 		this._inputs.push(i);
 		this._properties.push(i); // an input is automatically exposed as a property for the view
 		return i;
@@ -75,8 +67,25 @@ class ValueChange<T> implements IValueChange<T> {
 	}
 }
 
-export interface ICustomDynamicProperty<T> {
+export class CustomDynamicProperty<T> {
 	name: string;
 	type: string; // TODO
 	value: ValueChange<T>;
+
+	constructor(name: string, type: string, value?: ValueChange<T>) {
+		this.name = name;
+		this.type = type;
+		this.value = value ? value : new ValueChange();
+	}
+}
+
+function cloneDynamicProperty(value: IDynamicProperty<any>): CustomDynamicProperty<any> {
+	const res = new CustomDynamicProperty(value.name, value.type);
+	if (value.value.current !== undefined) {
+		res.value.setValue(value.value.current);
+	}
+	value.value.onChange(v => {
+		res.value.setValue(v);
+	});
+	return res;
 }

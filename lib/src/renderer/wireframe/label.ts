@@ -1,19 +1,19 @@
-import { DynamicViewModel } from "../view-model/dynamic-view-model";
-import { watchViewProperty } from "../binding-resolver";
 import { LabelWFView } from "../../entities/controls/wireframe/label";
-import { WireframeSizeConverter } from "./converters/size";
-import { WireframeColorConverter } from "./converters/color";
+import { watchViewProperty } from "../binding-resolver";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
-import { IViewInserter } from "../interfaces/view-inserter";
 import { IParentView } from "../interfaces/parent-view";
+import { DynamicViewModel } from "../view-model/dynamic-view-model";
+import { WireframeColorConverter } from "./converters/color";
+import { WireframeSizeConverter } from "./converters/size";
 
 export class LabelWFRenderer implements IBaseRenderer2<LabelWFView> {
 	build(label: LabelWFView, inserter: IParentView, viewModel?: DynamicViewModel): void {
-		/*const htmlWrapper = document.createElement('div');
+		const htmlWrapper = document.createElement('div');
 		htmlWrapper.style.display = 'flex';
 		htmlWrapper.style.flexDirection = 'column';
 		htmlWrapper.style.justifyContent = 'center';
-		htmlWrapper.style.alignItems = 'center';*/
+		htmlWrapper.style.alignItems = 'center';
+		htmlWrapper.style.height = '100%';
 		const htmlLabel = document.createElement('p');
 		if (label.style.size !== undefined) {
 			watchViewProperty(label.style.size, viewModel, (value) => {
@@ -32,8 +32,8 @@ export class LabelWFRenderer implements IBaseRenderer2<LabelWFView> {
 			watchViewProperty(label.text, viewModel, handler);
 		}
 		htmlLabel.style.margin = '0px';
-		// htmlWrapper.appendChild(htmlLabel);
+		htmlWrapper.appendChild(htmlLabel);
 		inserter.centerContent(true, true);
-		inserter.add(htmlLabel, false);
+		inserter.add(htmlWrapper, false);
 	}
 }

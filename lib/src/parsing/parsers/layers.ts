@@ -21,16 +21,24 @@ export const layersParser = (viewJSON: ILayersViewJSON, getView: GetView): Layer
 }
 
 function processLayer(layerJSON: ILayerViewJSON, getView: GetView): LayerView {
-	const verticalPosition = parseAxisPosition(layerJSON.positionInsideHost.vertical);
-	const horizontalPosition = parseAxisPosition(layerJSON.positionInsideHost.horizontal);
-	const positionner = new PositionInsideHost(verticalPosition, horizontalPosition);
-
+	let positionner: PositionInsideHost | undefined;
+	if (layerJSON.positionInsideHost) {
+		const verticalPosition = parseAxisPosition(layerJSON.positionInsideHost.vertical);
+		const horizontalPosition = parseAxisPosition(layerJSON.positionInsideHost.horizontal);
+		positionner = new PositionInsideHost(verticalPosition, horizontalPosition);
+	}
 	const child = getChildComponent(layerJSON.componentInfos, getView);
 	const layer = new LayerView(child, layerJSON.zIndex, positionner);
 	return layer;
 }
 
-function parseAxisPosition(positionJSON: IAxisPositionJSON): AxisPosition {
+function parseAxisPosition(positionJSON?: IAxisPositionJSON): AxisPosition {
+	if (!positionJSON) {
+		return {
+			start: ParsingUtils.getDistance(0),
+			end: ParsingUtils.getDistance(0)
+		};
+	}
 	let res: AxisPosition = <any>{};
 	const pos = <any>positionJSON;
 	if (pos.start !== undefined && pos.end !== undefined) {
@@ -59,9 +67,12 @@ function parseAxisPosition(positionJSON: IAxisPositionJSON): AxisPosition {
 }
 
 function processMainLayer(layerJSON: IMainLayerViewJSON, getView: GetView): MainLayerView {
-	const verticalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.vertical);
-	const horizontalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.horizontal);
-	const positionner = new MainLayerPositionInsideHost(verticalPosition, horizontalPosition)
+	let positionner: MainLayerPositionInsideHost | undefined;
+	if (layerJSON.positionInsideHost) {
+		const verticalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.vertical);
+		const horizontalPosition = parseMainLayerAxisPosition(layerJSON.positionInsideHost.horizontal);
+		positionner = new MainLayerPositionInsideHost(verticalPosition, horizontalPosition)
+	}
 	const child = getChildComponent(layerJSON.componentInfos, getView);
 	const layer = new MainLayerView(child, layerJSON.zIndex, positionner);
 	return layer;

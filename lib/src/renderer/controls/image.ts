@@ -6,7 +6,7 @@ import { IParentView } from "../interfaces/parent-view";
 import { ImagesResources } from "../images-loader";
 
 export class ImageRenderer implements IBaseRenderer2<ImageView> {
-	build(label: ImageView, inserter: IParentView, viewModel?: DynamicViewModel): void {
+	build(view: ImageView, inserter: IParentView, viewModel?: DynamicViewModel): void {
 		const htmlElement = document.createElement('img');
 		htmlElement.style.height = '100%';
 		htmlElement.style.width = '100%';
@@ -16,7 +16,7 @@ export class ImageRenderer implements IBaseRenderer2<ImageView> {
 				htmlElement.src = src;
 			}
 		};
-		watchViewProperty(label.src, viewModel, handler);
+		watchViewProperty(view.src, viewModel, handler);
 		// inserter.centerContent(true, true);
 		inserter.add(htmlElement);
 	}

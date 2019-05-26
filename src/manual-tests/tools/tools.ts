@@ -10,10 +10,14 @@ import { IComponentRenderer2 } from "../../../lib/src/renderer/interfaces/compon
 import { IParentView, Padding } from "../../../lib/src/renderer/interfaces/parent-view";
 
 export class TestTools {
-	static getRootHtml(): HTMLElement {
+	static getRootHtml(size?: {width: number, height: number}): HTMLElement {
 		const rootHtml = document.getElementById('root');
 		if (!rootHtml) {
 			throw new Error('no root element found in dom');
+		}
+		if (size) {
+			rootHtml.style.width = `${size.width}px`;
+			rootHtml.style.height = `${size.height}px`;
 		}
 		return rootHtml;
 	}

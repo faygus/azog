@@ -27,8 +27,12 @@ export function run(): void {
 const componentJSON: IViewCompositionJSON = {
 	hostId: 1,
 	children: {
-		'header': 2,
-		'content': 3
+		'header': {
+			id: 2
+		},
+		'content': {
+			id: 3
+		}
 	}
 };
 

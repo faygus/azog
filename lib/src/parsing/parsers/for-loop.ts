@@ -14,6 +14,7 @@ export const forLoopParser: ControlParser = (viewJSON: IForLoopJSON, getView: Ge
 	}
 	const template = new ComponentTemplate(component);
 	const size = ParsingUtils.getSize(viewJSON.container.size);
+	// TODO the container could be anything
 	const container = new ExtensibleContainer(viewJSON.container.direction, viewJSON.container.margin, size);
 	const res = new ForLoopView(valueProvider, template, container);
 	return res;

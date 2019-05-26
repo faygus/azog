@@ -1,7 +1,7 @@
 require("../assets/stylesheets/styles.scss");
 require("../node_modules/font-awesome/css/font-awesome.min.css");
 
-import { run } from "./manual-tests/global/layers-composition";
+import { run } from "./example/tennis-score";
 
 try {
 	run();

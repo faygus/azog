@@ -16,7 +16,6 @@ export class LayersParentRenderer implements IBaseRenderer2<ViewComposition<Laye
 	}
 
 	build(view: ViewComposition<LayersView>, parentView: IParentView, viewModel?: DynamicViewModel): void {
-		console.log('LayersParentRenderer.build', view);
 		const layers = resolveComposition(view);
 		this._renderer.build(layers, parentView, viewModel);
 	}

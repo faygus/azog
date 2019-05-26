@@ -8,12 +8,12 @@ export interface ILayersViewJSON {
 
 export interface ILayerViewJSON {
 	zIndex: number;
-	positionInsideHost: IPositionInsideHostJSON;
+	positionInsideHost?: IPositionInsideHostJSON;
 	componentInfos: IComponentInfosJSON
 }
 
 export interface IMainLayerViewJSON {
 	zIndex: number;
-	positionInsideHost: IMainLayerPositionInsideHostJSON;
+	positionInsideHost?: IMainLayerPositionInsideHostJSON;
 	componentInfos: IComponentInfosJSON
 }

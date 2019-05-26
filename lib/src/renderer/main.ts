@@ -5,6 +5,7 @@ import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { IParentView } from "./interfaces/parent-view";
 import { getRenderersMap } from "./renderers-map";
+import { buildViewModel } from "./utils/build-view-model";
 
 /**
  * Render a component in the root html element
@@ -38,7 +39,8 @@ export class HTMLRenderer {
 			}
 		};
 		const componentRenderer = HTMLRenderer.getComponentRenderer();
-		componentRenderer.build(component, inserter);
+		const viewModel = buildViewModel(component);
+		componentRenderer.build(component, inserter, viewModel);
 	}
 
 	private static getComponentRenderer(): IComponentRenderer2 {

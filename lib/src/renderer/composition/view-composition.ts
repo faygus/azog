@@ -1,13 +1,12 @@
+import { LayersView } from "../../entities/layers/layers";
+import { LayoutView } from "../../entities/layouts/layout";
 import { ViewComposition } from "../../entities/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
-import { IViewInserter } from "../interfaces/view-inserter";
+import { IParentView } from "../interfaces/parent-view";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { LayersParentRenderer } from "./layers";
 import { LayoutParentRenderer } from "./layout";
-import { IParentView } from "../interfaces/parent-view";
-import { LayoutView } from "../../entities/layouts/layout";
-import { LayersView } from "../../entities/layers/layers";
 
 export class ViewCompositionRenderer implements IBaseRenderer2<ViewComposition<any>> {
 
@@ -23,7 +22,6 @@ export class ViewCompositionRenderer implements IBaseRenderer2<ViewComposition<a
 			renderer = new LayersParentRenderer(this._componentRenderer);
 		}
 		if (!renderer) {
-			console.error('can not render ViewComposition');
 			return;
 		}
 		renderer.build(view, inserter, viewModel);

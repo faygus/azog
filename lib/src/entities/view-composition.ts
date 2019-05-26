@@ -1,4 +1,5 @@
 import { Component } from "./component";
+import { IComponentInfos } from "./composition/i-component-infos";
 
 export class ViewComposition<T> {
 	host: Component<T>;
@@ -10,5 +11,5 @@ export class ViewComposition<T> {
 }
 
 export interface IComponentRefs {
-	[ref: string]: Component<any>;
+	[ref: string]: IComponentInfos;
 }

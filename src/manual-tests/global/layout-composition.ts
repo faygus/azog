@@ -11,8 +11,12 @@ export function run(): void {
 				value: {
 					hostId: 2,
 					children: {
-						'header': 3,
-						'content': 4,
+						'header': {
+							id: 3
+						},
+						'content': {
+							id: 4
+						}
 					}
 				}
 			},

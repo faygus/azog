@@ -11,8 +11,12 @@ export function run(): void {
 				value: {
 					hostId: 2,
 					children: {
-						'layer1': 3,
-						'layer2': 4,
+						'layer1': {
+							id: 3
+						},
+						'layer2': {
+							id: 4
+						}
 					}
 				}
 			},
