@@ -48,8 +48,8 @@ export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 				name: inputName,
 				type: 'any' // TODO
 			});
-			if (isBinding(input.target) &&
-				input.target.propertyName === 'elementInArray') {
+			if (isBinding(input.src) &&
+				input.src.propertyName === 'elementInArray') {
 				res.changeInput(inputName, data);
 			}
 			// TODO watch parent props

@@ -1,7 +1,7 @@
-import { Converter } from "./base-converter";
+import { EnumConverter } from "../../utils/base-enum-converter";
 import { WireframeSize } from "../../../entities/controls/wireframe/enums/size";
 
-export class WireframeSizeConverter extends Converter<WireframeSize> {
+export class WireframeSizeConverter extends EnumConverter<WireframeSize> {
 	constructor() {
 		super({
 			[WireframeSize.SMALL]: '10px',

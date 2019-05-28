@@ -1,4 +1,4 @@
-export abstract class Converter<T extends number> {
+export abstract class EnumConverter<T extends number> {
 	protected _map: {[key: number]: string};
 
 	constructor(map: {[key: number]: string}) {

@@ -23,11 +23,11 @@ export function buildViewModel(component: Component<any>, viewModel?: DynamicVie
 			}
 			res.changeInput(inputName, value);
 		}
-		if (isBinding(input.target)) {
+		if (isBinding(input.src)) {
 			if (!viewModel) {
 				throw new Error(`can not resolve input "${inputName}"`);
 			}
-			const prop = viewModel.getProperty(input.target.propertyName);
+			const prop = viewModel.getProperty(input.src.propertyName);
 			if (!prop) {
 				throw new Error(`can not resolve input "${inputName}"`);
 			}
@@ -38,7 +38,7 @@ export function buildViewModel(component: Component<any>, viewModel?: DynamicVie
 				handler(value);
 			});
 		} else {
-			handler(input.target);
+			handler(input.src);
 		}
 	}
 	return res;

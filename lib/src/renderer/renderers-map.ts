@@ -20,6 +20,8 @@ import { UniColorWFRenderer } from "./wireframe/unicolor";
 import { LayersView } from "../entities/layers/layers";
 import { ViewComposition } from "../entities/view-composition";
 import { ViewCompositionRenderer } from "./composition/view-composition";
+import { UniColorView } from "../entities/controls/uni-color";
+import { UniColorRenderer } from "./controls/uni-color";
 
 export function getRenderersMap(componentRenderer: IComponentRenderer2): Map<any, IBaseRenderer2<any>> {
 	const map = new Map<any, IBaseRenderer2<any>>([
@@ -32,7 +34,8 @@ export function getRenderersMap(componentRenderer: IComponentRenderer2): Map<any
 		[LayoutView, new LayoutRenderer(componentRenderer)],
 		[ImageView, new ImageRenderer()],
 		[ConditionalView, new ConditionalViewRenderer(componentRenderer)],
-		[ViewComposition, new ViewCompositionRenderer(componentRenderer)]
+		[ViewComposition, new ViewCompositionRenderer(componentRenderer)],
+		[UniColorView, new UniColorRenderer()],
 		// ... TODO
 	]);
 	return map;

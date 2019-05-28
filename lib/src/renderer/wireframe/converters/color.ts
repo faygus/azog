@@ -1,7 +1,7 @@
-import { Converter } from "./base-converter";
+import { EnumConverter } from "../../utils/base-enum-converter";
 import { WireframeColor } from "../../../entities/controls/wireframe/enums/color";
 
-export class WireframeColorConverter extends Converter<WireframeColor> {
+export class WireframeColorConverter extends EnumConverter<WireframeColor> {
 	constructor() {
 		super({
 			[WireframeColor.BLACK]: '#000',

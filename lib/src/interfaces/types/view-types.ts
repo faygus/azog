@@ -9,6 +9,7 @@ import { IRouterViewJSON } from "../router";
 import { IUniColorWFViewJSON } from "../uni-color-wf";
 import { IViewDeclarationJSON } from "./view-declaration";
 import { IViewCompositionJSON } from "../view-composition";
+import { IUniColorViewJSON } from "../controls/uni-color";
 
 export enum ViewType {
 	LABEL_WF = 'labelWF',
@@ -20,7 +21,8 @@ export enum ViewType {
 	LAYOUT = 'layout',
 	IMAGE = 'image',
 	IF = 'if',
-	COMPOSITION = 'composition'
+	COMPOSITION = 'composition',
+	UNI_COLOR = 'uniColor',
 	// ... TODO
 }
 
@@ -35,6 +37,7 @@ export interface ViewTypeMap {
 	'image': IImageViewJSON,
 	'if': IConditionalViewJSON,
 	'composition': IViewCompositionJSON,
+	'uniColor': IUniColorViewJSON,
 	// ... TODO
 }
 
@@ -48,5 +51,6 @@ export type IViewAnyDeclarationJSON =
 	IViewDeclarationJSON<'layout'> |
 	IViewDeclarationJSON<'image'> |
 	IViewDeclarationJSON<'if'> |
-	IViewDeclarationJSON<'composition'>;
+	IViewDeclarationJSON<'composition'> |
+	IViewDeclarationJSON<'uniColor'>;
 // ... TODO

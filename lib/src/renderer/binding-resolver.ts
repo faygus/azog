@@ -13,13 +13,13 @@ export function watchViewProperty<T>(data: ValueProvider<T>, viewModel: DynamicV
 		handler(v);
 	};
 	let value: T | undefined;
-	if (!isBinding(data.target)) {
-		value = data.target;
+	if (!isBinding(data.src)) {
+		value = data.src;
 	} else {
 		if (!viewModel) {
 			throw new Error('no view model');
 		}
-		const propBindedName = data.target.propertyName;
+		const propBindedName = data.src.propertyName;
 		const prop = viewModel.getProperty(propBindedName);
 		if (!prop) {
 			throw new Error(`no property ${propBindedName} in view model`);

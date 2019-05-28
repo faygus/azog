@@ -9,6 +9,7 @@ import { uniColorWFParser } from "./parsers/uni-color-wf";
 import { ViewType } from "../interfaces/types/view-types";
 import { conditionalViewParser } from "./parsers/if";
 import { viewCompositionParser } from "./parsers/composition/view-composition";
+import { uniColorParser } from "./parsers/uni-color";
 
 export const parsersMap: { [key: string]: any } = { // TODO parser type
 	[ViewType.LABEL_WF]: labelWFParser,
@@ -21,5 +22,6 @@ export const parsersMap: { [key: string]: any } = { // TODO parser type
 	[ViewType.IMAGE]: imageParser,
 	[ViewType.IF]: conditionalViewParser,
 	[ViewType.COMPOSITION]: viewCompositionParser,
+	[ViewType.UNI_COLOR]: uniColorParser,
 	// ... TODO
 };
