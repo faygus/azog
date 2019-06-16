@@ -6,7 +6,7 @@ import { WireframeSize } from "./enums/size";
  * Icon component for wireframe
  */
 export class IconWFView {
-	iconName?:  ValueProvider<string>;
+	iconNameIndex?:  ValueProvider<number>;
 	style = new IconWFStyle();
 }
 

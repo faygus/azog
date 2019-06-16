@@ -25,13 +25,22 @@ export class IconWFRenderer implements IBaseRenderer2<IconWFView> {
 				htmlIcon.style.color = new WireframeColorConverter().convert(value);
 			});
 		}
-		const handler = (iconName: string) => {
+		const handler = (iconIndex: number) => {
+			const iconName = ICON_NAMES[iconIndex];
 			htmlIcon.className = "fa fa-" + iconName;
 		};
-		if (icon.iconName) {
-			watchViewProperty(icon.iconName, viewModel, handler);
+		if (icon.iconNameIndex) {
+			watchViewProperty(icon.iconNameIndex, viewModel, handler);
 		}
 		htmlWrapper.appendChild(htmlIcon);
 		inserter.add(htmlWrapper);
 	}
 }
+
+const ICON_NAMES = [
+	'calendar',
+	'user',
+	'female',
+	'users',
+	'dashboard'
+]

@@ -6,7 +6,7 @@ export const iconWFParser = (viewJSON: IIconWFViewJSON): IconWFView => {
 	const res = new IconWFView();
 	if (!viewJSON) return res;
 	if (viewJSON.iconName !== undefined) {
-		res.iconName = parseValueProvider(viewJSON.iconName);
+		res.iconNameIndex = parseValueProvider(viewJSON.iconName);
 	}
 	if (viewJSON.style) {
 		res.style.color = parseValueProvider(viewJSON.style.color);

@@ -9,21 +9,27 @@ const dataJSON: IAppJSON = {
 				children: [
 					{
 						size: 100,
-						componentId: 2
+						componentInfos: {
+							id: 2
+						}
 					},
 					{
 						size: 5
 					},
 					{
 						size: 100,
-						componentId: 3
+						componentInfos: {
+							id: 3
+						}
 					},
 					{
 						size: 5
 					},
 					{
 						size: 100,
-						componentId: 4
+						componentInfos: {
+							id: 4
+						}
 					}
 				]
 			}
