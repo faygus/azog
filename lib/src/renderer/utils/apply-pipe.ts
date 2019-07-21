@@ -1,4 +1,4 @@
-import { Pipe } from "../../entities/controls/binding";
+import { Pipe } from "../../models/views/controls/binding";
 
 export function applyPipe(pipe: Pipe, value: any): any {
 	if (pipe.id === 3) { // equal comparison pipe

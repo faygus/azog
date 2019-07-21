@@ -1,6 +1,6 @@
-import { Component } from "../entities/component";
-import { IMockDataSource } from "../entities/data/mock-data-source";
-import { IViewModelInterface } from "../entities/data/view-model";
+import { Component } from "../models/component";
+import { IMockDataSource } from "../models/data/mock-data-source";
+import { IViewModelInterface } from "../models/data/view-model";
 import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 import { IAppJSON } from "../interfaces/types/app";
 import { IViewAnyDeclarationJSON } from "../interfaces/types/view-types";

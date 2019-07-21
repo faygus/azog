@@ -1,4 +1,4 @@
-import { UniColorView } from "../../entities/controls/uni-color";
+import { UniColorView } from "../../models/views/controls/uni-color";
 import { IUniColorViewJSON } from "../../interfaces/controls/uni-color";
 import { parseValueProvider } from "../value-provider";
 

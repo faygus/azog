@@ -1,4 +1,4 @@
-import { IfLayoutChild, ILayoutChild, LayoutChild, LayoutView } from "../../entities/layouts/layout";
+import { IfLayoutChild, ILayoutChild, LayoutChild, LayoutView } from "../../models/views/layouts/layout";
 import { IfLayoutChildJSON, ILayoutChildJSON, ILayoutJSON, LayoutChildJSON } from "../../interfaces/layout/layout";
 import { ParsingUtils } from "../utils";
 import { getChildComponent } from "../utils/get-child";

@@ -1,5 +1,5 @@
-import { LayersView, LayerView, MainLayerView } from "../../entities/layers/layers";
-import { AxisPosition, IRelativeSpace, MainLayerAxisPosition, MainLayerPositionInsideHost, PositionInsideHost } from "../../entities/layers/position";
+import { LayersView, LayerView, MainLayerView } from "../../models/views/layers/layers";
+import { AxisPosition, IRelativeSpace, MainLayerAxisPosition, MainLayerPositionInsideHost, PositionInsideHost } from "../../models/views/layers/position";
 import { IDistanceJSON } from "../../interfaces/container";
 import { ILayersViewJSON, ILayerViewJSON, IMainLayerViewJSON } from "../../interfaces/layers/layers";
 import { IAxisPositionJSON, IMainLayerAxisPositionJSON, IRelativeSpaceJSON } from "../../interfaces/layers/position";

@@ -1,11 +1,11 @@
-import { ImageView } from "../entities/controls/image";
-import { IconWFView } from "../entities/controls/wireframe/icon";
-import { LabelWFView } from "../entities/controls/wireframe/label";
-import { UniColorWFView } from "../entities/controls/wireframe/uniColor";
-import { ForLoopView } from "../entities/for-loop";
-import { ConditionalView } from "../entities/if";
-import { LayoutView } from "../entities/layouts/layout";
-import { RouterView } from "../entities/router";
+import { ImageView } from "../models/views/controls/image";
+import { IconWFView } from "../models/views/controls/wireframe/icon";
+import { LabelWFView } from "../models/views/controls/wireframe/label";
+import { UniColorWFView } from "../models/views/controls/wireframe/uniColor";
+import { ForLoopView } from "../models/views/for-loop";
+import { ConditionalView } from "../models/views/if";
+import { LayoutView } from "../models/views/layouts/layout";
+import { RouterView } from "../models/views/router";
 import { ImageRenderer } from "./controls/image";
 import { ForLoopRenderer } from "./for-loop";
 import { ConditionalViewRenderer } from "./if";
@@ -17,10 +17,10 @@ import { RouterRenderer } from "./router";
 import { IconWFRenderer } from "./wireframe/icon";
 import { LabelWFRenderer } from "./wireframe/label";
 import { UniColorWFRenderer } from "./wireframe/unicolor";
-import { LayersView } from "../entities/layers/layers";
-import { ViewComposition } from "../entities/view-composition";
+import { LayersView } from "../models/views/layers/layers";
+import { ViewComposition } from "../models/view-composition";
 import { ViewCompositionRenderer } from "./composition/view-composition";
-import { UniColorView } from "../entities/controls/uni-color";
+import { UniColorView } from "../models/views/controls/uni-color";
 import { UniColorRenderer } from "./controls/uni-color";
 
 export function getRenderersMap(componentRenderer: IComponentRenderer2): Map<any, IBaseRenderer2<any>> {

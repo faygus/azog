@@ -1,8 +1,8 @@
 import { ControlParser, GetView } from "./type";
 import { IForLoopJSON } from "../../interfaces/for-loop";
-import { ForLoopView, ComponentTemplate } from "../../entities/for-loop";
+import { ForLoopView, ComponentTemplate } from "../../models/views/for-loop";
 import { parseValueProvider } from "../value-provider";
-import { ExtensibleContainer } from "../../entities/layout-composition";
+import { ExtensibleContainer } from "../../models/views/layout-composition";
 import { ParsingUtils } from "../utils";
 
 export const forLoopParser: ControlParser = (viewJSON: IForLoopJSON, getView: GetView): ForLoopView => {

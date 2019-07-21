@@ -1,4 +1,4 @@
-import { IfLayoutChild, LayoutChild, LayoutView } from "../entities/layouts/layout";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../models/views/layouts/layout";
 import { watchViewProperty } from "./binding-resolver";
 import { ContainerContentRendered } from "./container/container-content-rendered";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";

@@ -1,4 +1,4 @@
-import { UniColorWFView } from "../../entities/controls/wireframe/uniColor";
+import { UniColorWFView } from "../../models/views/controls/wireframe/uniColor";
 import { BaseRenderer } from "../base-renderer";
 import { watchViewProperty } from "../binding-resolver";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";

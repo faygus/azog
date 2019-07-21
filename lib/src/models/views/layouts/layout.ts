@@ -1,4 +1,4 @@
-import { IComponentInfos } from "../composition/i-component-infos";
+import { IComponentInfos } from "../../composition/i-component-infos";
 import { ValueProvider } from "../controls/binding";
 import { Size } from "../size";
 

@@ -1,4 +1,4 @@
-import { Property } from "../../entities/data/view-model";
+import { Property } from "../../models/data/view-model";
 import { DynamicViewModel, IDynamicProperty, IValueChange } from "./dynamic-view-model";
 
 export class CustomDynamicViewModel extends DynamicViewModel {

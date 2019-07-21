@@ -1,5 +1,5 @@
 import { EnumConverter } from "../../utils/base-enum-converter";
-import { WireframeSize } from "../../../entities/controls/wireframe/enums/size";
+import { WireframeSize } from "../../../models/views/controls/wireframe/enums/size";
 
 export class WireframeSizeConverter extends EnumConverter<WireframeSize> {
 	constructor() {

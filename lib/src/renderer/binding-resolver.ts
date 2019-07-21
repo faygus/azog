@@ -1,4 +1,4 @@
-import { ValueProvider, Binding } from "../entities/controls/binding";
+import { ValueProvider, Binding } from "../models/views/controls/binding";
 import { applyPipe } from "./utils/apply-pipe";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { ValueTarget } from "../interfaces/value-provider";

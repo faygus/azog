@@ -1,4 +1,4 @@
-import { UniColorView } from "../../entities/controls/uni-color";
+import { UniColorView } from "../../models/views/controls/uni-color";
 import { watchViewProperty } from "../binding-resolver";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IViewInserter } from "../interfaces/view-inserter";

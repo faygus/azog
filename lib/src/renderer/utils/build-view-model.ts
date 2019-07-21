@@ -1,5 +1,5 @@
-import { Component } from "../../entities/component";
-import { Binding } from "../../entities/controls/binding";
+import { Component } from "../../models/component";
+import { Binding } from "../../models/views/controls/binding";
 import { CustomDynamicViewModel } from "../view-model/custom-dynamic-view-model";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { ViewModelCreator } from "../view-model/dynamic-view-model-creator";
@@ -15,7 +15,7 @@ export function buildViewModel(component: Component<any>, viewModel?: DynamicVie
 		const input = component.inputs[inputName];
 		res.addInput({
 			name: inputName,
-			type: 'any' // TODO
+			type: 'string' // TODO
 		});
 		const handler = (value: any) => {
 			if (input.pipe) {

@@ -1,5 +1,5 @@
 import { IContainerJSON, IIfDirectiveJSON } from "../../interfaces/container";
-import { Container2, Direction, ContainerChildDirective, RepeatDirective, IfDirective } from "../../entities/container2";
+import { Container2, Direction, ContainerChildDirective, RepeatDirective, IfDirective } from "../../models/views/container2";
 import { ParsingUtils } from "../utils";
 import { parseValueProvider } from "../value-provider";
 

@@ -1,5 +1,5 @@
-import { IComponentInfos } from "../../entities/composition/i-component-infos";
-import { IComponentRefs } from "../../entities/view-composition";
+import { IComponentInfos } from "../../models/composition/i-component-infos";
+import { IComponentRefs } from "../../models/view-composition";
 
 export function resolveComponent(componentInfos: IComponentInfos, refs: IComponentRefs): IComponentInfos {
 	let childComponent: IComponentInfos;

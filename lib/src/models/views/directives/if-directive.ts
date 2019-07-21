@@ -1,6 +1,6 @@
 import { ValueProvider } from "../controls/binding";
 import { StructuralDirective, DirectiveType } from "./structural-directive";
-import { Component } from "../component";
+import { Component } from "../../component";
 import { Host } from "../host";
 
 // deprecated

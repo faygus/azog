@@ -1,5 +1,5 @@
-import { ComponentTemplate } from "../../entities/for-loop";
-import { ConditionalView } from "../../entities/if";
+import { ComponentTemplate } from "../../models/views/for-loop";
+import { ConditionalView } from "../../models/views/if";
 import { IConditionalViewJSON } from "../../interfaces/if";
 import { parseValueProvider } from "../value-provider";
 import { ControlParser, GetView } from "./type";

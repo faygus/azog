@@ -1,5 +1,5 @@
 import { MainLayerPositionInsideHost, PositionInsideHost } from "./position";
-import { IComponentInfos } from "../composition/i-component-infos";
+import { IComponentInfos } from "../../composition/i-component-infos";
 import { Unit } from "../unit";
 
 export class LayersView {

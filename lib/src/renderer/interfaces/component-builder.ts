@@ -1,5 +1,5 @@
-import { Component } from "../../entities/component";
-import { Host } from "../../entities/host";
+import { Component } from "../../models/component";
+import { Host } from "../../models/views/host";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 
 // Deprecated

@@ -1,16 +1,16 @@
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";
 import { IViewInserter } from "./interfaces/view-inserter";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { ForLoopView } from "../entities/for-loop";
+import { ForLoopView } from "../models/views/for-loop";
 import { watchViewProperty } from "./binding-resolver";
-import { ExtensibleContainer } from "../entities/layout-composition";
+import { ExtensibleContainer } from "../models/views/layout-composition";
 import { applySize } from "./utils/apply-size";
 import { IComponentRenderer2 } from "./interfaces/component-renderer2";
 import { ContainerContentRendered } from "./container/container-content-rendered";
 import { IParentView } from "./interfaces/parent-view";
 import { CustomDynamicViewModel } from "./view-model/custom-dynamic-view-model";
-import { IValueProviders } from "../entities/component";
-import { Binding } from "../entities/controls/binding";
+import { IValueProviders } from "../models/component";
+import { Binding } from "../models/views/controls/binding";
 
 export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 
@@ -46,7 +46,7 @@ export class ForLoopRenderer implements IBaseRenderer2<ForLoopView> {
 			const input = inputs[inputName];
 			res.addInput({
 				name: inputName,
-				type: 'any' // TODO
+				type: 'string' // TODO
 			});
 			if (isBinding(input.src) &&
 				input.src.propertyName === 'elementInArray') {

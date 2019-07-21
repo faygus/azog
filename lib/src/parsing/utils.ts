@@ -1,7 +1,7 @@
-import { FlexDirection } from "../entities/old-layout";
+import { FlexDirection } from "../models/views/old-layout";
 import { ParsingException, ParsingErrorType } from "./error";
-import { Unit } from "../entities/unit";
-import { Size, Distance } from "../entities/size";
+import { Unit } from "../models/views/unit";
+import { Size, Distance } from "../models/views/size";
 import { ISizeJSON, IDistanceJSON } from "../interfaces/container";
 
 export class ParsingUtils {

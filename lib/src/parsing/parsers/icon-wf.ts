@@ -1,5 +1,5 @@
 import { IIconWFViewJSON } from "../../interfaces/icon-wf";
-import { IconWFView } from "../../entities/controls/wireframe/icon";
+import { IconWFView } from "../../models/views/controls/wireframe/icon";
 import { parseValueProvider } from "../value-provider";
 
 export const iconWFParser = (viewJSON: IIconWFViewJSON): IconWFView => {

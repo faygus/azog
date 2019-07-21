@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack",
-    "build::lib": "tsc --project ./lib && cp ./lib/package.json ./dist-lib",
+    "build::app": "webpack",
+    "build": "tsc --project ./lib && cp ./lib/package.json ./dist-lib",
     "watch": "webpack --watch",
     "start": "webpack-dev-server -d --hot --config webpack.config.js --watch"
   },

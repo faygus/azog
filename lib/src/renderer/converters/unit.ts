@@ -1,5 +1,5 @@
-import { Unit } from "../../entities/unit";
-import { Distance } from "../../entities/size";
+import { Unit } from "../../models/views/unit";
+import { Distance } from "../../models/views/size";
 
 export function convertUnitForHtml(unit: Unit): string {
 	const map = {

@@ -1,5 +1,5 @@
-import { IViewModelInterface, Property } from "../entities/data/view-model";
-import { IMockDataSource } from "../entities/data/mock-data-source";
+import { IViewModelInterface, Property } from "../models/data/view-model";
+import { IMockDataSource } from "../models/data/mock-data-source";
 import { IViewModelInterfaceJSON } from "../interfaces/view-model";
 import { IMockViewModelJSON } from "../interfaces/mock-view-model";
 

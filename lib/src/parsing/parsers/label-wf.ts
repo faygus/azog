@@ -1,6 +1,6 @@
 import { parseValueProvider } from "../value-provider";
 import { ILabelWFViewJSON } from "../../interfaces/label-wf";
-import { LabelWFView } from "../../entities/controls/wireframe/label";
+import { LabelWFView } from "../../models/views/controls/wireframe/label";
 
 export const labelWFParser = (viewJSON: ILabelWFViewJSON): LabelWFView => {
 	const res = new LabelWFView();

@@ -1,4 +1,4 @@
-import { ConditionalView } from "../entities/if";
+import { ConditionalView } from "../models/views/if";
 import { watchViewProperty } from "./binding-resolver";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";

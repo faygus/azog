@@ -1,3 +1,5 @@
+import { IType } from "./i-type";
+
 export interface IViewModelInterface {
 	properties: Property[];
 	inputs: Property[];
@@ -7,5 +9,5 @@ export interface IViewModelInterface {
 
 export interface Property {
 	name: string;
-	type: string; // TODO
+	type: IType;
 }

@@ -1,4 +1,4 @@
-import { ValueProvider, Pipe } from "../entities/controls/binding";
+import { ValueProvider, Pipe } from "../models/views/controls/binding";
 import { IValueProviderJSON, IValueProviderWithPipe, ValueTarget, IBinding } from "../interfaces/value-provider";
 
 export function parseValueProvider<T>(valueProviderJSON: IValueProviderJSON<T>): ValueProvider<T> {

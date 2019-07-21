@@ -1,7 +1,7 @@
-import { IValueProviders } from "../../entities/component";
+import { IValueProviders } from "../../models/component";
 import { DynamicViewModel } from "../view-model/dynamic-view-model";
 import { CustomDynamicViewModel } from "../view-model/custom-dynamic-view-model";
-import { Binding } from "../../entities/controls/binding";
+import { Binding } from "../../models/views/controls/binding";
 
 export function extendViewModel(inputs: IValueProviders,
 	viewModel?: DynamicViewModel): CustomDynamicViewModel {
@@ -10,7 +10,7 @@ export function extendViewModel(inputs: IValueProviders,
 		// const input = inputs[inputName];
 		res.addInput({
 			name: inputName,
-			type: 'any' // TODO
+			type: 'string' // TODO
 		});
 		/*if (isBinding(input.target) &&
 			input.target.propertyName === 'elementInArray') {

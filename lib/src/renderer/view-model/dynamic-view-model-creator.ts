@@ -1,8 +1,8 @@
 import { DynamicViewModel, IValueChange, IDynamicProperty } from "./dynamic-view-model";
-import { IViewModelInterface, Property } from "../../entities/data/view-model";
-import { IMockDataSource } from "../../entities/data/mock-data-source";
-import { IValueProviders } from "../../entities/component";
-import { ValueProvider } from "../../entities/controls/binding";
+import { IViewModelInterface, Property } from "../../models/data/view-model";
+import { IMockDataSource } from "../../models/data/mock-data-source";
+import { IValueProviders } from "../../models/component";
+import { ValueProvider } from "../../models/views/controls/binding";
 import { watchViewProperty } from "../binding-resolver";
 import { CustomDynamicViewModel } from "./custom-dynamic-view-model";
 

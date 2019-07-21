@@ -1,4 +1,4 @@
-import { ImageView } from "../../entities/controls/image";
+import { ImageView } from "../../models/views/controls/image";
 import { IImageViewJSON } from "../../interfaces/image";
 import { parseValueProvider } from "../value-provider";
 

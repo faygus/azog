@@ -1,4 +1,4 @@
-import { Component } from "../entities/component";
+import { Component } from "../models/component";
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
 import { ViewModelCreator } from "./view-model/dynamic-view-model-creator";
 import { IBaseRenderer2 } from "./interfaces/base-renderer2";

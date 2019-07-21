@@ -1,4 +1,4 @@
-import { Component } from "./component";
+import { Component } from "../component";
 import { ValueProvider } from "./controls/binding";
 
 export class ConditionalView {

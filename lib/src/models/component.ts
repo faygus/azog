@@ -1,6 +1,6 @@
 import { IViewModelInterface } from "./data/view-model";
 import { IMockDataSource } from "./data/mock-data-source";
-import { ValueProvider } from "./controls/binding";
+import { ValueProvider } from "./views/controls/binding";
 
 export class Component<T> {
 	viewModelInterface?: IViewModelInterface;

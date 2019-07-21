@@ -1,6 +1,6 @@
 
 import { DynamicViewModel } from "./view-model/dynamic-view-model";
-import { ForDirective } from "../entities/directives/for-directive";
+import { ForDirective } from "../models/views/directives/for-directive";
 import { watchViewProperty } from "./binding-resolver";
 import { IComponentOrHostBuilder } from "./interfaces/component-builder";
 import { IViewInserter } from "./interfaces/view-inserter";
@@ -45,7 +45,7 @@ export class ForDirectiveRenderer {
 		res._properties = [...this._viewModel!.getProperties()];*/
 		res.addProperty({
 			name: 'item',
-			type: 'any'
+			type: 'string' // TODO
 		});
 		res.changeProperty('item', data)
 		return res;

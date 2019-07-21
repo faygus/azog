@@ -1,4 +1,4 @@
-import { UniColorWFView } from "../../entities/controls/wireframe/uniColor";
+import { UniColorWFView } from "../../models/views/controls/wireframe/uniColor";
 import { IUniColorWFViewJSON } from "../../interfaces/uni-color-wf";
 import { parseValueProvider } from "../value-provider";
 

@@ -1,6 +1,6 @@
 import { IComponentInfosJSON } from "../../interfaces/utils/component-infos";
 import { GetView } from "../parsers/type";
-import { IComponentInfos } from "../../entities/composition/i-component-infos";
+import { IComponentInfos } from "../../models/composition/i-component-infos";
 import { isRefComponentJSON } from "./component-infos-cast";
 import { parseValueProvider } from "../value-provider";
 

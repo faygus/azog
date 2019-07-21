@@ -1,5 +1,5 @@
 import { ValueProvider } from "./controls/binding";
-import { Component } from "./component";
+import { Component } from "../component";
 import { ExtensibleContainer } from "./layout-composition";
 
 export class ForLoopView {

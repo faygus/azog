@@ -1,5 +1,5 @@
-import { IfLayoutChild, LayoutChild, LayoutView } from "../../entities/layouts/layout";
-import { IComponentRefs, ViewComposition } from "../../entities/view-composition";
+import { IfLayoutChild, LayoutChild, LayoutView } from "../../models/views/layouts/layout";
+import { IComponentRefs, ViewComposition } from "../../models/view-composition";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IComponentRenderer2 } from "../interfaces/component-renderer2";
 import { IViewInserter } from "../interfaces/view-inserter";

@@ -1,4 +1,4 @@
-import { ViewComposition } from "../../../entities/view-composition";
+import { ViewComposition } from "../../../models/view-composition";
 import { IViewCompositionJSON } from "../../../interfaces/view-composition";
 import { getChildComponent } from "../../utils/get-child";
 import { GetView } from "../type";

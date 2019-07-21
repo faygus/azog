@@ -1,4 +1,4 @@
-import { LabelWFView } from "../../entities/controls/wireframe/label";
+import { LabelWFView } from "../../models/views/controls/wireframe/label";
 import { watchViewProperty } from "../binding-resolver";
 import { IBaseRenderer2 } from "../interfaces/base-renderer2";
 import { IParentView } from "../interfaces/parent-view";

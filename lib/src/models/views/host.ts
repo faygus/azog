@@ -1,5 +1,5 @@
 import { Size } from "./size";
-import { Component } from "./component";
+import { Component } from "../component";
 import { StructuralDirective } from "./directives/structural-directive";
 
 export class Host {
